@@ -21,7 +21,7 @@ The living plan records current goals, state and next steps; history lives in Gi
 
 ## Next steps
 
-1. Finish PR B's review explanation and checks; seek human review of [PR #3](https://github.com/Motor-Learning-Lab/HILD/pull/3). The no-write rehearsal is recorded in the journal.
+1. [PR #3](https://github.com/Motor-Learning-Lab/HILD/pull/3) is ready for the human's **read-track review**. Its description includes the completed read-only rehearsal and testing limits.
 2. Complete the decision records' `Accepted` status updates through PR #3, following the rule against directly committing decisions to `main`.
 3. Human reviewer reviews and explicitly approves PR B. **Do not merge until repository settings have been corrected to squash-only.**
 4. Scope a separate installation/reconciliation implementation after evaluating the assessment.
