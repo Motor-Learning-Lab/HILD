@@ -168,7 +168,7 @@ on top of the work, and that it is making real progress rather than only produci
 | `guide` | A reading path: which pages to read, in what order, to understand an area. |
 | `resource` | A background source: what it is, a link, and why it matters here. |
 
-New kinds are added here, when a real page needs one. Formats: [code-page template](templates/wiki-code-page.md) and [general-page template](templates/wiki-page.md).
+New kinds are added here, when a real page needs one. Formats (original, not yet ported): [code-page template](https://github.com/opherdonchin/MotorAdpatationSBI/blob/main/.github/skills/templates/wiki-code-page.md) and [general-page template](https://github.com/opherdonchin/MotorAdpatationSBI/blob/main/.github/skills/templates/wiki-page.md).
 
 **Statuses.**
 
