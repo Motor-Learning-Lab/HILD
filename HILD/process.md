@@ -1,6 +1,6 @@
 # How we work — HILD
 
-This is a faithful adaptation of the [MotorAdpatationSBI process](https://github.com/opherdonchin/MotorAdpatationSBI/blob/main/HILD/process.md), developed under [scope #5](https://github.com/opherdonchin/MotorAdpatationSBI/issues/5) and [PRs #6](https://github.com/opherdonchin/MotorAdpatationSBI/pull/6) and [#7](https://github.com/opherdonchin/MotorAdpatationSBI/pull/7). This document is the **authoritative HILD process**, not an independently invented replacement.
+This is a faithful adaptation of the [MotorAdpatationSBI process](https://github.com/opherdonchin/MotorAdpatationSBI/blob/main/docs/process.md), developed under [scope #5](https://github.com/opherdonchin/MotorAdpatationSBI/issues/5) and [PRs #6](https://github.com/opherdonchin/MotorAdpatationSBI/pull/6) and [#7](https://github.com/opherdonchin/MotorAdpatationSBI/pull/7). This document is the **authoritative HILD process**, not an independently invented replacement.
 
 The aim is that the human **reviewer** stays fully on top of a scientific software project: what is being built, why, how it works, what has been checked, and what they understand less well. Agent-produced documentation supports that understanding.
 
@@ -315,7 +315,7 @@ The agent cannot tell when a session will end, so the plan and journal are updat
 - **Superseding:** write a new record and set the old one's status to `Superseded by
   NNNN`. Decision records are kept, not deleted: the history of why is the point.
 - **When to read:** before changing anything in an area a record covers (check titles
-  with `ls docs/decisions`).
+  with `ls HILD/decisions` (or the host's mapped decision directory)).
 
 ## Autonomy
 
