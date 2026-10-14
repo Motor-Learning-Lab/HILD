@@ -12,19 +12,19 @@ The living plan records current goals, state and next steps; history lives in Gi
 
 ## Current state — 2026-10-14
 
-- [Scope #1](https://github.com/Motor-Learning-Lab/HILD/issues/1) approved in chat; scope approval recorded on GitHub.
-- [PR #2](https://github.com/Motor-Learning-Lab/HILD/pull/2): governance foundation. The reviewer commented on unclear tooling status and the roles of `AGENTS.md` and the README. Those passages were clarified on the branch; the PR awaits human review of these revisions and is **not merged**.
-- Initial public repository exists; `main` has an MIT license and a short README.
-- The full original rules are carried into [the process](process.md), with implementation status explicitly distinguished: **no local HILD skills, automation, scripts or wiki are operational yet**.
-- HILD currently permits merge commits and rebase merges in GitHub settings; agreed policy is squash only and requires manual settings adjustment.
-- Skill discovery paths, config file format and understanding-map alternatives remain open. No integration has been performed on MotorAdpatationSBI.
+- [Scope #1](https://github.com/Motor-Learning-Lab/HILD/issues/1) was approved by the human reviewer.
+- [PR #2](https://github.com/Motor-Learning-Lab/HILD/pull/2), the governance foundation, was reviewed and merged on 2026-10-14; its process, root instructions, templates and initial decisions are on `main`. **GitHub used a merge commit rather than the agreed squash strategy.** Preserve history, correct repository settings before future merges.
+- The original [process](process.md) is now documented here; a working HILD integration skill, hooks, scripts and understanding map are not yet installed.
+- Two [decision records](decisions/) still say `Proposed` despite their substance being accepted in PR #2; their status should be updated **through a PR**, not directly on `main`.
+- HILD's GitHub settings still permit merge commits and rebase merges; human administrator needs to enable squash-only, PR title/body squash messages and branch deletion.
+- The skill location proposal is `.agents/skills/hild-integrate/` for Codex and Copilot, with Claude integration deferred pending testing. No automated installer or three-way reconciliation exists.
 
 ## Next steps
 
-1. Update PR #2 explanation for review feedback and obtain the human's explicit read-track approval. An initial static audit of internal Markdown links and source provenance is complete.
-2. Human reviewer reads PR #2 and records approval or requested changes. Do not merge on the agent's initiative.
-3. Within approved [scope #1](https://github.com/Motor-Learning-Lab/HILD/issues/1), prepare PR B with the `hild-integrate` **read-only assessment** procedure; verify agent loading/location and rehearse on MotorAdpatationSBI, with no writes.
-4. Design and scope installation, version tracking and reconciliation separately after seeing the assessment results.
+1. Within approved [scope #1](https://github.com/Motor-Learning-Lab/HILD/issues/1), develop PR B: a **read-only first-pass `hild-integrate` skill** and a verified, no-write rehearsal against MotorAdpatationSBI.
+2. Correct the decision records' approval statuses in a reviewed PR as process bookkeeping.
+3. Human reviewer reviews and explicitly approves PR B. **Do not merge until repository settings have been corrected to squash-only.**
+4. Scope a separate installation/reconciliation implementation after evaluating the assessment.
 
 ## Deliberately deferred
 
