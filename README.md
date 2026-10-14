@@ -9,6 +9,23 @@ HILD is a reusable, human-supervised process for developing scientific software 
 - [Agreed scope #1](https://github.com/Motor-Learning-Lab/HILD/issues/1) separates the foundation from the first read-only integration procedure.
 - [HILD's process](HILD/process.md) governs development in this repository. Some supporting skills, hooks, and the understanding map described there are **not yet ported**; their status is recorded in [the plan](HILD/plan.md).
 
+## Where to start
+
+This repository has different entry points for **people** and **coding agents**.
+They are not competing sources of process rules.
+
+| File | Audience and purpose |
+|---|---|
+| **[README.md](README.md)** (this page) | Public introduction: why HILD exists, whether it is ready to use, and how adoption will work |
+| **[AGENTS.md](AGENTS.md)** | Starting point for an agent **working on HILD itself**: project-specific instructions and links to the authoritative process, plan and decisions |
+| **[HILD/process.md](HILD/process.md)** | Authoritative description of how the human reviewer and the agent collaborate |
+| **[HILD/plan.md](HILD/plan.md)** | Current development state, open questions and next steps |
+
+When HILD is adopted into an **existing** repository, its current root
+`AGENTS.md` (or equivalent) remains the project's own instruction file.
+Integration should propose a short link to the HILD process, **not overwrite
+that file with this repository's AGENTS.md**.
+
 ## Origins and design constraints
 
 HILD is extracted from the working process developed in [MotorAdpatationSBI](https://github.com/opherdonchin/MotorAdpatationSBI). Its starting points are [scope #5](https://github.com/opherdonchin/MotorAdpatationSBI/issues/5), [PR #6](https://github.com/opherdonchin/MotorAdpatationSBI/pull/6), [PR #7](https://github.com/opherdonchin/MotorAdpatationSBI/pull/7), and its current [process specification](https://github.com/opherdonchin/MotorAdpatationSBI/blob/main/docs/process.md).
