@@ -4,9 +4,9 @@ HILD is a reusable, human-supervised process for developing scientific software 
 
 ## Status
 
-**Foundation under development.** This repository does not yet offer a complete installer or an operational `hild-integrate` skill. Do not assume HILD has been installed in another repository.
+**Governance foundation merged; read-only bootstrap under review.** This repository does not yet offer an installer, automated upgrade, or tested cross-agent hooks. Do not assume HILD has been installed in another repository.
 
-- [Agreed scope #1](https://github.com/Motor-Learning-Lab/HILD/issues/1) separates the foundation from the first read-only integration procedure.
+- [Agreed scope #1](https://github.com/Motor-Learning-Lab/HILD/issues/1) separates the [merged foundation PR #2](https://github.com/Motor-Learning-Lab/HILD/pull/2) from [read-only bootstrap PR #3](https://github.com/Motor-Learning-Lab/HILD/pull/3).
 - [HILD's process](HILD/process.md) governs development in this repository. Some supporting skills, hooks, and the understanding map described there are **not yet ported**; their status is recorded in [the plan](HILD/plan.md).
 
 ## Where to start
@@ -43,7 +43,7 @@ The [project instructions](AGENTS.md) direct coding agents to follow the [HILD p
 
 The first [`hild-integrate` skill](.agents/skills/hild-integrate/SKILL.md) is a **procedure for assessing**, not installing, HILD. Its initial implementation is in [PR #3](https://github.com/Motor-Learning-Lab/HILD/pull/3) and is not yet merged.
 
-To ask an agent to assess a scientific repository **before** HILD is installed, give it the upstream [skill URL](https://github.com/Motor-Learning-Lab/HILD/blob/integrate/read-only-bootstrap/.agents/skills/hild-integrate/SKILL.md) and the repository to assess, and tell it: *read that procedure, assess this repository read-only, propose a scope, and stop without making changes*. Once the PR is merged, use the URL on `main`; for reproducible assessments pin a commit.
+To ask an agent to assess a scientific repository **before** HILD is installed, give it the upstream [skill URL on main](https://github.com/Motor-Learning-Lab/HILD/blob/main/.agents/skills/hild-integrate/SKILL.md) **after PR #3 merges** (until then, use the relative review link above) and the repository to assess, and tell it: *read that procedure, assess this repository read-only, propose a scope, and stop without making changes*. Once the PR is merged, use the URL on `main`; for reproducible assessments pin a commit.
 
 The default installation location will be `HILD/`, with per-role overrides for existing authoritative files. **Installing, upgrading and three-way reconciliation are not yet implemented.** Each will require a separately approved scope.
 
