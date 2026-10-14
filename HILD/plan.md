@@ -13,7 +13,7 @@ The living plan records current goals, state and next steps; history lives in Gi
 ## Current state — 2026-10-14
 
 - [Scope #1](https://github.com/Motor-Learning-Lab/HILD/issues/1) approved in chat; scope approval recorded on GitHub.
-- [Draft PR #2](https://github.com/Motor-Learning-Lab/HILD/pull/2): governance foundation. Its process, templates, minimal project guidance, and [decision records](decisions/) are on the review branch, **not merged**.
+- [Draft PR #2](https://github.com/Motor-Learning-Lab/HILD/pull/2): governance foundation. Its process, templates, minimal project guidance, and [decision records](decisions/) are committed on the branch and being presented for the human's **read-track review**, **not merged**.
 - Initial public repository exists; `main` has an MIT license and a short README.
 - The full original rules are carried into [the process](process.md), with implementation status explicitly distinguished: **no local HILD skills, automation, scripts or wiki are operational yet**.
 - HILD currently permits merge commits and rebase merges in GitHub settings; agreed policy is squash only and requires manual settings adjustment.
@@ -21,7 +21,7 @@ The living plan records current goals, state and next steps; history lives in Gi
 
 ## Next steps
 
-1. Finish checking PR #2 for correct links, clear authoritative homes, accurate status claims and faithful source extraction.
+1. Check the PR #2 review explanation against the last branch commit; an initial audit of local Markdown links and source provenance is complete.
 2. Human reviewer reads PR #2 and records approval or requested changes. Do not merge on the agent's initiative.
 3. Within approved [scope #1](https://github.com/Motor-Learning-Lab/HILD/issues/1), prepare PR B with the `hild-integrate` **read-only assessment** procedure; verify agent loading/location and rehearse on MotorAdpatationSBI, with no writes.
 4. Design and scope installation, version tracking and reconciliation separately after seeing the assessment results.
