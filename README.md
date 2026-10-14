@@ -32,6 +32,13 @@ HILD is extracted from the working process developed in [MotorAdpatationSBI](htt
 
 HILD preserves scope agreements, early draft PRs, small commits, layered explanations, human review tracks, durable plans and journals, decisions, and a researcher-confirmed understanding map. Project-specific scientific conventions remain in the host project.
 
+## Developing HILD with HILD
+
+**HILD's own development follows HILD.** Proposed changes begin with a human-agreed scope, proceed through small commits and a reviewable PR, and are documented through explanations, decisions, and durable project state. This is an ongoing real-world test of whether the process is understandable and useful—not a claim that every supporting skill or hook is already implemented.
+
+The [project instructions](AGENTS.md) direct coding agents to follow the [HILD process](HILD/process.md), and the [plan](HILD/plan.md) tracks what is currently implemented and still missing.
+
+
 ## Adoption (planned)
 
 An agent should first read the upstream `hild-integrate` procedure **without requiring HILD to be installed**. Its first action is a read-only assessment of existing rules, project knowledge, working tree and history. It proposes an adoption or reconciliation plan and stops for human agreement before any changes.
