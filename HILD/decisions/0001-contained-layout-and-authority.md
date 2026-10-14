@@ -1,6 +1,6 @@
 # 0001 — Contained HILD layout, with authority-preserving overrides
 
-**Date:** 2026-10-14 · **Status:** Proposed (substance agreed in chat; PR review pending)
+**Date:** 2026-10-14 · **Status:** Accepted (human-reviewed in [PR #2](https://github.com/Motor-Learning-Lab/HILD/pull/2), merged 2026-10-14)
 
 **Context:** New projects benefit from a clear default home for HILD's own process and state. Existing scientific repositories already have authoritative instructions, plans, decisions and documentation; moving them into a new folder would create disruption or competing copies.
 
