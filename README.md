@@ -39,11 +39,13 @@ HILD preserves scope agreements, early draft PRs, small commits, layered explana
 The [project instructions](AGENTS.md) direct coding agents to follow the [HILD process](HILD/process.md), and the [plan](HILD/plan.md) tracks what is currently implemented and still missing.
 
 
-## Adoption (planned)
+## Read-only adoption assessment (available for review)
 
-An agent should first read the upstream `hild-integrate` procedure **without requiring HILD to be installed**. Its first action is a read-only assessment of existing rules, project knowledge, working tree and history. It proposes an adoption or reconciliation plan and stops for human agreement before any changes.
+The first [`hild-integrate` skill](.agents/skills/hild-integrate/SKILL.md) is a **procedure for assessing**, not installing, HILD. Its initial implementation is in [PR #3](https://github.com/Motor-Learning-Lab/HILD/pull/3) and is not yet merged.
 
-The default is a contained `HILD/` directory; existing repositories can keep their own authoritative files elsewhere through configured paths. Local installations are reconciled with upstream, never blindly replaced.
+To ask an agent to assess a scientific repository **before** HILD is installed, give it the upstream [skill URL](https://github.com/Motor-Learning-Lab/HILD/blob/integrate/read-only-bootstrap/.agents/skills/hild-integrate/SKILL.md) and the repository to assess, and tell it: *read that procedure, assess this repository read-only, propose a scope, and stop without making changes*. Once the PR is merged, use the URL on `main`; for reproducible assessments pin a commit.
+
+The default installation location will be `HILD/`, with per-role overrides for existing authoritative files. **Installing, upgrading and three-way reconciliation are not yet implemented.** Each will require a separately approved scope.
 
 ## Contributions
 
