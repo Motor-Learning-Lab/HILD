@@ -237,33 +237,71 @@ To change something:
 
 ## How the tooling works
 
-The **reference implementation** uses brief skills that link here for rules and
-to templates for formats. An agent loads a skill when its task matches.
-These are procedures, not duplicate process specifications.
+The process above defines **what** the human and agent must do. Tooling makes
+those steps easier to remember and carry out; it does not create new rules.
+There are three different kinds of supporting tool:
 
-| Skill | When |
+- **Skills are instructions for the agent.** For example, the orientation skill
+  says how to turn repository facts into a short report for the reviewer.
+  The skill points to the rules here and to a template where appropriate.
+- **Scripts do mechanical work.** They collect or compare information that
+  would be tedious or error-prone for an agent to assemble by hand. They are
+  not the source of process rules.
+- **Hooks connect a supported agent event to an action.** For example, a
+  Claude Code session-start hook runs a script automatically. An agent without
+  that hook can still perform the same work by following the skill manually.
+
+**Concrete example — starting a session.** In the original project, Claude
+Code starts a session and runs `session_context.sh`. That script collects
+the current branch, plan, latest journal, recent commits, open issues and
+pull requests, and wiki status. Claude then follows the `orient` skill:
+it explains what needs human attention, what changed, and what to do next.
+The script supplies facts; the skill supplies steps; this document supplies
+the governing rules.
+
+**Concrete example — checking understanding.** Code pages in the original
+project's wiki record which files they explain and the `main` commit they
+describe. The `wiki_status.py` script compares those files with current
+code and flags pages that may be outdated. The `digest` and `understood`
+skills tell the agent how to report or follow up; only the reviewer can
+confirm a page as `understood`.
+
+| Procedure in the original project | Purpose |
 |---|---|
-| `orient` (planned `hild-orient`) | Start of a session; "where are we?" |
-| `scope` (planned `hild-scope`) | Before nontrivial development |
-| `explain` | When a PR is ready for review |
-| `journal` | At milestones |
-| `understood` | To maintain the understanding map |
-| `digest` | Periodic repository audit |
-| `hild-integrate` | Assess adoption, later installation and upgrade; first pass read-only |
+| `orient` (proposed `hild-orient`) | Present a session-start status and questions for the reviewer |
+| `scope` (proposed `hild-scope`) | Prepare an agreed scope before nontrivial development |
+| `explain` | Prepare a layered PR explanation for human review |
+| `journal` | Record milestones and refresh the plan |
+| `understood` | Draft or revise an understanding-map page |
+| `digest` | Review repository hygiene and understanding debt |
+| `hild-integrate` (new, not yet implemented) | Inspect an existing repository and propose adoption; later support reconciliation |
 
-The names of the first six procedures follow the [original skills](https://github.com/opherdonchin/MotorAdpatationSBI/tree/main/.github/skills). Their final HILD names and cross-agent discovery locations are not fully decided.
+**What exists today, and what does not:**
 
-Two mechanical tools in the original repository have **not yet been ported**:
+- **In [MotorAdpatationSBI](https://github.com/opherdonchin/MotorAdpatationSBI/tree/main/.github/skills):**
+  the first six skills and both [`session_context.sh`](https://github.com/opherdonchin/MotorAdpatationSBI/blob/main/.github/skills/scripts/session_context.sh)
+  and [`wiki_status.py`](https://github.com/opherdonchin/MotorAdpatationSBI/blob/main/.github/skills/scripts/wiki_status.py)
+  exist. The original [Claude Code hooks](https://github.com/opherdonchin/MotorAdpatationSBI/blob/main/.claude/settings.json)
+  initiate orientation at session start and issue reminders around
+  **context compaction** (when an agent's long conversation is summarized):
+  preserve unrecorded milestones in the summary, then record them in the
+  journal. The original PR tested orientation partially and tested the
+  compaction commands, **not live compaction**.
+- **In this HILD repository:** only the process rules and templates have
+  been ported so far. **No HILD skills, scripts, hooks, or understanding map
+  are currently operational.** [Scope #1](https://github.com/Motor-Learning-Lab/HILD/issues/1)
+  next introduces a read-only `hild-integrate` procedure. Other tooling
+  will require subsequent scoped implementation and verification.
+- **Unresolved compatibility:** [original issue #10](https://github.com/opherdonchin/MotorAdpatationSBI/issues/10)
+  asks whether compaction hooks work in a real session;
+  [original issue #11](https://github.com/opherdonchin/MotorAdpatationSBI/issues/11)
+  asks how orientation and compaction should work for Copilot and Codex.
+  Those are not solved by moving the documentation.
 
-- [`session_context.sh`](https://github.com/opherdonchin/MotorAdpatationSBI/blob/main/.github/skills/scripts/session_context.sh) gathers branch, plan, journal, recent changes, issues, PRs and wiki status for orientation.
-- [`wiki_status.py`](https://github.com/opherdonchin/MotorAdpatationSBI/blob/main/.github/skills/scripts/wiki_status.py) detects potentially stale code pages and generates a status board.
-
-Three [Claude Code hooks](https://github.com/opherdonchin/MotorAdpatationSBI/blob/main/.claude/settings.json) start orientation, prompt for retention of unrecorded milestones before compaction, and prompt for their recording after compaction. The original PR verified startup partially and tested compaction commands only. [Issue #10](https://github.com/opherdonchin/MotorAdpatationSBI/issues/10) tracks live compaction testing; [issue #11](https://github.com/opherdonchin/MotorAdpatationSBI/issues/11) tracks Copilot/Codex equivalents.
-
-**None of these scripts or hooks runs automatically in HILD yet.**
-Until the corresponding skills exist, an agent follows the process manually.
-The bootstrap integration assessment must never run a write-capable hook or
-script before human approval.
+Until a supporting tool is installed and verified, the agent follows the
+rules manually rather than pretending automation exists. An initial
+`hild-integrate` **assessment** never runs hooks or write-capable scripts,
+and never changes local or GitHub state before human approval.
 
 ## Durable state files
 
