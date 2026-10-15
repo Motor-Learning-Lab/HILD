@@ -23,7 +23,7 @@ The living plan records current goals, state and next steps; history lives in Gi
 
 ## Next steps
 
-1. Complete [PR #5](https://github.com/Motor-Learning-Lab/HILD/pull/5): canonical general skills, optional onboarding scope, READMEs and wiki formats. Human read-track review required; no merge by the agent.
+1. Review [PR #5](https://github.com/Motor-Learning-Lab/HILD/pull/5): canonical general skills, optional onboarding scope, READMEs, wiki formats and proposed decision 0003. Static Markdown links and skill-frontmatter checks pass; live loading **not** tested. Human read-track approval required; the agent does not merge.
 2. Subsequent PRs in [approved scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4) port the working scripts, initialize a **fresh** understanding wiki and selected-agent hooks, implement approved first-time installation with mechanical verification, and demonstrate an actual onboarding cycle.
 3. Update GitHub settings for PR title + PR description as squash message and automatic branch deletion. Squash-only merge method is already enabled.
 4. Keep integration with **existing** wikis and three-way upgrades of locally modified HILD installations outside this scope.
