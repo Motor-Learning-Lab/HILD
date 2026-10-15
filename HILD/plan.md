@@ -19,12 +19,14 @@ The living plan records current goals, state and next steps; history lives in Gi
 - GitHub settings now disable merge and rebase merges, leaving squash as the only permitted merge method. **Remaining differences from accepted policy:** `delete_branch_on_merge=false` and squash commit defaults are `COMMIT_OR_PR_TITLE` / `COMMIT_MESSAGES`, not PR title / PR description. Correct those in repository settings; do not rewrite existing commits.
 - The other original process skills, session hooks, scripts and understanding map are not installed in HILD. No installer, automated upgrade/reconciliation engine, or integration into MotorAdpatationSBI exists.
 
+- [Scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4) was approved in chat on 2026-10-15. [Draft PR #5](https://github.com/Motor-Learning-Lab/HILD/pull/5) is porting general HILD skills, onboarding guidance and canonical wiki formats; these changes are **not merged**. Next PRs in the scope handle scripts, fresh wiki, selected-agent adapters, installer verification and real onboarding validation.
+
 ## Next steps
 
-1. Agree the **smallest next scope**, focused on a safe installation procedure after read-only assessment. First resolve what an approval authorizes and how an existing project's process file remains authoritative.
-2. In that scope, test `hild-integrate` in a real agent and local repository setting, including uncommitted changes and correct discovery/explicit URL bootstrapping.
-3. Set GitHub to use PR title + PR description for squash commits and automatically delete branches after merge.
-4. Defer a general upgrade/reconciliation engine, automated compliance enforcement, and other agents' session hooks until the minimal installation pathway is reviewed.
+1. Complete [PR #5](https://github.com/Motor-Learning-Lab/HILD/pull/5): canonical general skills, optional onboarding scope, READMEs and wiki formats. Human read-track review required; no merge by the agent.
+2. Subsequent PRs in [approved scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4) port the working scripts, initialize a **fresh** understanding wiki and selected-agent hooks, implement approved first-time installation with mechanical verification, and demonstrate an actual onboarding cycle.
+3. Update GitHub settings for PR title + PR description as squash message and automatic branch deletion. Squash-only merge method is already enabled.
+4. Keep integration with **existing** wikis and three-way upgrades of locally modified HILD installations outside this scope.
 
 ## Deliberately deferred
 
