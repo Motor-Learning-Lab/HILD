@@ -14,12 +14,12 @@ The aim is that the human **reviewer** stays fully on top of a scientific softwa
   That document **points to** this process rather than copying it.
 - **Installed HILD is local:** local modifications are legitimate. New upstream
   versions must be compared and reconciled, not installed over the local version.
-- **Current bootstrap status:** this first governance PR ports the rules, durable
-  state and templates. The original skills, scripts, Claude hooks and wiki are
-  **not yet installed in this repo**. Sections below define the intended
-  behavior and identify the reference tooling; they do not claim it operates.
-  `hild-integrate` will begin with read-only assessment in PR B of
-  [scope #1](https://github.com/Motor-Learning-Lab/HILD/issues/1).
+- **Current implementation status:** [scope #1](https://github.com/Motor-Learning-Lab/HILD/issues/1)
+  established these rules, durable state, templates, and a
+  [read-only `hild-integrate` assessment skill](../.agents/skills/hild-integrate/SKILL.md).
+  The other original skills, scripts, Claude hooks and wiki have **not yet been
+  installed or tested in this repo**. Later sections describe reference behavior,
+  not functioning local automation.
 - **Path interpretation:** paths in this document are defaults for HILD, not
   installation-time mandates. Every procedure must resolve the host's recorded
   authoritative paths before acting. Choice of configuration format is deferred.
@@ -287,11 +287,12 @@ confirm a page as `understood`.
   preserve unrecorded milestones in the summary, then record them in the
   journal. The original PR tested orientation partially and tested the
   compaction commands, **not live compaction**.
-- **In this HILD repository:** only the process rules and templates have
-  been ported so far. **No HILD skills, scripts, hooks, or understanding map
-  are currently operational.** [Scope #1](https://github.com/Motor-Learning-Lab/HILD/issues/1)
-  next introduces a read-only `hild-integrate` procedure. Other tooling
-  will require subsequent scoped implementation and verification.
+- **In this HILD repository:** the process, templates and a
+  [read-only `hild-integrate` skill](../.agents/skills/hild-integrate/SKILL.md)
+  now exist. The first skill was manually rehearsed through read-only GitHub
+  inspection, but native skill loading has **not been verified**. Other process
+  skills, scripts, hooks and the understanding map have not been installed.
+  Their implementation and verification require new agreed scopes.
 - **Unresolved compatibility:** [original issue #10](https://github.com/opherdonchin/MotorAdpatationSBI/issues/10)
   asks whether compaction hooks work in a real session;
   [original issue #11](https://github.com/opherdonchin/MotorAdpatationSBI/issues/11)
