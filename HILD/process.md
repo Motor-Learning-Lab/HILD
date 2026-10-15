@@ -274,7 +274,7 @@ confirm a page as `understood`.
 | `journal` | Record milestones and refresh the plan |
 | `understood` | Draft or revise an understanding-map page |
 | `digest` | Review repository hygiene and understanding debt |
-| `hild-integrate` (new, not yet implemented) | Inspect an existing repository and propose adoption; later support reconciliation |
+| `hild-integrate` (assessment implemented; installation pending) | Inspect existing repositories and propose adoption; later install after explicit approval and support reconciliation |
 
 **What exists today, and what does not:**
 
@@ -287,12 +287,15 @@ confirm a page as `understood`.
   preserve unrecorded milestones in the summary, then record them in the
   journal. The original PR tested orientation partially and tested the
   compaction commands, **not live compaction**.
-- **In this HILD repository:** the process, templates and a
+- **In this HILD repository:** the process, templates, and the
   [read-only `hild-integrate` skill](../.agents/skills/hild-integrate/SKILL.md)
-  now exist. The first skill was manually rehearsed through read-only GitHub
-  inspection, but native skill loading has **not been verified**. Other process
-  skills, scripts, hooks and the understanding map have not been installed.
-  Their implementation and verification require new agreed scopes.
+  are on `main`. [Scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4)
+  is porting the general-purpose skills and the optional
+  [onboarding scope companion](../.agents/skills/hild-scope/onboarding-scope.md).
+  Until its [PR #5](https://github.com/Motor-Learning-Lab/HILD/pull/5) merges,
+  those additions are **proposed, not released**. Live native skill discovery
+  has **not been verified**; supporting scripts, agent hooks and the understanding
+  map are not yet installed. Those are later PRs in scope #4.
 - **Unresolved compatibility:** [original issue #10](https://github.com/opherdonchin/MotorAdpatationSBI/issues/10)
   asks whether compaction hooks work in a real session;
   [original issue #11](https://github.com/opherdonchin/MotorAdpatationSBI/issues/11)
