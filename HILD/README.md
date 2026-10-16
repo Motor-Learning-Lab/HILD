@@ -1,6 +1,6 @@
 # HILD in this repository
 
-HILD helps a human researcher understand, direct and approve AI-assisted scientific software development. The [local process](process.md) governs this installation; the repository's [agent instructions](../AGENTS.md) define project-specific conventions.
+HILD helps a human researcher understand, direct and approve AI-assisted scientific software development. The [local process file](process.md) governs this installation; the repository's [agent instructions](../AGENTS.md) define project-specific conventions.
 
 This README is an **entry point**, not a second copy of the process. The [plan](plan.md) records current goals and next steps. The authoritative locations of any overridden files should be documented in this installation's configuration when available.
 
