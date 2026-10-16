@@ -1,25 +1,55 @@
-# HILD in this repository
+# Using HILD in this repository
 
-HILD helps a human researcher understand, direct and approve AI-assisted scientific software development. The [local process file](process.md) governs this installation; the repository's [agent instructions](../AGENTS.md) define project-specific conventions.
+HILD helps a researcher guide, understand and review software written with AI
+coding agents. [The HILD process](process.md) explains how the researcher and
+agent work together. The project's [agent instructions](../AGENTS.md) describe
+its particular scientific goals and coding conventions.
 
-This README is an **entry point**, not a second copy of the process. The [plan](plan.md) records current goals and next steps. The authoritative locations of any overridden files should be documented in this installation's configuration when available.
+This page shows **how to begin**; it does not replace the process rules.
+The [plan](plan.md) records the project's goals and what to do next.
 
-## Getting started
+## Start a conversation
 
-Open a new chat with an AI coding agent that has **access to this repository**, and give it the prompt below. A beginner should leave **onboarding** in the prompt. A researcher who already knows HILD can replace that request with the scientific or software task they actually want to scope.
+Open a new chat with an AI coding agent that can read and work with **this
+repository**. Copy this message:
 
-> We are developing this repository using HILD. Please read the repository's agent instructions and HILD process, then use the [hild-scope skill](../.agents/skills/hild-scope/SKILL.md) to prepare our next scope.
+> We are developing this repository using HILD. Please read its agent
+> instructions and HILD process. Use the `hild-scope` skill to propose our
+> next agreed piece of work.
 >
-> To get started, please prepare a scope addressing **onboarding**: demonstrate HILD's actual capabilities through a small, useful development cycle, and verify which ones work. Explain the proposed scope and wait for my agreement before implementing anything.
+> To get started, please propose an **onboarding scope** that helps me learn
+> HILD by using it on this project. Explain the proposal and wait for my
+> approval before beginning any changes.
 
-The `hild-scope` skill loads its [onboarding companion](../.agents/skills/hild-scope/onboarding-scope.md) **only** for an onboarding scope. No separate onboarding skill or mandatory onboarding run is required.
+**Already familiar with HILD?** Replace "onboarding scope" with the work you
+actually want to do.
 
-## What to expect
+The [scope skill](../.agents/skills/hild-scope/SKILL.md) has a
+[companion file](../.agents/skills/hild-scope/onboarding-scope.md) for
+onboarding. It is read only for onboarding requests; there is no separate
+onboarding skill.
 
-The scope is a proposal for human agreement. Once agreed, HILD development uses a branch and draft PR, small commits, reviewable explanations, and human approval before a squash merge. Plans, journals and decisions are persistent records. An onboarding PR may propose a `Process-HILD` understanding-map wiki page, created as a draft **after merge**, then reviewed by the human.
+## What happens during onboarding?
 
-**Installation verification** checks files and configuration; it does **not** establish that agent behavior works. **Onboarding validation** exercises agent behavior and is optional for adopters but valuable when HILD changes substantially.
+The agent first helps you agree on a **scope**: which small, useful change to
+make and what you will review. It then follows the ordinary HILD process:
+an issue records the agreement, a branch and **draft pull request (PR)**
+make proposed changes visible, and you review and approve the work before
+merging. A journal and plan help the next session pick up where this one left
+off.
 
-If the expected skill, wiki or hook is not installed or does not work, the agent should say so and record the gap, never silently claim success.
+The PR can propose a wiki page called `Process-HILD` explaining how this
+particular project uses HILD. If you agree, the agent drafts that page
+**after merging**, and you review it before confirming that you understand it.
 
-See the [upstream HILD project](https://github.com/Motor-Learning-Lab/HILD) for releases and documentation. An installed copy can evolve locally; updates require reconciliation rather than blind replacement.
+**Checking installation** means checking files, settings and links.
+**Validating onboarding** means observing an actual agent and researcher
+following the process. These are different checks. Onboarding is recommended
+for beginners, not required for every installation or update.
+
+If a skill, script or wiki is missing, the agent should report that instead
+of claiming the capability works.
+
+See the [upstream HILD project](https://github.com/Motor-Learning-Lab/HILD)
+for documentation and updates. Local HILD files may evolve with the project;
+future upstream changes must be reviewed rather than blindly replacing them.
