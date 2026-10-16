@@ -25,12 +25,26 @@ jobs:
         run: python -m py_compile HILD/scripts/wiki_status.py
       - name: Check shell syntax
         run: bash -n HILD/scripts/session_context.sh
-      - name: Parse agent configuration templates
+      - name: Smoke-test startup data without GitHub access
+        run: |
+          mkdir -p "$RUNNER_TEMP/hild-stubs"
+          printf '#!/bin/sh\nexit 1\n' > "$RUNNER_TEMP/hild-stubs/gh"
+          chmod +x "$RUNNER_TEMP/hild-stubs/gh"
+          PATH="$RUNNER_TEMP/hild-stubs:$PATH" bash HILD/scripts/session_context.sh > "$RUNNER_TEMP/orientation.txt"
+          grep -F '=== Session orientation data' "$RUNNER_TEMP/orientation.txt"
+          grep -F -- '--- Plan' "$RUNNER_TEMP/orientation.txt"
+      - name: Parse selected agent hook templates
         run: |
           python - <<'PY'
           import json
           from pathlib import Path
-          for path in Path('HILD/templates').glob('*settings.json'):
-              json.loads(path.read_text())
-              print('Valid JSON:', path)
+          t = Path('HILD/templates')
+          claude = json.loads((t / 'claude-settings.json').read_text())
+          codex = json.loads((t / 'codex-hooks.json').read_text())
+          copilot = json.loads((t / 'copilot-hooks.json').read_text())
+          assert claude['hooks']['SessionStart']
+          assert codex['hooks']['SessionStart']
+          assert copilot['version'] == 1
+          assert copilot['hooks']['sessionStart']
+          print('Agent configuration JSON and basic event structure: OK')
           PY
