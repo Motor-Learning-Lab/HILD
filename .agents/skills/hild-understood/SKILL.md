@@ -9,12 +9,12 @@ Rules: [HILD process](../../../HILD/process.md), *Understanding map*.
 Templates: [wiki code page](../../../HILD/templates/wiki-code-page.md) and
 [general wiki page](../../../HILD/templates/wiki-page.md).
 
-The original arrangement is a separate GitHub wiki repository cloned into a gitignored `wiki/` directory; the target installation records its own actual location. **Do not create or overwrite a wiki implicitly.** In particular, existing-wiki integration is outside the first-install scope.
+In the original project, the wiki is a separate Git repository copied into a local `wiki/` folder that the main repository ignores. The installed project's configuration should identify its actual wiki location. **Do not create or overwrite a wiki implicitly.** In particular, existing-wiki integration is outside the first-install scope.
 
-1. **Locate and pull first.** Determine the configured understanding map and its Git remote. For a Git-backed wiki, pull fast-forward only before editing to preserve browser changes. If unavailable or divergent, report and stop; don't overwrite.
-2. **Draft or revise from source.** A code page describes actual merged code and records its `main` commit, never an unmerged branch head. For a stale page inspect the diff since its recorded commit. General pages use the kind appropriate to the subject.
-3. **Preserve reviewer authority.** The agent may set `draft`, `stub`, `needs-revision`, or `needs-review` when justified; **only the researcher** may confirm `understood`. Link related pages and create stubs for missing links only within the agreed change.
-4. **Keep navigation and status current.** Update Home and sidebar. If installed, run `HILD/scripts/wiki_status.py --write` against the configured wiki and check its changes. The script does not commit or push.
+1. **Find the wiki and get the latest pages.** Read its configured location and remote address. If it uses Git, pull only when Git can add the new changes without rewriting existing work (`--ff-only`). If that fails, stop and explain rather than overwrite anyone's edits.
+2. **Draft from the actual code.** A code page should describe what is already on `main`, with the commit it describes. If a page might be out of date, compare that commit with the current code. Use a process, concept, guide or resource page for other subjects.
+3. **Keep human confirmation meaningful.** The agent can mark a page as a draft, placeholder, needing revision or needing another review. **Only the researcher** can confirm it as `understood`. Link related pages; create placeholders only when the agreed work needs them.
+4. **Keep navigation and status current.** Update Home and the sidebar. If the staleness checker exists, run `HILD/scripts/wiki_status.py --write` on the configured wiki and inspect what it changed. This script does not commit or publish anything.
 5. **Publish promptly.** Commit and push the wiki after each approved update; report page links and those awaiting human review.
 
 For onboarding, the scope/PR may propose a `Process-HILD` wiki page, but write the agreed draft **after** the onboarding PR has merged.
