@@ -23,6 +23,17 @@ pre-existing wiki is outside this procedure.
 
 ## Preview (read-only) then install (approved write)
 
+1. After the researcher agrees to the installation scope, record that agreement
+   in a GitHub scope issue for the **target** repository. Create a working
+   branch there. The install will create files on that branch, **not** silently
+   change the default branch.
+2. From the **HILD source checkout**, run the preview command below. Discuss
+   the exact proposed file changes before applying them.
+3. Run the approved install, commit and push its first small change, and open
+   a **draft PR promptly**, following the normal HILD review procedure.
+   Neither the script nor this companion automatically commits, pushes or
+   merges. The human remains responsible for merge approval.
+
 From the **HILD source checkout**, run:
 
 ```bash
