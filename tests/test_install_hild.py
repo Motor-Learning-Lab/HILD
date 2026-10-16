@@ -200,3 +200,14 @@ def test_existing_parent_symlink_cannot_redirect_installer(repositories):
     assert "redirect" in result.stderr
     assert not (outside / "skills").exists()
     assert not (target / "HILD").exists()
+
+
+def test_existing_scientific_files_require_a_different_scope(repositories):
+    source, target = repositories
+    (target / "model.py").write_text("print('science')\n")
+    git(target, "add", "model.py")
+    git(target, "commit", "-qm", "Existing scientific work")
+    result = install(source, target, "--apply")
+    assert result.returncode == 2
+    assert "existing-repository integration scope" in result.stderr
+    assert not (target / "HILD").exists()
