@@ -4,10 +4,13 @@ HILD is a reusable, human-supervised process for developing scientific software 
 
 ## Status
 
-**Governance foundation and read-only bootstrap merged.** This repository does not yet offer an installer, automated upgrade, or tested cross-agent hooks. Do not assume HILD has been installed in another repository.
+**Core HILD skills and mechanical tooling have merged.** [Scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4) is developing first-time installation into new repositories.
 
-- [Completed scope #1](https://github.com/Motor-Learning-Lab/HILD/issues/1) delivered the [governance foundation](https://github.com/Motor-Learning-Lab/HILD/pull/2) and [read-only bootstrap](https://github.com/Motor-Learning-Lab/HILD/pull/3).
-- [HILD's process](HILD/process.md) governs development in this repository. Some supporting skills, hooks, and the understanding map described there are **not yet ported**; their status is recorded in [the plan](HILD/plan.md).
+- [PR #5](https://github.com/Motor-Learning-Lab/HILD/pull/5) provided the common skills, onboarding guidance, and wiki templates.
+- [PR #6](https://github.com/Motor-Learning-Lab/HILD/pull/6) added tested orientation and wiki-staleness scripts and optional agent setup templates.
+- [PR #7](https://github.com/Motor-Learning-Lab/HILD/pull/7) develops preview-first installation and mechanical verification. **A working installer is not released until that PR merges.** Live agent startup, wiki creation and end-to-end onboarding remain to be validated.
+
+The [current plan](HILD/plan.md) distinguishes implemented, mechanically tested and unverified capabilities.
 
 ## Where to start
 
@@ -44,7 +47,7 @@ The first [`hild-integrate` skill](.agents/skills/hild-integrate/SKILL.md) is a 
 
 To ask an agent to assess a scientific repository **before** HILD is installed, give it the upstream [skill URL on main](https://github.com/Motor-Learning-Lab/HILD/blob/main/.agents/skills/hild-integrate/SKILL.md) and the repository to assess, and tell it: *read that procedure, assess this repository read-only, propose a scope, and stop without making changes*. For reproducible assessments, pin a specific commit.
 
-The default installation location will be `HILD/`, with per-role overrides for existing authoritative files. **Installing, upgrading and three-way reconciliation are not yet implemented.** Each will require a separately approved scope.
+The default installation location is `HILD/`. A preview-first installer for **new, minimally initialized repositories** is under review in [PR #7](https://github.com/Motor-Learning-Lab/HILD/pull/7); do not assume it has been released. Integration with established repositories, upgrading locally modified HILD installations and three-way reconciliation remain **unimplemented**. Existing authoritative files must never be overwritten without a separately agreed integration plan.
 
 ## Starting work with HILD
 
@@ -54,7 +57,7 @@ After HILD is installed, open an agent chat **with access to your repository** a
 
 **Onboarding is recommended for new users, not required.** Experienced researchers can replace it with their actual first development task. The scope skill reads its [onboarding companion](.agents/skills/hild-scope/onboarding-scope.md) only when onboarding is requested. A completed onboarding exercise may propose a fresh `Process-HILD` wiki draft for creation after the PR merges.
 
-The core skill port is being reviewed in [PR #5](https://github.com/Motor-Learning-Lab/HILD/pull/5). It is not yet installed in other repositories; HILD installation, selected-agent adapters and fresh-wiki behavior are separate parts of [approved scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4).
+The skills and core tools are on `main`, but source availability is **not** proof of a functioning host installation. Mechanical first-install testing is in [PR #7](https://github.com/Motor-Learning-Lab/HILD/pull/7); a real onboarding exercise and wiki publication remain future validation steps in [scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4).
 
 ## Contributions
 
