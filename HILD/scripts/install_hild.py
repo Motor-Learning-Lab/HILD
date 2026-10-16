@@ -235,24 +235,42 @@ def apply_plan(target, plan):
 
 
 def verify(target):
+    """Check structure without treating legitimate local edits as failures."""
     metadata_path = target / MANIFEST
     if not metadata_path.is_file():
         raise InstallationError(f"No {MANIFEST} to verify")
     info = json.loads(metadata_path.read_text(encoding="utf-8"))
-    problems = []
+    missing, local_edits = [], []
     for rel, expected in info["files"].items():
         path = target / rel
         if "symlink" in expected:
             if not path.is_symlink() or str(path.readlink()) != expected["symlink"]:
-                problems.append(f"{rel}: expected symlink to {expected['symlink']}")
-        elif not path.is_file() or digest(path.read_bytes()) != expected["sha256"]:
-            problems.append(f"{rel}: missing or changed from installed baseline")
-    for item in problems:
+                missing.append(f"{rel}: missing or incorrect skill-directory link")
+        elif not path.is_file():
+            missing.append(f"{rel}: missing expected file")
+        elif digest(path.read_bytes()) != expected["sha256"]:
+            local_edits.append(rel)
+
+    for item in missing:
         print("FAIL", item)
-    if not problems:
-        print(f"PASS: {len(info['files'])} recorded paths match the installation baseline")
-    print("NOT TESTED: native agent skill discovery, hooks, onboarding, GitHub settings and wiki publication")
-    return 1 if problems else 0
+    for item in local_edits:
+        print("LOCAL CHANGE (preserved):", item)
+
+    for name in info["agents"]:
+        _, config_path = ADAPTERS[name]
+        path = target / config_path
+        if path.is_file():
+            try:
+                json.loads(path.read_text(encoding="utf-8"))
+            except (ValueError, UnicodeDecodeError):
+                missing.append(f"{config_path}: invalid JSON")
+                print("FAIL", missing[-1])
+
+    if not missing:
+        print(f"PASS: all {len(info['files'])} recorded paths are present; "
+              f"{len(local_edits)} have legitimate local changes")
+    print("NOT TESTED: live agent discovery/hooks, onboarding, GitHub settings or wiki publication")
+    return 1 if missing else 0
 
 
 def main(argv=None):
