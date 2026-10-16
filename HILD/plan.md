@@ -15,12 +15,12 @@ The living plan records current goals, state and next steps; history lives in Gi
 - [Scope #1](https://github.com/Motor-Learning-Lab/HILD/issues/1) is complete. The original governance and read-only integration assessment are on `main`.
 - [Scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4) is approved and ongoing. [PR #5](https://github.com/Motor-Learning-Lab/HILD/pull/5) merged reusable skills, onboarding guidance and templates as [d40f9e8](https://github.com/Motor-Learning-Lab/HILD/commit/d40f9e810750597b1441b42d2374eee00480a75a).
 - [PR #6](https://github.com/Motor-Learning-Lab/HILD/pull/6) merged the wiki checker, orientation script, tests, optional agent-hook templates and fresh-wiki instructions as [ac63a3a](https://github.com/Motor-Learning-Lab/HILD/commit/ac63a3a34bf366d5c195d4676c7374053371b014). Mechanical GitHub Actions tests passed. **No active wiki or live agent discovery test has occurred.**
-- [Draft PR #7](https://github.com/Motor-Learning-Lab/HILD/pull/7) adds preview-first fresh-repository installation, selectable agent adapters, provenance and safety tests. Synthetic-fixture tests passed; real full-package installation and merge compatibility still need confirmation.
+- [Draft PR #7](https://github.com/Motor-Learning-Lab/HILD/pull/7) adds preview-first fresh-repository installation, selectable agent adapters, provenance and safety tests. Automated tests now pass against the complete HILD source, including structural installation verification. Live agent discovery and wiki publication remain unverified.
 - Squash-only merge settings, PR-title/description commit text and automatic branch deletion are **verified**. No HILD installation into MotorAdpatationSBI has occurred.
 
 ## Next steps
 
-1. **Finish PR #7:** reconcile its branch with merged PR #6 without rewriting published branch history; run the full-package installation test and update its explanation for human review. Never merge without human approval.
+1. **Review PR #7:** a non-rewriting merge commit brought PR #6's toolkit onto the installer branch. [GitHub Actions run 38962742449](https://github.com/Motor-Learning-Lab/HILD/actions/runs/38962742449) passed **16 installer tests**, including the real full-package smoke test; [mechanical checks](https://github.com/Motor-Learning-Lab/HILD/actions/runs/38962742525) also passed. Its installer is ready for human review, not yet merged.
 2. With a separately agreed disposable target repository and new-wiki creation, complete the onboarding validation phase (PR D), including scope/PR, human approval, draft `Process-HILD` wiki page after merge, and fresh-session agent behavior checks.
 3. **Deferred:** upgrading locally customized HILD, integration with existing wikis, and retroactive migration of MotorAdpatationSBI.
 
