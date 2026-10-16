@@ -45,6 +45,16 @@ def git(repo, *args):
     return result.stdout.strip()
 
 
+
+def upstream_url(source):
+    """Read actual checkout provenance; don't invent a canonical remote."""
+    result = subprocess.run(
+        ["git", "-C", str(source), "remote", "get-url", "origin"],
+        capture_output=True, text=True, check=False,
+    )
+    return result.stdout.strip() if result.returncode == 0 else None
+
+
 def digest(content):
     return hashlib.sha256(content).hexdigest()
 
@@ -157,7 +167,7 @@ def build_files(source, target, agents):
     source_sha = git(source, "rev-parse", "HEAD")
     metadata = {
         "schema": 1,
-        "source_repository": "https://github.com/Motor-Learning-Lab/HILD",
+        "source_repository": upstream_url(source),
         "source_commit": source_sha,
         "agents": list(agents),
         "authority": {
@@ -185,6 +195,8 @@ def check_collisions(target, plan):
         for parent in path.parents:
             if parent == target:
                 break
+            if parent.is_symlink():
+                raise InstallationError(f"Existing directory symlink could redirect installation: {parent}")
             if parent.exists() and not parent.is_dir():
                 raise InstallationError(f"Path component is not a directory: {parent}")
 
