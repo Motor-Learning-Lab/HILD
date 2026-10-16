@@ -1,6 +1,6 @@
 # 0003 — Onboarding is an optional first HILD scope, not a separate skill
 
-**Date:** 2026-10-15 · **Status:** Proposed (substance agreed in [scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4); pending PR review)
+**Date:** 2026-10-15 · **Status:** Accepted (reviewed and squash-merged in [PR #5](https://github.com/Motor-Learning-Lab/HILD/pull/5) on 2026-10-16; original agreement in [scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4))
 
 **Context:** A copied HILD directory is not evidence that agents discover or follow its rules. New adopters also need a useful first experience. A separate onboarding skill or mandatory onboarding on every update would introduce unnecessary machinery and repetition.
 
