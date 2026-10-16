@@ -192,9 +192,10 @@ def test_existing_parent_symlink_cannot_redirect_installer(repositories):
     source, target = repositories
     outside = target.parent / "outside"
     outside.mkdir()
+    (target / ".gitignore").write_text("/wiki/\n/.agents\n")
+    git(target, "add", ".gitignore")
+    git(target, "commit", "-qm", "Ignore wiki and external-directory link")
     (target / ".agents").symlink_to(outside, target_is_directory=True)
-    git(target, "add", ".agents")
-    git(target, "commit", "-qm", "Link external directory")
     result = install(source, target, "--apply")
     assert result.returncode == 2
     assert "redirect" in result.stderr
