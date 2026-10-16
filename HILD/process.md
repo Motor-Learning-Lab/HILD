@@ -75,6 +75,12 @@ than quietly drifting.
 Proposals, explanations and orientations follow the same rules, so that each one is a
 real check of the reviewer's understanding rather than a request for an OK.
 
+Write so that **a researcher unfamiliar with HILD's internal terminology can follow**.
+Name the actor and action rather than relying on vague references ("it", "this").
+Explain unfamiliar terms when first used, give concrete examples when a procedure is
+abstract, and distinguish working capabilities from proposals and untested behavior.
+A procedure that is clear only to the agent still needs improvement.
+
 1. **Purpose first.** Which goal this serves and why now. If it cannot be connected to a
    goal, say so: that is a warning sign.
 2. **What you should understand.** Two or three things the reviewer should be able to
