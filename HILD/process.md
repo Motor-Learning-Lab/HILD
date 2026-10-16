@@ -75,13 +75,22 @@ than quietly drifting.
 Proposals, explanations and orientations follow the same rules, so that each one is a
 real check of the reviewer's understanding rather than a request for an OK.
 
+Write so that **a researcher unfamiliar with HILD's internal terminology can follow**.
+Name the actor and action rather than relying on vague references ("it", "this").
+Explain unfamiliar terms when first used, give concrete examples when a procedure is
+abstract, and distinguish working capabilities from proposals and untested behavior.
+A procedure that is clear only to the agent still needs improvement.
+
 1. **Purpose first.** Which goal this serves and why now. If it cannot be connected to a
    goal, say so: that is a warning sign.
 2. **What you should understand.** Two or three things the reviewer should be able to
    explain by the end.
-3. **Layers,** in the order of [the PR explanation template](templates/pr-explanation.md): a plain
-   summary, the math, a code walkthrough, the evidence, the consequences, surprises, and
-   the wiki pages.
+3. **Explain in layers,** using the [PR explanation template](templates/pr-explanation.md).
+   Start with a plain-language summary, then discuss the important parts, evidence
+   and consequences. Include mathematical background when relevant, and describe
+   surprises when there were any. **Omit sections that have nothing to say.**
+   The template is a default: the researcher may agree to adjust the format for
+   the project's work without losing the purpose of each review.
 4. **Links everywhere.** Every claim about code links to the exact lines with a GitHub
    permalink (`https://github.com/<owner>/<repo>/blob/<commit>/<path>#L10-L20`). Every
    other reference, to an issue, pull request, commit, file, decision record, wiki page
@@ -168,7 +177,7 @@ on top of the work, and that it is making real progress rather than only produci
 | `guide` | A reading path: which pages to read, in what order, to understand an area. |
 | `resource` | A background source: what it is, a link, and why it matters here. |
 
-New kinds are added here, when a real page needs one. Formats (original, not yet ported): [code-page template](https://github.com/opherdonchin/MotorAdpatationSBI/blob/main/.github/skills/templates/wiki-code-page.md) and [general-page template](https://github.com/opherdonchin/MotorAdpatationSBI/blob/main/.github/skills/templates/wiki-page.md).
+New kinds are added here when a real page needs one. The [code-page template](templates/wiki-code-page.md) and [general-page template](templates/wiki-page.md) are available in this repository; creating and validating a **fresh** wiki is still planned work under [scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4).
 
 **Statuses.**
 
@@ -274,7 +283,7 @@ confirm a page as `understood`.
 | `journal` | Record milestones and refresh the plan |
 | `understood` | Draft or revise an understanding-map page |
 | `digest` | Review repository hygiene and understanding debt |
-| `hild-integrate` (new, not yet implemented) | Inspect an existing repository and propose adoption; later support reconciliation |
+| `hild-integrate` (assessment implemented; installation pending) | Inspect existing repositories and propose adoption; later install after explicit approval and support reconciliation |
 
 **What exists today, and what does not:**
 
@@ -287,12 +296,15 @@ confirm a page as `understood`.
   preserve unrecorded milestones in the summary, then record them in the
   journal. The original PR tested orientation partially and tested the
   compaction commands, **not live compaction**.
-- **In this HILD repository:** the process, templates and a
+- **In this HILD repository:** the process, templates, and the
   [read-only `hild-integrate` skill](../.agents/skills/hild-integrate/SKILL.md)
-  now exist. The first skill was manually rehearsed through read-only GitHub
-  inspection, but native skill loading has **not been verified**. Other process
-  skills, scripts, hooks and the understanding map have not been installed.
-  Their implementation and verification require new agreed scopes.
+  are on `main`. [Scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4)
+  is porting the general-purpose skills and the optional
+  [onboarding scope companion](../.agents/skills/hild-scope/onboarding-scope.md).
+  Until its [PR #5](https://github.com/Motor-Learning-Lab/HILD/pull/5) merges,
+  those additions are **proposed, not released**. Live native skill discovery
+  has **not been verified**; supporting scripts, agent hooks and the understanding
+  map are not yet installed. Those are later PRs in scope #4.
 - **Unresolved compatibility:** [original issue #10](https://github.com/opherdonchin/MotorAdpatationSBI/issues/10)
   asks whether compaction hooks work in a real session;
   [original issue #11](https://github.com/opherdonchin/MotorAdpatationSBI/issues/11)

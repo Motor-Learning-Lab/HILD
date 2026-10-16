@@ -46,6 +46,16 @@ To ask an agent to assess a scientific repository **before** HILD is installed, 
 
 The default installation location will be `HILD/`, with per-role overrides for existing authoritative files. **Installing, upgrading and three-way reconciliation are not yet implemented.** Each will require a separately approved scope.
 
+## Starting work with HILD
+
+After HILD is installed, open an agent chat **with access to your repository** and ask it to read the project instructions and invoke `hild-scope`. The [installed HILD README](HILD/README.md) supplies a ready-to-copy prompt:
+
+> We are developing this repository using HILD. Please read its agent instructions and HILD process, then use the `hild-scope` skill to prepare our next scope. To get started, please prepare a scope addressing **onboarding**. Explain it and wait for my agreement before implementing anything.
+
+**Onboarding is recommended for new users, not required.** Experienced researchers can replace it with their actual first development task. The scope skill reads its [onboarding companion](.agents/skills/hild-scope/onboarding-scope.md) only when onboarding is requested. A completed onboarding exercise may propose a fresh `Process-HILD` wiki draft for creation after the PR merges.
+
+The core skill port is being reviewed in [PR #5](https://github.com/Motor-Learning-Lab/HILD/pull/5). It is not yet installed in other repositories; HILD installation, selected-agent adapters and fresh-wiki behavior are separate parts of [approved scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4).
+
 ## Contributions
 
 Read [AGENTS.md](AGENTS.md), [the process](HILD/process.md), and [the current plan](HILD/plan.md) before substantive work. Scope agreements precede implementation. Branches are squash-merged only after the researcher's explicit approval.

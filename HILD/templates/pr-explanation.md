@@ -1,70 +1,61 @@
-<!-- "Closes #<n>" only if this PR finishes the scope; otherwise "Part of #<n>". -->
-Part of #<scope issue>  <!-- use Closes only in the PR that actually completes the issue -->
+<!-- Change "Part of" to "Closes" only in the PR that completes this issue. -->
+Part of #<scope issue>
 
 ## Purpose
 
-Which plan goal this serves and why now.
+What are we trying to accomplish, and why now?
 
 ## What you should understand after reading this
 
-Two or three specific things, phrased so the reviewer can check themselves.
+Name two or three things the human reviewer should be able to explain afterward.
 
 ## Summary
 
-One plain paragraph. Any deviation from the scope issue, stated up front.
+Explain the change in plain language. Mention any departure from the scope.
 
-## The math
-
-Only what the code implements. Display math in fenced math blocks.
+<!-- Include mathematical background only when it is relevant to the change.
+Do not add an empty "Math" section to documentation-only PRs. -->
 
 ## Walkthrough
 
 ### Load-bearing: read these
 
-- **<name>:** [file#Lx-Ly](permalink). What it does, and why it is written this way.
+- **<part>:** [file lines](permalink). What matters here, and why?
 
 ### Boilerplate: skim
 
-- ...
+- Only include if there is supporting code worth distinguishing.
 
 ## Evidence
 
-Numbers and figures, each with the notebook cell or command that produced it. Say what
-was not tested.
+What was actually checked, with links to tests, commands, results or notebook
+cells? What remains untested?
 
 ## Consequences
 
-What this commits us to or rules out.
+What becomes possible, or what future work does this constrain?
 
-## Surprises
-
-Anything that does not work the way one would expect.
+<!-- Optional: "Surprises". Use when something unexpected happened, including a
+failure or surprising limitation. Explain its effect and whether it needs a
+fix or follow-up issue. Otherwise omit the section. -->
 
 ## Wiki pages
 
-If the understanding map is not yet configured, state that explicitly; do not invent statuses or links.
+If there is no understanding map yet, state that explicitly.
 
-Rule: `HILD/process.md` (or the host's configured process path), *Presentations*, rule 10. Every page name is a link.
+**Relevant pages:** Links to pages the change relies on or affects, with their
+current status and why they matter.
 
-**Relevant pages**
-
-| Page | How it is relevant | Status |
-|---|---|---|
-| [Kind-name](wiki link) | what the reviewer needs it for here, or how this change affects it | not-written / draft / understood / ... |
-
-**Proposed pages**
-
-| Page | New or update | What it would cover | When |
-|---|---|---|---|
-| Kind-name | new / update | one line | before review / after merge |
+**Proposed pages:** New or updated pages, what each would explain, and whether
+it belongs before review or after merge. Do not claim a page exists if it is
+only proposed.
 
 ## Approval track
 
-Proposed: trivial | read | full | fast, with one line of why.
+Proposed: trivial | read | full | fast. Explain why; the human decides.
 
-<!-- After a review round only. Rewrite everything above so it describes the PR as it
-now stands, then append one section per round, newest last. Never put these first. -->
+<!-- After a review round, rewrite everything above to match the latest code,
+then append this section, newest review round last: -->
 
-## Changes after review — YYYY-MM-DD HH:MM
-
-What changed in response to which comment, with a link to the commit.
+<!-- ## Changes after review — YYYY-MM-DD HH:MM
+What changed in response to which comment, with a link to the commit. -->

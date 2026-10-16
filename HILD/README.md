@@ -1,0 +1,55 @@
+# Using HILD in this repository
+
+HILD helps a researcher guide, understand and review software written with AI
+coding agents. [The HILD process](process.md) explains how the researcher and
+agent work together. The project's [agent instructions](../AGENTS.md) describe
+its particular scientific goals and coding conventions.
+
+This page shows **how to begin**; it does not replace the process rules.
+The [plan](plan.md) records the project's goals and what to do next.
+
+## Start a conversation
+
+Open a new chat with an AI coding agent that can read and work with **this
+repository**. Copy this message:
+
+> We are developing this repository using HILD. Please read its agent
+> instructions and HILD process. Use the `hild-scope` skill to propose our
+> next agreed piece of work.
+>
+> To get started, please propose an **onboarding scope** that helps me learn
+> HILD by using it on this project. Explain the proposal and wait for my
+> approval before beginning any changes.
+
+**Already familiar with HILD?** Replace "onboarding scope" with the work you
+actually want to do.
+
+The [scope skill](../.agents/skills/hild-scope/SKILL.md) has a
+[companion file](../.agents/skills/hild-scope/onboarding-scope.md) for
+onboarding. It is read only for onboarding requests; there is no separate
+onboarding skill.
+
+## What happens during onboarding?
+
+The agent first helps you agree on a **scope**: which small, useful change to
+make and what you will review. It then follows the ordinary HILD process:
+an issue records the agreement, a branch and **draft pull request (PR)**
+make proposed changes visible, and you review and approve the work before
+merging. A journal and plan help the next session pick up where this one left
+off.
+
+The PR can propose a wiki page called `Process-HILD` explaining how this
+particular project uses HILD. If you agree, the agent drafts that page
+**after merging**, and you review it before confirming that you understand it.
+
+**Checking installation** means checking files, settings and links.
+**Validating onboarding** means observing an actual agent and researcher
+following the process. These are different checks. Onboarding is recommended
+for beginners, not required for every installation or update.
+
+If a skill, script or wiki is missing, the agent should report that instead
+of claiming the capability works.
+
+See the [upstream HILD project](https://github.com/Motor-Learning-Lab/HILD)
+for documentation and updates. Local HILD files may evolve with the project;
+future upstream changes must be reviewed rather than blindly replacing them.
