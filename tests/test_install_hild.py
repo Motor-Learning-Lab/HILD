@@ -231,3 +231,27 @@ def test_corrupt_selected_hook_is_an_integrity_failure(repositories):
     result = install(source, target, "--verify")
     assert result.returncode == 1
     assert "invalid JSON" in result.stdout
+
+
+def test_full_hild_checkout_when_tooling_pr_is_merged(tmp_path):
+    """Exercise the actual source package after dependent PR #6 is on main."""
+    checkout = Path(__file__).parents[1]
+    if not all((checkout / rel).is_file() for rel in REQUIRED):
+        pytest.skip("Awaiting PR #6: complete HILD scripts and adapter templates")
+    for template in ("claude-settings.json", "codex-hooks.json", "copilot-hooks.json"):
+        if not (checkout / "HILD/templates" / template).is_file():
+            pytest.skip("Awaiting PR #6: agent hook templates")
+
+    source = tmp_path / "full-hild-source"
+    shutil.copytree(
+        checkout, source,
+        ignore=shutil.ignore_patterns("__pycache__", ".pytest_cache", "*.pyc"),
+    )
+    target = tmp_path / "fresh-repo"
+    init_repo(target)
+    installed = install(source, target, "--apply")
+    assert installed.returncode == 0, installed.stderr
+    assert (target / "HILD/scripts/wiki_status.py").exists()
+    assert (target / "HILD/agent-setup.md").exists()
+    assert (target / ".agents/skills/hild-understood/new-wiki.md").exists()
+    assert install(source, target, "--verify").returncode == 0
