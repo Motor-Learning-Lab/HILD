@@ -23,7 +23,7 @@ The living plan records current goals, state and next steps; history lives in Gi
 
 ## Next steps
 
-1. Address the researcher's [PR #5](https://github.com/Motor-Learning-Lab/HILD/pull/5) feedback on onboarding clarity, initial project choices, and readable writing. The revised scope companion now avoids repeating normal PR rules; PR and journal formats omit irrelevant sections. Update the explanation and obtain the human's read-track approval. Live agent loading remains **untested**; do not merge on the agent's initiative.
+1. The review comments on [PR #5](https://github.com/Motor-Learning-Lab/HILD/pull/5) have been addressed with documentation revisions, a rewritten PR explanation, and three resolved inline threads. The human's review is **still pending submission/approval**. Wait for the reviewer to confirm before merging. Live agent loading remains **untested**.
 2. Subsequent PRs in [approved scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4) port the working scripts, initialize a **fresh** understanding wiki and selected-agent hooks, implement approved first-time installation with mechanical verification, and demonstrate an actual onboarding cycle.
 3. Update GitHub settings for PR title + PR description as squash message and automatic branch deletion. Squash-only merge method is already enabled.
 4. Keep integration with **existing** wikis and three-way upgrades of locally modified HILD installations outside this scope.
