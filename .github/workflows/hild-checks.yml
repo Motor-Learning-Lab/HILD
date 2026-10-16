@@ -1,0 +1,36 @@
+name: HILD mechanical checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  wiki-checker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install test dependency
+        run: python -m pip install pytest
+      - name: Wiki status regression tests
+        run: python -m pytest -q tests/test_wiki_status.py
+      - name: Compile scripts
+        run: python -m py_compile HILD/scripts/wiki_status.py
+      - name: Check shell syntax
+        run: bash -n HILD/scripts/session_context.sh
+      - name: Parse agent configuration templates
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          for path in Path('HILD/templates').glob('*settings.json'):
+              json.loads(path.read_text())
+              print('Valid JSON:', path)
+          PY
