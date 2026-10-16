@@ -107,6 +107,10 @@ def test_default_installs_all_adapters_without_duplicate_skills(repositories):
     assert (target / ".claude/settings.json").exists()
     assert (target / ".codex/hooks.json").exists()
     assert (target / ".github/hooks/hild.json").exists()
+    # Inert documentation templates may be available for any agent;
+    # only selected hooks and discovery files are activated.
+    for sample in ("claude-settings.json", "codex-hooks.json", "copilot-hooks.json"):
+        assert (target / "HILD/templates" / sample).is_file()
     assert not (target / ".claude/skills/hild-scope").is_symlink()
     assert install(source, target, "--verify").returncode == 0
 
@@ -256,3 +260,16 @@ def test_full_hild_checkout_when_tooling_pr_is_merged(tmp_path):
     assert (target / "HILD/agent-setup.md").exists()
     assert (target / ".agents/skills/hild-understood/new-wiki.md").exists()
     assert install(source, target, "--verify").returncode == 0
+
+
+
+def test_broken_local_link_in_installed_process_fails_verification(repositories):
+    source, target = repositories
+    process = source / "HILD/process.md"
+    process.write_text("# HILD\n\n[Missing local page](unknown-document.md)\n")
+    git(source, "add", "-A")
+    git(source, "commit", "-qm", "Broken source link to test integrity")
+    applied = install(source, target, "--agents", "codex", "--apply")
+    assert applied.returncode == 1
+    assert "broken local link" in applied.stdout
+    assert (target / "HILD/process.md").exists()
