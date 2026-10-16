@@ -76,6 +76,13 @@ def ensure_new_repo(target):
         raise InstallationError("Target must be the root of its Git repository")
     if git(target, "status", "--porcelain"):
         raise InstallationError("Target has uncommitted or untracked changes; preserve them before installing")
+    allowed = {"README.md", "LICENSE", "LICENSE.md", ".gitignore"}
+    tracked = set(git(target, "ls-files").splitlines())
+    if tracked - allowed:
+        raise InstallationError(
+            "Target already contains project files: " + ", ".join(sorted(tracked - allowed))
+            + ". Use a separate existing-repository integration scope."
+        )
 
 
 
