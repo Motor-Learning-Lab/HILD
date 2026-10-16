@@ -282,9 +282,9 @@ confirm a page as `understood`.
 | `hild-digest` | Review repository hygiene and understanding debt |
 | `hild-integrate` | Inspect existing repositories and propose adoption; later install after explicit approval and support reconciliation |
 
-**Origin and verification:** HILD's starting tools were developed in
+**Origin and verification:** HILD's initial tools were developed in
 [MotorAdpatationSBI](https://github.com/opherdonchin/MotorAdpatationSBI/tree/main/.github/skills),
-including its [original Claude Code hooks](https://github.com/opherdonchin/MotorAdpatationSBI/blob/main/.claude/settings.json).
+including its [Claude Code hooks](https://github.com/opherdonchin/MotorAdpatationSBI/blob/main/.claude/settings.json).
 The original project tested the orientation collector and compaction commands,
 but not live compaction. Some agents cannot expose the same startup data; a
 skill's presence does not establish that the agent discovered or followed it.
