@@ -27,6 +27,14 @@ Authoritative rules: [HILD process](../../../HILD/process.md) in this repository
 - **Proposed changes, conflicts and deferrals:** distinguish safe additions from locally edited or established material. Never silently relocate or overwrite documentation.
 - **Next agreement:** smallest bounded scope, risks, checks and explicit decisions for the human; **stop without mutation**.
 
+## After the researcher accepts a fresh-install scope
+
+Only after the completed assessment and the human's **explicit agreement** to
+install into a new repository, read [first-install.md](first-install.md).
+It describes a separate, preview-first installer and mechanical verification.
+Do **not** load or execute that procedure during the initial read-only
+assessment. It does not cover upgrades or integration with an existing wiki.
+
 ## Not implemented here
 
-This skill contains **no installer**, no automated migration, no upgrade merge engine, no compliance enforcement and no cross-agent hooks. After the human accepts an integration scope, a separately implemented and approved procedure will perform changes through the HILD branch/PR review cycle. Do not treat an approved *assessment* as authority to install or update.
+This skill itself performs **assessment only**. The separate [fresh-install procedure](first-install.md) may be used after a specific human agreement; it has no upgrade merge engine, existing-wiki reconciliation or compliance enforcement. Do not treat an approved *assessment* as authority to install or update.
