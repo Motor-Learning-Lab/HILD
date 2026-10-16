@@ -4,7 +4,7 @@ This is a faithful adaptation of the [MotorAdpatationSBI process](https://github
 
 The aim is that the human **reviewer** stays fully on top of a scientific software project: what is being built, why, how it works, what has been checked, and what they understand less well. Agent-produced documentation supports that understanding.
 
-## Local authority and implementation status
+## Authority and local configuration
 
 - **Default:** process, plan, journal, decisions and templates live under `HILD/`.
   An established host may configure **each** authoritative location independently,
@@ -14,12 +14,9 @@ The aim is that the human **reviewer** stays fully on top of a scientific softwa
   That document **points to** this process rather than copying it.
 - **Installed HILD is local:** local modifications are legitimate. New upstream
   versions must be compared and reconciled, not installed over the local version.
-- **Current implementation status:** [scope #1](https://github.com/Motor-Learning-Lab/HILD/issues/1)
-  established these rules, durable state, templates, and a
-  [read-only `hild-integrate` assessment skill](../.agents/skills/hild-integrate/SKILL.md).
-  The other original skills, scripts, Claude hooks and wiki have **not yet been
-  installed or tested in this repo**. Later sections describe reference behavior,
-  not functioning local automation.
+- **Capability status:** a procedure described here is not evidence it has
+  been installed or tested. See this project's `HILD/plan.md`, installation
+  metadata (when present), and actual test evidence to determine what works.
 - **Path interpretation:** paths in this document are defaults for HILD, not
   installation-time mandates. Every procedure must resolve the host's recorded
   authoritative paths before acting. Choice of configuration format is deferred.
@@ -186,7 +183,7 @@ New kinds are added here when a real page needs one. The [code-page template](te
 | `not-written` | nobody | No page exists yet. Another page links to it, or a pull request proposes it. |
 | `stub` | agent | A page that exists only as a placeholder, still to be written. |
 | `draft` | agent | Written by the agent; the reviewer has not confirmed it. |
-| `understood` | reviewer only | The reviewer has read, edited and confirmed it. |
+| `hild-understood` | reviewer only | The reviewer has read, edited and confirmed it. |
 | `needs-revision` | either | The reviewer has read it and it did not do its job, or the agent knows it falls short. The agent owes a rewrite. |
 | `needs-review` | either | Merged on the fast track, or the reviewer is no longer sure. |
 | `stale` | script | The code changed materially since the commit the page describes. |
@@ -277,39 +274,23 @@ confirm a page as `understood`.
 
 | Procedure in the original project | Purpose |
 |---|---|
-| `orient` (proposed `hild-orient`) | Present a session-start status and questions for the reviewer |
-| `scope` (proposed `hild-scope`) | Prepare an agreed scope before nontrivial development |
-| `explain` | Prepare a layered PR explanation for human review |
-| `journal` | Record milestones and refresh the plan |
+| `hild-orient` (originally `orient`) | Present a session-start status and questions for the reviewer |
+| `hild-scope` (originally `scope`) | Prepare an agreed scope before nontrivial development |
+| `hild-explain` | Prepare a layered PR explanation for human review |
+| `hild-journal` | Record milestones and refresh the plan |
 | `understood` | Draft or revise an understanding-map page |
-| `digest` | Review repository hygiene and understanding debt |
-| `hild-integrate` (assessment implemented; installation pending) | Inspect existing repositories and propose adoption; later install after explicit approval and support reconciliation |
+| `hild-digest` | Review repository hygiene and understanding debt |
+| `hild-integrate` | Inspect existing repositories and propose adoption; later install after explicit approval and support reconciliation |
 
-**What exists today, and what does not:**
-
-- **In [MotorAdpatationSBI](https://github.com/opherdonchin/MotorAdpatationSBI/tree/main/.github/skills):**
-  the first six skills and both [`session_context.sh`](https://github.com/opherdonchin/MotorAdpatationSBI/blob/main/.github/skills/scripts/session_context.sh)
-  and [`wiki_status.py`](https://github.com/opherdonchin/MotorAdpatationSBI/blob/main/.github/skills/scripts/wiki_status.py)
-  exist. The original [Claude Code hooks](https://github.com/opherdonchin/MotorAdpatationSBI/blob/main/.claude/settings.json)
-  initiate orientation at session start and issue reminders around
-  **context compaction** (when an agent's long conversation is summarized):
-  preserve unrecorded milestones in the summary, then record them in the
-  journal. The original PR tested orientation partially and tested the
-  compaction commands, **not live compaction**.
-- **In this HILD repository:** the process, templates, and the
-  [read-only `hild-integrate` skill](../.agents/skills/hild-integrate/SKILL.md)
-  are on `main`. [Scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4)
-  is porting the general-purpose skills and the optional
-  [onboarding scope companion](../.agents/skills/hild-scope/onboarding-scope.md).
-  Until its [PR #5](https://github.com/Motor-Learning-Lab/HILD/pull/5) merges,
-  those additions are **proposed, not released**. Live native skill discovery
-  has **not been verified**; supporting scripts, agent hooks and the understanding
-  map are not yet installed. Those are later PRs in scope #4.
-- **Unresolved compatibility:** [original issue #10](https://github.com/opherdonchin/MotorAdpatationSBI/issues/10)
-  asks whether compaction hooks work in a real session;
-  [original issue #11](https://github.com/opherdonchin/MotorAdpatationSBI/issues/11)
-  asks how orientation and compaction should work for Copilot and Codex.
-  Those are not solved by moving the documentation.
+**Origin and verification:** HILD's starting tools were developed in
+[MotorAdpatationSBI](https://github.com/opherdonchin/MotorAdpatationSBI/tree/main/.github/skills),
+including its [original Claude Code hooks](https://github.com/opherdonchin/MotorAdpatationSBI/blob/main/.claude/settings.json).
+The original project tested the orientation collector and compaction commands,
+but not live compaction. Some agents cannot expose the same startup data; a
+skill's presence does not establish that the agent discovered or followed it.
+The current state of an individual installation belongs in its
+[plan](plan.md) and installation verification report, not in this reusable
+process specification.
 
 Until a supporting tool is installed and verified, the agent follows the
 rules manually rather than pretending automation exists. An initial
