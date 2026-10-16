@@ -2,17 +2,25 @@
 
 ## Session 1 — <topic>
 
-**Goal:** what we set out to do.
+**Goal:** What were we trying to do?
 
-**Done:** what changed, with links to commits, PRs, issues, notebooks (and cell labels).
+**Done:** What actually changed? Link to issues, PRs, commits or notebooks.
 
-**Results:** numbers and figures, each with the notebook cell or command that produced it.
+**Open questions / next:** What remains unresolved? Ensure the current plan
+reflects the next steps.
 
-**Findings:** dead ends and things worth not rediscovering.
+<!-- Include these sections when there is something worth recording:
 
-**Decisions:** one line each, linking to the configured decisions directory (default: `HILD/decisions/`) records where one exists.
+**Results:** Measurements or outputs, each linked to the notebook or command
+that produced it.
 
-**Permission points:** (independent work only) where permission would normally have
-been asked, and what was decided.
+**Findings:** Dead ends, unexpected behavior or lessons worth retaining.
 
-**Open questions / next:** what is unresolved; the configured plan (default: `HILD/plan.md`) is updated to match.
+**Decisions:** Important decisions link to records in the project's configured
+decision directory (default: HILD/decisions/). Smaller choices can be listed
+directly here.
+
+**Permission points:** Only when working independently: where permission
+would ordinarily have been requested, and what was decided.
+
+Don't write empty sections merely to match the template. -->
