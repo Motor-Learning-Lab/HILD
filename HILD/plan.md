@@ -23,9 +23,9 @@ The living plan records current goals, state and next steps; history lives in Gi
 
 ## Next steps
 
-1. Continue [draft PR #6](https://github.com/Motor-Learning-Lab/HILD/pull/6) under [approved scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4). It now contains the original wiki-status and orientation scripts, ten regression tests, a new-wiki-only setup procedure and an optional Claude hook template. Source-to-port comparisons passed; **tests and hook/skill loading have not been run** in a live checkout. Complete agent adapters/verification or split the PR if needed.
+1. Review [PR #6](https://github.com/Motor-Learning-Lab/HILD/pull/6), which now has the original wiki-status and orientation scripts, ten regression tests, fresh-wiki setup guidance, and optional Claude/Codex/Copilot hook templates. GitHub Actions **ran and passed the regression tests, startup smoke test and template syntax checks**. Live agent discovery and hooks remain **untested**; human approval is required before merging.
 2. Subsequent PRs in [approved scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4) port the working scripts, initialize a **fresh** understanding wiki and selected-agent hooks, implement approved first-time installation with mechanical verification, and demonstrate an actual onboarding cycle.
-3. Update GitHub settings for PR title + PR description as squash message and automatic branch deletion. Squash-only merge method is already enabled.
+3. GitHub merge settings now match [decision 0002](decisions/0002-squash-only-merges.md): squash-only, PR title and description for the squash commit, and automatic branch deletion (verified 2026-10-16).
 4. Keep integration with **existing** wikis and three-way upgrades of locally modified HILD installations outside this scope.
 
 ## Deliberately deferred
