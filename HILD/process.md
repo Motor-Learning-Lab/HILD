@@ -296,15 +296,16 @@ confirm a page as `understood`.
   preserve unrecorded milestones in the summary, then record them in the
   journal. The original PR tested orientation partially and tested the
   compaction commands, **not live compaction**.
-- **In this HILD repository:** the process, templates, and the
-  [read-only `hild-integrate` skill](../.agents/skills/hild-integrate/SKILL.md)
-  are on `main`. [Scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4)
-  is porting the general-purpose skills and the optional
-  [onboarding scope companion](../.agents/skills/hild-scope/onboarding-scope.md).
-  Until its [PR #5](https://github.com/Motor-Learning-Lab/HILD/pull/5) merges,
-  those additions are **proposed, not released**. Live native skill discovery
-  has **not been verified**; supporting scripts, agent hooks and the understanding
-  map are not yet installed. Those are later PRs in scope #4.
+- **In this HILD repository:** [scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4)
+  is approved. The six general-purpose skills, onboarding companion and wiki
+  templates merged in [PR #5](https://github.com/Motor-Learning-Lab/HILD/pull/5).
+  [PR #6](https://github.com/Motor-Learning-Lab/HILD/pull/6) proposes the
+  original orientation collector, wiki-status checker and regression tests,
+  plus optional agent hook templates and a procedure for a **fresh** wiki.
+  The scripts pass mechanical CI tests on the PR branch, but these tools are
+  **not yet on `main`**. Agent discovery, live hooks, wiki creation and
+  end-to-end onboarding are **not yet verified**. A selectable installer and
+  its mechanical checks remain future work within approved scope #4.
 - **Unresolved compatibility:** [original issue #10](https://github.com/opherdonchin/MotorAdpatationSBI/issues/10)
   asks whether compaction hooks work in a real session;
   [original issue #11](https://github.com/opherdonchin/MotorAdpatationSBI/issues/11)
