@@ -8,7 +8,9 @@ approved the installation scope. Existing files are never overwritten.
 import argparse
 import hashlib
 import json
+import re
 import subprocess
+from urllib.parse import unquote
 import sys
 from datetime import date
 from pathlib import Path
@@ -105,7 +107,8 @@ def build_files(source, target, agents):
     shared = ["HILD/README.md", "HILD/process.md", "HILD/agent-setup.md"]
     shared += [
         str(p.relative_to(source)) for folder, pattern in (
-            ("HILD/templates", "*.md"), ("HILD/scripts", "*.py"),
+            ("HILD/templates", "*.md"), ("HILD/templates", "*.json"),
+            ("HILD/scripts", "*.py"),
             ("HILD/scripts", "*.sh"), (".agents/skills", "**/*"),
         )
         for p in sorted((source / folder).glob(pattern)) if p.is_file()
@@ -234,6 +237,29 @@ def apply_plan(target, plan):
         raise InstallationError(f"Installation stopped; new files rolled back: {error}") from error
 
 
+_LINK = re.compile(r"\[[^\]]+\]\(([^)]+)\)")
+
+
+def local_link_problems(root, rel, content):
+    """Check local Markdown links in the installed process and skills."""
+    problems = []
+    for raw in _LINK.findall(content):
+        destination = raw.split("#", 1)[0].strip()
+        if (
+            not destination
+            or "://" in destination
+            or destination.startswith(("mailto:", "data:", "<", "#"))
+        ):
+            continue
+        destination = unquote(destination).split(" ", 1)[0]
+        # Skip illustrative URL placeholders; documentation templates are not
+        # checked here, only the actual user instructions and skill files.
+        path = (root / rel).parent.joinpath(destination).resolve()
+        if not path.is_relative_to(root.resolve()) or not path.exists():
+            problems.append(f"{rel}: broken local link {raw!r}")
+    return problems
+
+
 def verify(target):
     """Check structure without treating legitimate local edits as failures."""
     metadata_path = target / MANIFEST
@@ -250,6 +276,10 @@ def verify(target):
             missing.append(f"{rel}: missing expected file")
         elif digest(path.read_bytes()) != expected["sha256"]:
             local_edits.append(rel)
+        elif rel.endswith(".md") and "/templates/" not in rel:
+            missing.extend(local_link_problems(
+                target, rel, path.read_text(encoding="utf-8")
+            ))
 
     for item in missing:
         print("FAIL", item)
