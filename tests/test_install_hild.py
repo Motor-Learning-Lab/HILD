@@ -147,3 +147,39 @@ def test_reapplying_never_overwrites_local_changes(repositories):
     second = install(source, target, "--agents", "copilot", "--apply")
     assert second.returncode == 2
     assert (target / "HILD/plan.md").read_text() == "Research plan edited by a human\n"
+
+
+def test_existing_gitignore_that_excludes_wiki_is_preserved(repositories):
+    source, target = repositories
+    ignore = target / ".gitignore"
+    ignore.write_text("*.tmp\n/wiki/\n", encoding="utf-8")
+    git(target, "add", ".gitignore")
+    git(target, "commit", "-qm", "Existing ignored wiki checkout")
+    before = ignore.read_bytes()
+    result = install(source, target, "--agents", "codex", "--apply")
+    assert result.returncode == 0, result.stderr
+    assert ignore.read_bytes() == before
+    info = json.loads((target / "HILD/installation.json").read_text())
+    assert ".gitignore" not in info["files"]
+
+
+def test_existing_gitignore_without_wiki_rule_blocks_installation(repositories):
+    source, target = repositories
+    ignore = target / ".gitignore"
+    ignore.write_text("*.tmp\n", encoding="utf-8")
+    git(target, "add", ".gitignore")
+    git(target, "commit", "-qm", "Existing project ignores")
+    result = install(source, target, "--apply")
+    assert result.returncode == 2
+    assert "wiki/" in result.stderr
+    assert ignore.read_text() == "*.tmp\n"
+    assert not (target / "HILD").exists()
+
+
+def test_uncommitted_source_is_refused(repositories):
+    source, target = repositories
+    (source / "untracked-source-file.txt").write_text("Pending upstream edit")
+    result = install(source, target, "--apply")
+    assert result.returncode == 2
+    assert "source has uncommitted changes" in result.stderr
+    assert not (target / "HILD").exists()
