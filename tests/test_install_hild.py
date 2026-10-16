@@ -88,6 +88,7 @@ def test_single_agent_apply_verify_and_changed_file_detection(repositories):
     assert not (target / ".claude").exists()
     info = json.loads((target / "HILD/installation.json").read_text())
     assert info["agents"] == ["codex"]
+    assert info["source_repository"] is None  # synthetic source has no remote
     assert info["source_commit"]
     assert install(source, target, "--verify").returncode == 0
 
@@ -184,4 +185,18 @@ def test_uncommitted_source_is_refused(repositories):
     result = install(source, target, "--apply")
     assert result.returncode == 2
     assert "source has uncommitted changes" in result.stderr
+    assert not (target / "HILD").exists()
+
+
+def test_existing_parent_symlink_cannot_redirect_installer(repositories):
+    source, target = repositories
+    outside = target.parent / "outside"
+    outside.mkdir()
+    (target / ".agents").symlink_to(outside, target_is_directory=True)
+    git(target, "add", ".agents")
+    git(target, "commit", "-qm", "Link external directory")
+    result = install(source, target, "--apply")
+    assert result.returncode == 2
+    assert "redirect" in result.stderr
+    assert not (outside / "skills").exists()
     assert not (target / "HILD").exists()
