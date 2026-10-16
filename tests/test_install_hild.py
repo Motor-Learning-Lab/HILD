@@ -134,6 +134,8 @@ def test_uncommitted_target_refused_even_for_preview(repositories):
 def test_missing_source_file_refuses_installation(repositories):
     source, target = repositories
     (source / "HILD/scripts/wiki_status.py").unlink()
+    git(source, "add", "-A")
+    git(source, "commit", "-qm", "Source version missing wiki checker")
     result = install(source, target, "--apply")
     assert result.returncode == 2
     assert "incomplete" in result.stderr
