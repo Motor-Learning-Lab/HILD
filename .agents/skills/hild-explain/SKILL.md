@@ -14,7 +14,7 @@ An approved squash merge should use the PR title and final description as its co
 1. Commit and push the work within the agreed scope; do not rewrite a pushed PR branch.
 2. Record the exact head commit, and inspect the complete diff against the PR base (`git diff main...HEAD` where `main` is the base). Explain what **currently exists**, not the agent's original intention.
 3. If the change cannot be explained in one sitting, propose splitting it.
-4. Fill the template in conceptual order, not file order. Include mathematical background where relevant, load-bearing code permalinks, tests/evidence, untested behavior, consequences and surprises.
+4. Fill the template in conceptual order, not file order. Include mathematics **only if it helps explain this change**, load-bearing code permalinks, evidence, untested behavior and consequences. Add a **Surprises** section only when something unexpected happened; say whether follow-up work is needed. Omit sections that have nothing to say.
 5. **Wiki pages:** inspect the configured understanding map when available; list relevant pages and their statuses, then propose new/updated pages. Essential concept explanations precede review; code pages describing the merge commit follow it. If no wiki is configured, say so plainly rather than inventing links or statuses.
 
 ## Check and publish
