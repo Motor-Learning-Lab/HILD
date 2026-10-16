@@ -68,6 +68,17 @@ def ensure_new_repo(target):
         raise InstallationError("Target has uncommitted or untracked changes; preserve them before installing")
 
 
+
+def ensure_source_checkout(source):
+    if not source.is_dir():
+        raise InstallationError(f"HILD source checkout is missing: {source}")
+    root = Path(git(source, "rev-parse", "--show-toplevel")).resolve()
+    if root != source:
+        raise InstallationError("Source must be the root of a HILD Git checkout")
+    if git(source, "status", "--porcelain"):
+        raise InstallationError("HILD source has uncommitted changes; cannot record a reproducible source commit")
+
+
 def build_files(source, target, agents):
     """Prepare every output as bytes; a None value represents the Claude symlink."""
     for rel in REQUIRED:
@@ -108,7 +119,20 @@ def build_files(source, target, agents):
             raise InstallationError(f"Missing {agent} hook template: {template}")
         plan[destination] = source_file.read_bytes()
 
-    plan[".gitignore"] = b"# HILD's separate GitHub wiki checkout\n/wiki/\n"
+    # Preserve an existing ignore file; never overwrite or append to it silently.
+    if (target / ".gitignore").is_file():
+        check = subprocess.run(
+            ["git", "-C", str(target), "check-ignore", "-q", "--no-index",
+             "wiki/HILD-wiki-test.md"],
+            capture_output=True, check=False,
+        )
+        if check.returncode:
+            raise InstallationError(
+                "Existing .gitignore does not ignore wiki/. Add /wiki/ and commit "
+                "that change before installing; no existing file will be changed."
+            )
+    else:
+        plan[".gitignore"] = b"# HILD's separate GitHub wiki checkout\n/wiki/\n"
     plan["HILD/plan.md"] = (
         f"# {target.name} plan\n\n"
         "## Goals\n\n- Agree on the project's scientific and software goals.\n\n"
@@ -228,6 +252,7 @@ def main(argv=None):
         if args.verify:
             return verify(target)
         agents = selected_agents(args.agents)
+        ensure_source_checkout(source)
         ensure_new_repo(target)
         plan = build_files(source, target, agents)
         check_collisions(target, plan)
