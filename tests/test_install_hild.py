@@ -94,8 +94,8 @@ def test_single_agent_apply_verify_and_changed_file_detection(repositories):
 
     (target / "HILD/process.md").write_text("Changed locally\n")
     verify = install(source, target, "--verify")
-    assert verify.returncode == 1
-    assert "HILD/process.md" in verify.stdout
+    assert verify.returncode == 0
+    assert "LOCAL CHANGE (preserved): HILD/process.md" in verify.stdout
 
 
 def test_default_installs_all_adapters_without_duplicate_skills(repositories):
@@ -211,3 +211,22 @@ def test_existing_scientific_files_require_a_different_scope(repositories):
     assert result.returncode == 2
     assert "existing-repository integration scope" in result.stderr
     assert not (target / "HILD").exists()
+
+
+
+def test_missing_installed_file_is_an_integrity_failure(repositories):
+    source, target = repositories
+    assert install(source, target, "--agents", "codex", "--apply").returncode == 0
+    (target / "HILD/process.md").unlink()
+    result = install(source, target, "--verify")
+    assert result.returncode == 1
+    assert "missing expected file" in result.stdout
+
+
+def test_corrupt_selected_hook_is_an_integrity_failure(repositories):
+    source, target = repositories
+    assert install(source, target, "--agents", "codex", "--apply").returncode == 0
+    (target / ".codex/hooks.json").write_text("{invalid")
+    result = install(source, target, "--verify")
+    assert result.returncode == 1
+    assert "invalid JSON" in result.stdout
