@@ -21,12 +21,15 @@ The living plan records current goals, state and next steps; history lives in Gi
 
 - [Scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4) was approved on 2026-10-15. [PR #5](https://github.com/Motor-Learning-Lab/HILD/pull/5) has now been **reviewed and squash-merged** on 2026-10-16 ([commit d40f9e8](https://github.com/Motor-Learning-Lab/HILD/commit/d40f9e810750597b1441b42d2374eee00480a75a)). Six reusable HILD skills, the optional onboarding scope companion, wiki templates and getting-started instructions are on `main`. No active wiki, hook, installer or live agent-loading verification exists yet.
 
+- [PR #6](https://github.com/Motor-Learning-Lab/HILD/pull/6) is **ready for human review**; its actual original tooling passed GitHub Actions regression and syntax checks. It is **not merged**.
+- [Draft PR #7](https://github.com/Motor-Learning-Lab/HILD/pull/7) now implements preview-first fresh-repo installation, selectable agents, source provenance, collision/dirty-repo checks and mechanical verification. [GitHub Actions run 38959443934](https://github.com/Motor-Learning-Lab/HILD/actions/runs/38959443934) passed its **synthetic fixture** tests. An integrated installation from the full HILD source is still blocked until PR #6 merges; no other repository has been installed or modified.
+
 ## Next steps
 
-1. Begin PR B under [approved scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4): port and test orientation and wiki-staleness scripts, define **new-wiki-only** setup, and prepare selected-agent startup integration. Keep the implementation split into reviewable parts if needed. Live agent discovery remains **untested**.
-2. Subsequent PRs in [approved scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4) port the working scripts, initialize a **fresh** understanding wiki and selected-agent hooks, implement approved first-time installation with mechanical verification, and demonstrate an actual onboarding cycle.
-3. Update GitHub settings for PR title + PR description as squash message and automatic branch deletion. Squash-only merge method is already enabled.
-4. Keep integration with **existing** wikis and three-way upgrades of locally modified HILD installations outside this scope.
+1. Researcher reviews [PR #6](https://github.com/Motor-Learning-Lab/HILD/pull/6); the agent does not merge. All PR #6 CI tests pass.
+2. Finish and review [draft PR #7](https://github.com/Motor-Learning-Lab/HILD/pull/7). Its safety tests pass with synthetic source fixtures; after PR #6 merges, test installation from the **real combined source** and resolve any competing process/README changes before declaring it ready.
+3. With specific approval for a disposable repository and a **new** wiki, complete PR D: an actual scope, draft PR, decision when genuine, journal, human merge, wiki page after merge, and fresh-session agent test. No pre-existing wiki integration.
+4. Keep GitHub squash-only settings (title/body + branch deletion); they are currently verified.
 
 ## Deliberately deferred
 
