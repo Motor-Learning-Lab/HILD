@@ -12,21 +12,17 @@ The living plan records current goals, state and next steps; history lives in Gi
 
 ## Current state — 2026-10-16
 
-- [Scope #1](https://github.com/Motor-Learning-Lab/HILD/issues/1) is **complete and closed**. Both [governance PR #2](https://github.com/Motor-Learning-Lab/HILD/pull/2) and [bootstrap PR #3](https://github.com/Motor-Learning-Lab/HILD/pull/3) have merged.
-- [PR #3](https://github.com/Motor-Learning-Lab/HILD/pull/3) merged by **squash** on 2026-10-15 (Israel time), commit [d85dfd0](https://github.com/Motor-Learning-Lab/HILD/commit/d85dfd04275ffc040c2897871d6b23d6fd5187e9). [PR #2](https://github.com/Motor-Learning-Lab/HILD/pull/2) had merged by **merge commit**, contrary to policy; do not rewrite published history.
-- The [read-only `hild-integrate` skill](../.agents/skills/hild-integrate/SKILL.md) is now available in the repository. A manual, GitHub-only, no-write assessment of MotorAdpatationSBI was recorded in [the journal](journal/2026-10-14.md). **Native agent discovery and a live local working-tree assessment have not been tested.**
-- [Decisions 0001 and 0002](decisions/) are marked `Accepted` following human review and a PR-based status update.
-- GitHub settings now disable merge and rebase merges, leaving squash as the only permitted merge method. **Remaining differences from accepted policy:** `delete_branch_on_merge=false` and squash commit defaults are `COMMIT_OR_PR_TITLE` / `COMMIT_MESSAGES`, not PR title / PR description. Correct those in repository settings; do not rewrite existing commits.
-- Reusable agent procedure files now exist in HILD. **Session hooks, supporting scripts, active understanding wiki and installation/upgrade machinery do not yet exist on main**; no installation into MotorAdpatationSBI has occurred.
-
-- [Scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4) was approved on 2026-10-15. [PR #5](https://github.com/Motor-Learning-Lab/HILD/pull/5) has now been **reviewed and squash-merged** on 2026-10-16 ([commit d40f9e8](https://github.com/Motor-Learning-Lab/HILD/commit/d40f9e810750597b1441b42d2374eee00480a75a)). Six reusable HILD skills, the optional onboarding scope companion, wiki templates and getting-started instructions are on `main`. No active wiki, hook, installer or live agent-loading verification exists yet.
+- [Scope #1](https://github.com/Motor-Learning-Lab/HILD/issues/1) is complete. The original governance and read-only integration assessment are on `main`.
+- [Scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4) is approved and ongoing. [PR #5](https://github.com/Motor-Learning-Lab/HILD/pull/5) merged reusable skills, onboarding guidance and templates as [d40f9e8](https://github.com/Motor-Learning-Lab/HILD/commit/d40f9e810750597b1441b42d2374eee00480a75a).
+- [PR #6](https://github.com/Motor-Learning-Lab/HILD/pull/6) merged the wiki checker, orientation script, tests, optional agent-hook templates and fresh-wiki instructions as [ac63a3a](https://github.com/Motor-Learning-Lab/HILD/commit/ac63a3a34bf366d5c195d4676c7374053371b014). Mechanical GitHub Actions tests passed. **No active wiki or live agent discovery test has occurred.**
+- [Draft PR #7](https://github.com/Motor-Learning-Lab/HILD/pull/7) adds preview-first fresh-repository installation, selectable agent adapters, provenance and safety tests. Synthetic-fixture tests passed; real full-package installation and merge compatibility still need confirmation.
+- Squash-only merge settings, PR-title/description commit text and automatic branch deletion are **verified**. No HILD installation into MotorAdpatationSBI has occurred.
 
 ## Next steps
 
-1. Review [PR #6](https://github.com/Motor-Learning-Lab/HILD/pull/6), which now has the original wiki-status and orientation scripts, ten regression tests, fresh-wiki setup guidance, and optional Claude/Codex/Copilot hook templates. GitHub Actions **ran and passed the regression tests, startup smoke test and template syntax checks**. Live agent discovery and hooks remain **untested**; human approval is required before merging.
-2. Subsequent PRs in [approved scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4) port the working scripts, initialize a **fresh** understanding wiki and selected-agent hooks, implement approved first-time installation with mechanical verification, and demonstrate an actual onboarding cycle.
-3. GitHub merge settings now match [decision 0002](decisions/0002-squash-only-merges.md): squash-only, PR title and description for the squash commit, and automatic branch deletion (verified 2026-10-16).
-4. Keep integration with **existing** wikis and three-way upgrades of locally modified HILD installations outside this scope.
+1. **Finish PR #7:** reconcile its branch with merged PR #6 without rewriting published branch history; run the full-package installation test and update its explanation for human review. Never merge without human approval.
+2. With a separately agreed disposable target repository and new-wiki creation, complete the onboarding validation phase (PR D), including scope/PR, human approval, draft `Process-HILD` wiki page after merge, and fresh-session agent behavior checks.
+3. **Deferred:** upgrading locally customized HILD, integration with existing wikis, and retroactive migration of MotorAdpatationSBI.
 
 ## Deliberately deferred
 
