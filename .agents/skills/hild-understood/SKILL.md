@@ -11,6 +11,8 @@ Templates: [wiki code page](../../../HILD/templates/wiki-code-page.md) and
 
 In the original project, the wiki is a separate Git repository copied into a local `wiki/` folder that the main repository ignores. The installed project's configuration should identify its actual wiki location. **Do not create or overwrite a wiki implicitly.** In particular, existing-wiki integration is outside the first-install scope.
 
+**Creating a new wiki:** If there is no wiki and the researcher has approved creating one, read [new-wiki.md](new-wiki.md). This companion is for a *fresh* wiki only. If an existing wiki is found, stop and propose a separate integration scope; do not replace it.
+
 1. **Find the wiki and get the latest pages.** Read its configured location and remote address. If it uses Git, pull only when Git can add the new changes without rewriting existing work (`--ff-only`). If that fails, stop and explain rather than overwrite anyone's edits.
 2. **Draft from the actual code.** A code page should describe what is already on `main`, with the commit it describes. If a page might be out of date, compare that commit with the current code. Use a process, concept, guide or resource page for other subjects.
 3. **Keep human confirmation meaningful.** The agent can mark a page as a draft, placeholder, needing revision or needing another review. **Only the researcher** can confirm it as `understood`. Link related pages; create placeholders only when the agreed work needs them.

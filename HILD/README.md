@@ -50,6 +50,9 @@ for beginners, not required for every installation or update.
 If a skill, script or wiki is missing, the agent should report that instead
 of claiming the capability works.
 
+For technical details of Claude Code, Codex and Copilot setup and what is
+still untested, see [agent startup integrations](agent-setup.md).
+
 See the [upstream HILD project](https://github.com/Motor-Learning-Lab/HILD)
 for documentation and updates. Local HILD files may evolve with the project;
 future upstream changes must be reviewed rather than blindly replacing them.
