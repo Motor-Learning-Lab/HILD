@@ -234,13 +234,14 @@ def test_corrupt_selected_hook_is_an_integrity_failure(repositories):
 
 
 def test_full_hild_checkout_when_tooling_pr_is_merged(tmp_path):
-    """Exercise the actual source package after dependent PR #6 is on main."""
+    """Exercise the complete, real HILD source now that PR #6 is on main."""
     checkout = Path(__file__).parents[1]
-    if not all((checkout / rel).is_file() for rel in REQUIRED):
-        pytest.skip("Awaiting PR #6: complete HILD scripts and adapter templates")
+    missing = [rel for rel in REQUIRED if not (checkout / rel).is_file()]
     for template in ("claude-settings.json", "codex-hooks.json", "copilot-hooks.json"):
-        if not (checkout / "HILD/templates" / template).is_file():
-            pytest.skip("Awaiting PR #6: agent hook templates")
+        rel = "HILD/templates/" + template
+        if not (checkout / rel).is_file():
+            missing.append(rel)
+    assert not missing, "Full HILD source is incomplete: " + ", ".join(missing)
 
     source = tmp_path / "full-hild-source"
     shutil.copytree(
