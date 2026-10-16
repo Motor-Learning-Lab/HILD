@@ -79,9 +79,12 @@ real check of the reviewer's understanding rather than a request for an OK.
    goal, say so: that is a warning sign.
 2. **What you should understand.** Two or three things the reviewer should be able to
    explain by the end.
-3. **Layers,** in the order of [the PR explanation template](templates/pr-explanation.md): a plain
-   summary, the math, a code walkthrough, the evidence, the consequences, surprises, and
-   the wiki pages.
+3. **Explain in layers,** using the [PR explanation template](templates/pr-explanation.md).
+   Start with a plain-language summary, then discuss the important parts, evidence
+   and consequences. Include mathematical background when relevant, and describe
+   surprises when there were any. **Omit sections that have nothing to say.**
+   The template is a default: the researcher may agree to adjust the format for
+   the project's work without losing the purpose of each review.
 4. **Links everywhere.** Every claim about code links to the exact lines with a GitHub
    permalink (`https://github.com/<owner>/<repo>/blob/<commit>/<path>#L10-L20`). Every
    other reference, to an issue, pull request, commit, file, decision record, wiki page
