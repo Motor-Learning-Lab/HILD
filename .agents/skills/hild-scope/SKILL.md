@@ -1,18 +1,66 @@
 ---
 name: hild-scope
-description: Prepare a human-agreed scope issue before substantive development in a HILD project. Use when the researcher wants to plan work, scope a change, or begin HILD onboarding.
+description: Work with the researcher to agree on a manageable scope before nontrivial development. Use when someone wants to plan work, scope a change, or begin HILD onboarding.
 ---
 
-# Scope
+# Scope — develop an agreement together
 
-Rules: [HILD process](../../../HILD/process.md), *Scope agreements*; format:
-[scope-issue template](../../../HILD/templates/scope-issue.md).
-First locate the project's real plan, decisions, and process files. By default they live under `HILD/`, but a project may keep them elsewhere.
+Authority: [HILD process](../../../HILD/process.md), *Scope agreements*.
+The completed agreement uses the
+[scope issue template](../../../HILD/templates/scope-issue.md).
+Locate the host project's real plan, decisions and process; `HILD/` is
+the default, not a reason to duplicate files kept elsewhere.
 
-1. **Understand the goal.** Read the current plan and relevant past decisions. Explain how this work helps the project; if it does not fit an existing goal, ask about that.
-2. **Agree what the work includes.** Discuss open choices before turning them into a scope issue. Identify what will and will not be done, which normal permission requirements are relaxed, and how success will be checked. Propose separate PRs if the work is too large to explain in one sitting.
-3. **Onboarding only:** if the request is to scope HILD onboarding, read [onboarding-scope.md](onboarding-scope.md) now and adapt its example to this installation. Do not load that companion file for ordinary scopes.
-4. **Propose the issue.** Use the [scope template](../../../HILD/templates/scope-issue.md). If GitHub is accessible, create a proposed issue labelled `scope`, then show the researcher its contents and link. If GitHub is unavailable, present the proposed text without claiming it was created.
-5. **Wait for agreement.** Do not begin implementation before the researcher approves the scope. Record approval in the issue before work; if its boundaries change later, propose the amendment and wait instead of silently drifting.
+## Begin with the researcher's goal, not a form
 
-The scope issue is an agreement about *future* work, not evidence that the work is already done. Do not merge a PR or certify human understanding on the researcher's behalf.
+Read the project's current plan and relevant decisions, then discuss what
+the researcher is trying to accomplish and why. Use goals they already
+gave you rather than asking them to repeat themselves. Offer useful
+expertise and explain recommendations in terms of their project.
+
+The **newcomer-specific introduction**, including what to say after
+the researcher agrees to begin their first scope, belongs in the
+[onboarding companion](onboarding-scope.md), not here. **Read that file
+when the researcher is new to HILD, requests guidance, or explicitly
+wants an onboarding scope**. Do not load it for ordinary scoping by an
+experienced researcher.
+
+## Build shared understanding of the work
+
+The agreement needs four things:
+
+- **Goal:** what the researcher wants to accomplish, and why.
+- **Boundaries:** what belongs in this work and what waits.
+- **Evidence:** how the researcher and agent will recognize success.
+- **Autonomy:** what the agent can decide or change within the scope,
+  and what still needs explicit human agreement.
+
+These describe **the finished scope**, not four questions to ask
+in a fixed order. Develop them naturally, following the researcher's
+responses. Summarize decisions periodically so the agreement becomes
+visible. Don't rush to file an issue or proceed with development simply
+because the researcher said "yes" to discussing a scope.
+
+Contribute expertise: suggest a reasonable default and explain **why
+it will serve the researcher**. Mention available alternatives briefly;
+compare a few choices if the tradeoffs matter. Avoid a broad menu or
+configuration questionnaire unless options materially affect the outcome.
+When a blocker becomes relevant to the agreed work, help diagnose it
+and propose a feasible next step instead of merely stopping.
+
+## Record the agreement and stop
+
+Once the researcher understands and agrees on the work, prepare an issue
+using the [canonical template](../../../HILD/templates/scope-issue.md).
+Explain in plain language what it authorizes and what it does not.
+If GitHub is accessible and the researcher has explicitly agreed to
+**create the scope issue**, create it labelled `scope` and link it.
+Otherwise present the draft without claiming it exists.
+
+**An invitation to start scoping is not approval of the final scope.**
+Do not implement the work until the human explicitly approves that
+scope; record approval in the issue. If an agreed boundary changes later,
+propose an amendment and wait rather than drifting.
+
+Never merge a pull request or mark the researcher's understanding
+confirmed on their behalf.

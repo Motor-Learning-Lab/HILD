@@ -13,13 +13,14 @@ The [plan](plan.md) records the project's goals and what to do next.
 Open a new chat with an AI coding agent that can read and work with **this
 repository**. Copy this message:
 
-> We are developing this repository using HILD. Please read its agent
-> instructions and HILD process. Use the `hild-scope` skill to propose our
-> next agreed piece of work.
+> I want to develop this repository using HILD. Please read its agent
+> instructions and HILD process, and use the `hild-scope` skill to work
+> with me on our next piece of work.
 >
-> To get started, please propose an **onboarding scope** that helps me learn
-> HILD by using it on this project. Explain the proposal and wait for my
-> approval before beginning any changes.
+> I'm new to HILD, so I'd like to learn by going through an **onboarding
+> scope** together. Start by helping me understand what we want to
+> accomplish and why; then discuss the scope with me before writing any
+> files or creating an issue.
 
 **Already familiar with HILD?** Replace "onboarding scope" with the work you
 actually want to do.
@@ -31,8 +32,10 @@ onboarding skill.
 
 ## What happens during onboarding?
 
-The agent first helps you agree on a **scope**: which small, useful change to
-make and what you will review. It then follows the ordinary HILD process:
+The agent first helps you **develop a scope together**: what would be useful
+to accomplish, what to leave for later, and what success would look like.
+It explains HILD as you use it, rather than presenting its entire internal
+workflow upfront. Once you agree on the scope, the agent follows the ordinary HILD process:
 an issue records the agreement, a branch and **draft pull request (PR)**
 make proposed changes visible, and you review and approve the work before
 merging. A journal and plan help the next session pick up where this one left

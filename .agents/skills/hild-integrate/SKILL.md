@@ -1,40 +1,100 @@
 ---
 name: hild-integrate
-description: Assess whether and how to adopt or update HILD in a scientific software repository. The first pass is read-only; inventory existing authority, identify conflicts and propose a reviewed scope. Use when asked to install, integrate, upgrade, reconcile or audit HILD.
+description: Assess a repository read-only and help the researcher decide how to adopt, upgrade, reconcile or audit HILD. For newcomers, load the onboarding companion before presenting findings.
 ---
 
-# HILD integration — assessment first
+# HILD integration — assess first, then guide agreement
 
-Authoritative rules: [HILD process](../../../HILD/process.md) in this repository. If this file is read **via an upstream URL before installation**, the agent must also read that upstream process; relative links may not resolve in the target repository.
+Authoritative rules: [HILD process](../../../HILD/process.md). If reading
+this skill from an upstream URL before installing HILD, also read the upstream
+process; links relative to this skill may not resolve in the target repository.
 
-## Contract
+## Non-negotiable read-only first pass
 
-**Your first action is assessment, never installation.** State that you are assessing only. Do **not** change files, branches, issues, PRs, settings, hooks or remote refs; do not commit, fetch, pull, run scripts, or generate files. Reads such as `git status`, `git log`, `git ls-files`, `git show` and GitHub GET operations are allowed. Do not open suspected secrets or execute untrusted tools. If access is incomplete, report the limitation; never treat missing evidence as proof of absence.
+**Assess first; do not install.** During the initial assessment, do **not**
+change files, branches, issues, pull requests, settings, hooks or remote refs;
+do not commit, fetch, pull, execute scripts or generate files. Read-only
+operations such as `git status`, `git log`, `git ls-files`, `git show`
+and GitHub GET requests are allowed. Avoid suspected secrets and untrusted
+executables. Report access limitations rather than treating unseen work as
+absent.
 
-## Assessment steps
+## Gather enough evidence to guide the conversation
 
-1. **Identify and protect the target.** Confirm target repository and intended upstream HILD source, current branch, working-tree state and access level. Preserve any uncommitted or unpushed work. Read the upstream process and the target's entry-point instructions before interpreting its files.
-2. **Inventory existing authority.** Locate process rules, `AGENTS.md`/agent instructions, skills and hooks, decisions, plans, journals, wiki/understanding map, tests, repository conventions and relevant development history. Identify the canonical home of each; distinguish established conventions from copies or stale descriptions. Use only read operations.
-3. **Classify the HILD state.** (a) no identifiable HILD installation; (b) existing installation with reliable upstream provenance; (c) installation with missing/uncertain provenance; or (d) partial/mixed adoption. A folder name alone is not enough to establish origin. Record source commit/version if verifiable.
-4. **For an existing installation, compare without changing.** If possible, identify **B** = recorded upstream baseline, **L** = current local files and **N** = proposed upstream. Explain local modifications (`B→L`) and upstream changes (`B→N`) and any conflicts. If B is unavailable, say so; do not infer or replace locally evolved content.
-5. **Propose, then stop.** Report authoritative paths to retain, optional HILD additions, collisions/risks, incremental compliance work and a small proposed scope. Label observations versus recommendations. Ask the researcher to approve or change the proposal; **do not create the scope issue or implement it yet**.
+1. **Identify the two repositories.** Check the target repository, branch,
+   visible files and existing work; identify the upstream HILD commit and
+   available access. Never confuse GitHub's committed state with an unexamined
+   local working tree.
+2. **Check what needs preserving.** Look for project instructions, process
+   rules, skills/hooks, decisions, plan, journal, tests, wiki, repository
+   settings and development conventions. Identify each authoritative home;
+   don't assume HILD should replace an existing one.
+3. **Recognize the installation state.** Distinguish no HILD, an installation
+   with known upstream provenance, one with uncertain provenance, and partial
+   adoption. For an existing installation, compare the recorded old upstream
+   baseline (B), current local files (L) and proposed upstream (N), where
+   possible. If the baseline is missing, say so; don't overwrite local changes.
+4. **Identify the consequential choices and blockers.** Think through safe
+   additions, collisions, prerequisites and feasible ways forward without
+   changing anything.
 
-## Required assessment report
+These are **assessment tasks**, not a mandatory order of headings in the
+conversation. Keep supporting paths, revisions, conflicts and evidence
+available for questions and the eventual scope issue.
 
-- **Target, source and read-only status:** repository, branch, changes present, upstream HILD URL/version; what could not be inspected.
-- **Existing working process:** concise description with paths or links, including project-specific rules and understanding records.
-- **Classification and authority map:** which file or system controls each responsibility; flag duplication and unknowns.
-- **Proposed changes, conflicts and deferrals:** distinguish safe additions from locally edited or established material. Never silently relocate or overwrite documentation.
-- **Next agreement:** smallest bounded scope, risks, checks and explicit decisions for the human; **stop without mutation**.
+## New or guidance-seeking researchers
 
-## After the researcher accepts a fresh-install scope
+**Read and follow the [onboarding companion](../hild-scope/onboarding-scope.md)
+as authoritative for the newcomer interaction.** If HILD is not installed,
+read it from the same upstream repository and revision as this skill.
 
-Only after the completed assessment and the human's **explicit agreement** to
-install into a new repository, read [first-install.md](first-install.md).
-It describes a separate, preview-first installer and mechanical verification.
-Do **not** load or execute that procedure during the initial read-only
-assessment. It does not cover upgrades or integration with an existing wiki.
+## The integration conversation after assessment
 
-## Not implemented here
+For a researcher already familiar with HILD, the first response should
+support a decision about **this repository's adoption or update**. Give
+them a short, evidence-based account of its relevant current state:
+what HILD appears to have installed, what existing material must be
+preserved, and what remains uncertain. Connect an initial recommendation
+to their stated objective and explain the principal tradeoff, if there
+is one. **End with the next consequential question or proposed agreement**,
+not the complete file inventory.
 
-This skill itself performs **assessment only**. The separate [fresh-install procedure](first-install.md) may be used after a specific human agreement; it has no upgrade merge engine, existing-wiki reconciliation or compliance enforcement. Do not treat an approved *assessment* as authority to install or update.
+Use your assessment to guide what happens after the reply:
+
+- If the researcher corrects a fact or names an existing authority,
+  revise the assessment before proposing to change that material.
+- If they explain a new goal or constraint, shape the integration scope
+  around it; use [hild-scope](../hild-scope/SKILL.md) for scope agreement.
+- If they want an alternative, compare only the relevant paths, grounded
+  in the repository and available tooling.
+- If a missing checkout, access permission, or other prerequisite blocks
+  the **agreed next action**, investigate how to satisfy it with the
+  researcher. Report what is observed and what remains unverified.
+- If they agree to a final proposal, record the agreed scope through
+  the normal issue workflow **before implementing**.
+
+**For newcomers, the onboarding companion governs the interaction instead
+of this section.** Keep repository-specific findings available to inform
+it; do not restate its introduction or first-scope examples here.
+
+The assessment itself remains read-only. A technical inventory, authority
+map and source revision must be available when required by a decision
+or for the final scope, even when the initial response is concise.
+Neither an installed file nor a configured hook proves live agent behavior.
+
+## Before agreement is complete
+
+The eventual scope must capture the target and upstream revision, what
+existing authority will be preserved, intended changes, conflicts and
+deferrals, stopping points, and checks for success. It must also distinguish
+what has been observed from what remains to be tested. Record the result in
+the [scope-issue format](../../../HILD/templates/scope-issue.md) **after
+developing the agreement**, not as an upfront form for the researcher.
+
+**Stop before creating an issue or making changes until the researcher agrees
+to the proposed scope.** The initial read-only assessment is not permission
+to create an issue. A conversation agreeing to *discuss* scoping is not
+permission to install. After the researcher explicitly agrees to install,
+read [first-install.md](first-install.md) for a fresh repository only; it
+describes a separately approved preview-first procedure. It does not
+implement existing-wiki integration or upgrade reconciliation.
