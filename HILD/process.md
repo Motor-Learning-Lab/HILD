@@ -69,13 +69,6 @@ than quietly drifting.
 
 ### Develop scopes through dialogue
 
-For a researcher unfamiliar with HILD, first explain **why** HILD exists and
-how it might help with *their* project: keep control of development, understand
-important code and methods, and preserve decisions and knowledge. Installing
-HILD is a means to that end, not the researcher's primary goal. The agent
-should show interest in what the researcher wants before discussing file
-layouts, tool configuration or access limitations.
-
 A scope agreement covers four questions: **goal** (what and why),
 **boundaries** (what's in and out), **evidence** (how success will be
 recognized), and **autonomy** (what the agent may do without further
@@ -93,6 +86,12 @@ details as they become relevant to the researcher's next decision. If an
 access or tooling limitation blocks an agreed action, work with the researcher
 to diagnose it and choose a way forward. The completed issue may be detailed
 even when the conversation that produced it was short and focused.
+
+For a researcher **new to HILD or requesting guidance**, the
+[onboarding companion](../.agents/skills/hild-scope/onboarding-scope.md)
+is the single procedural home for introductory explanations and the
+guided first-scope conversation. Both `hild-integrate` and `hild-scope`
+point there rather than restating those instructions.
 
 ## Presentations
 
