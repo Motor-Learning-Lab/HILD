@@ -1,79 +1,129 @@
-# Onboarding: a first scope that helps the researcher learn by doing
+# Onboarding: introduce HILD and develop a useful first scope
 
-Read this file **only** when the researcher wants to scope HILD
-onboarding. It supplements [hild-scope](SKILL.md); it is not a separate
-skill or a second set of process rules.
+**Read this companion when a researcher is unfamiliar with HILD, asks for
+guidance getting started, or wants an onboarding scope.** It is the single
+procedural home for newcomer-facing introductions and first-scope examples,
+whether HILD is already installed or the researcher is still considering
+installation. It is **not a separate skill**.
 
-## Help the person see the point
+The [HILD process](../../../HILD/process.md) remains authoritative for
+scope agreements, issues, pull requests, review, and approval. The general
+[hild-scope skill](SKILL.md) defines ordinary scope development; the
+[hild-integrate skill](../hild-integrate/SKILL.md) defines read-only assessment
+and installation boundaries. This companion adds the *onboarding-specific
+interaction*, not another copy of those rules.
 
-The researcher is learning **how to work with HILD on their own
-project**, not studying HILD's implementation. Ask what they want the
-project to become and what would make the first HILD experience useful.
-Use what they have already told you.
+## First contact: explain the value before discussing installation
 
-A repository that is nearly empty offers an opportunity to do two
-useful things together: establish how the project will develop and
-experience HILD's normal method for agreeing on, reviewing and recording
-work. Installing HILD may itself be the first scope if the researcher
-has not installed it; otherwise choose a small, **real project task**.
-Do not invent demonstration code or decisions to tick off capabilities.
+Assume the researcher may know little about HILD. Introduce it as an approach
+to AI-assisted scientific software development that keeps the researcher in
+control of decisions and helps them deeply understand the resulting code
+and algorithms.
 
-## Surface the decisions that matter, when they matter
+Explain in accessible terms how small agreed scopes, reviewable changes,
+further explanation when something is unclear, durable plans and decisions,
+and a separate understanding-map wiki work together. **HILD does not run
+inside the wiki:** issues and pull requests coordinate development; the wiki
+documents important concepts, code and the researcher's understanding.
 
-HILD offers defaults. Explain the reason for a default first and ask
-whether it serves the researcher's needs. Bring up only consequential
-choices, as they become relevant:
+Then connect these ideas to **the researcher's own repository and goals**.
+Show interest in what they want to build. For a nearly empty repository,
+installing HILD can itself be a useful first development exercise, helping
+the researcher clarify how the project should proceed. For an established
+project, explain how HILD might support existing work without displacing it.
 
-- Where should authoritative plans, process rules, decisions and
-  journal entries live? Will the standard `HILD/` directory work, or
-  would that duplicate an existing source?
-- What kind of explanations and progress records will help this
-  researcher understand the scientific code? Do the default PR and
-  journal formats suffice for now?
-- Which AI agents will actually be used? HILD supports a shared set of
-  skills with selected platform-specific configuration.
-- How will the researcher record understanding? Is there a **new** wiki
-  to create later? Do not overwrite or reconcile an existing wiki.
+Invite the researcher to **develop a first scope together**. Do not open with
+a full authority map, installation inventory, verification checklist or
+request to approve implementation. Make clear that a scope issue is an
+agreement about manageable work, and that creating it is a later step.
 
-Don't require a formal choice about every item. If the default works,
-keep it. If deeper customization is worth doing, propose a **later
-scope** rather than letting setup consume the entire conversation.
-Record an important decision only when a genuine choice constrains
-future work.
+This example illustrates the *purpose* of an introduction, not prescribed
+text:
 
-## Make the first scope useful and verifiable
+> HILD helps you develop scientific software with an AI agent while
+> keeping you in control of what gets built and understanding how it works.
+> We'll agree on small pieces of work, review the changes, and preserve
+> important decisions and explanations so the project remains understandable.
+>
+> Your repository is currently almost empty, so we could learn HILD
+> while preparing it for the project you want to build. One of HILD's first
+> practices is to agree on a scope for a manageable piece of work.
+> Would you like us to develop that first scope together?
 
-Help the researcher pick one attainable outcome and describe what
-would count as evidence of success. The normal HILD process supplies
-the issue, early draft PR, explanations, review, approval and durable
-journal; **don't teach all those steps in advance**. Introduce them
-as the researcher encounters them.
+Adapt this to the researcher and repository. Don't recite it unchanged or
+repeat goals the researcher already supplied.
 
-An onboarding PR may propose a `Process-HILD` **wiki page**: an
-accessible guide to how HILD works *in this repository*, linking to
-the actual authoritative files rather than copying their rules.
-With the reviewer's agreement, draft it **after that PR merges**.
-Only the researcher can mark it `understood`.
+## After the researcher says yes to *developing* a scope
 
-Keep two separate judgments:
-- **Installation integrity:** files, references and configurations
-  checked mechanically.
-- **Onboarding behavior:** whether the agent actually followed the
-  agreement and review process and the human understood it.
+Start **collaboratively defining the goal**, not configuring tools or
+requesting implementation permission. For a researcher who has already said
+they want to learn HILD by installing it, this is an example of the next
+response the human reviewer found useful:
 
-Record concrete evidence for capabilities actually exercised, and
-label others blocked, untested or not applicable. A fresh session
-should try recovering project state from recorded work, rather than
-this chat. Onboarding is recommended for newcomers; it is not a
-mandatory repeat after every HILD update.
+> Great. Let's develop our first scope together.
+>
+> In HILD, a scope is an agreement about a manageable piece of work. We
+> start by agreeing on what we want to achieve, then decide what belongs
+> in that work, what should wait, and how we'll know we've succeeded.
+> Once we're satisfied, we'll record the agreement as a GitHub issue.
+>
+> You've said you want to learn HILD while installing it in your
+> repository. I suggest our first scope have two outcomes: a repository
+> ready to use HILD, and a first experience making and reviewing
+> decisions together about how the work should proceed.
+>
+> Does that capture what you'd like to accomplish, or is there
+> something else you want to get out of this first scope?
 
-## If something blocks the next step
+It is an **example, not a fixed script or a required four-question
+interview**. Follow the researcher's answer. They have agreed to
+*discuss* a scope, not approved one or authorized installation.
 
-Investigate what tools and access exist and what is missing. Explain
-the simplest feasible route, offer alternatives only when meaningful,
-and help the researcher continue. A limitation such as a missing
-local checkout matters when work requiring it is about to begin;
-it should not displace the conversation about the project's goals.
+## During onboarding: surface decisions when useful
 
-Don't create a wiki without agreement, integrate a pre-existing wiki,
-or report agent skill discovery as verified merely because files exist.
+Bring up consequential choices only as they become relevant, recommending
+the normal default and explaining why it might help the researcher:
+
+- Where will project rules, plan, journal and important decisions live?
+  Does the default `HILD/` location avoid competing copies?
+- What kind of explanations and progress records will help this researcher
+  understand the scientific work? Are the default PR and journal formats
+  enough for now?
+- Which coding agents will the researcher actually use? HILD can configure
+  several agents while keeping one shared core.
+- How will the researcher maintain their understanding map? Is there a
+  **new** wiki to initialize, or must an existing wiki be left untouched?
+
+Don't require a formal answer to every item. When a default fits, keep it.
+Defer extensive customization to another scope if necessary. Create a
+decision record only for a genuine consequential choice.
+
+**When a blocker becomes relevant to the next agreed action**, investigate
+what access and tools are available, explain the most practical route, and
+help the researcher resolve it. A missing local checkout matters before
+running an installer, not as the opening topic before developing the goal.
+
+## Onboarding work and evidence
+
+If HILD is not installed, a **reviewed installation** can be the first
+useful scope. If it is installed, choose a small, real task that advances the
+researcher's project; do not create throwaway exercises.
+
+Let the [normal HILD process](../../../HILD/process.md) introduce each issue,
+draft PR, explanation, review, merge, journal and decision as it becomes
+relevant. Do not teach the full workflow upfront or create a special
+parallel onboarding workflow.
+
+An onboarding PR may propose a `Process-HILD` wiki page explaining HILD
+**in this repository**, with links to authoritative files. If approved,
+draft it **after the PR merges**. Only the researcher may confirm that a
+page is `understood`.
+
+Keep **installation integrity** (files and configuration) distinct from
+**onboarding validation** (observed human-agent behavior and understanding).
+Record what passed, failed, was blocked, or was not tested; a new session
+should recover state from durable project records. A beginner may choose
+onboarding, but it is not required for every installation or update.
+
+Do not initialize or reconcile a pre-existing wiki, claim agent hooks work
+without observing them, or weaken any review/approval requirement.
