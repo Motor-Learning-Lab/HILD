@@ -57,7 +57,7 @@ The default installation location is `HILD/`. The [preview-first installer](HILD
 
 After HILD is installed, open an agent chat **with access to your repository** and ask it to read the project instructions and invoke `hild-scope`. The [installed HILD README](HILD/README.md) supplies a ready-to-copy prompt:
 
-> We are developing this repository using HILD. Please read its agent instructions and HILD process, then use the `hild-scope` skill to prepare our next scope. To get started, please prepare a scope addressing **onboarding**. Explain it and wait for my agreement before implementing anything.
+> We are developing this repository using HILD. Please read its agent instructions and HILD process, then use `hild-scope` to **develop** our next scope with me. I'm new to HILD, so please also read its onboarding companion and help me learn through the conversation. I want to begin with onboarding, but don't create an issue or make changes until we've agreed on the scope.
 
 **Onboarding is recommended for new users, not required.** Experienced researchers can replace it with their actual first development task. The scope skill reads its [onboarding companion](.agents/skills/hild-scope/onboarding-scope.md) only when onboarding is requested. A completed onboarding exercise may propose a fresh `Process-HILD` wiki draft for creation after the PR merges.
 
