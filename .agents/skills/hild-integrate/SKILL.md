@@ -1,9 +1,9 @@
 ---
 name: hild-integrate
-description: Introduce HILD, assess a repository read-only, and help the researcher decide how to adopt or update it. Use when asked to install, integrate, upgrade, reconcile or audit HILD.
+description: Assess a repository read-only and help the researcher decide how to adopt, upgrade, reconcile or audit HILD. For newcomers, load the onboarding companion before presenting findings.
 ---
 
-# HILD integration — understand the goal before installing
+# HILD integration — assess first, then guide agreement
 
 Authoritative rules: [HILD process](../../../HILD/process.md). If reading
 this skill from an upstream URL before installing HILD, also read the upstream
@@ -42,43 +42,30 @@ These are **assessment tasks**, not a mandatory order of headings in the
 conversation. Keep supporting paths, revisions, conflicts and evidence
 available for questions and the eventual scope issue.
 
-## First conversation with a researcher
+## When the researcher is new or wants guidance
 
-Someone asking to adopt HILD may know very little about it. **Begin by
-explaining what it is for**, in plain language: small agreed pieces of work,
-human review and understanding of code and algorithms, explanations when
-something is unclear, and durable decisions and an independent understanding
-map (often a GitHub wiki). HILD coordinates development through repository
-issues and pull requests; it does **not** run inside the wiki.
+If the researcher is unfamiliar with HILD, wants to learn it by installing
+it, or asks for guidance getting started, **read and follow the
+[onboarding companion](../hild-scope/onboarding-scope.md) before responding**.
+It is the authoritative procedure for explaining HILD to newcomers,
+connecting its value to the researcher's project, inviting the first
+scope, and responding to a "yes" to developing that scope.
 
-Then connect those benefits to the **researcher's repository and already
-stated goal**. For an almost-empty repository, installing HILD can itself
-teach the collaboration method while starting a real project. For an
-established repository, explain the value of preserving its existing process.
-Don't imply that the researcher should accept unknown files or agent hooks
-before learning what they do.
+This applies **before installation**, too. If this skill was loaded from
+an upstream URL, fetch the onboarding companion from that **same upstream
+repository and revision**; do not assume the target already contains it.
+Use [hild-scope](../hild-scope/SKILL.md) for the general scope agreement
+once that conversation begins.
 
-**Invite the researcher to build the first installation scope together.**
-For example: "One of the first things to learn is how HILD uses a scope issue
-to agree on a manageable piece of work. Would you like to work together on
-the scope for installing HILD here?" This is an illustration, **not** text
-to recite in every repository.
-
-Do not lead with a large authority table, a complete installation plan, a
-verification matrix, or a request to approve implementation. A "yes" to
-*developing a scope* starts the dialogue; it does **not** approve the final
-scope or authorize installation. Use the [hild-scope skill](../hild-scope/SKILL.md)
-to work toward that agreement, including its conversational guidance.
-
-A newcomer should understand why HILD may help their project and why
-scoping is the natural next step before being asked to configure software.
+For an experienced researcher who does not need onboarding, proceed with
+the normal integration discussion. Do not load newcomer instructions
+unnecessarily.
 
 ## How to present findings and handle limitations
 
-- Investigate thoroughly; **present progressively**. Start with what is
-  relevant to the researcher's project, the useful next decision and any
-  material uncertainty. Supply the technical inventory on request or when
-  a consequential choice depends on it.
+- Investigate thoroughly; **present progressively**, emphasizing relevant
+  findings, uncertainty, and what needs agreement next. Supply the full
+  technical inventory on request or when a consequential choice requires it.
 - Recommend a sensible default when one is clearly appropriate; mention
   that alternatives can be discussed. Compare a small set of options when
   their tradeoffs materially affect the researcher. Avoid a mandatory
