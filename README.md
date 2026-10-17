@@ -1,14 +1,14 @@
 # HILD — Human-in-the-Loop Development
 
-HILD is a reusable, human-supervised process for developing scientific software with AI coding agents. The goal is not just working code: the researcher should understand what is built, why it works, what has been checked, and what remains uncertain.
+HILD is a human-supervised approach to developing scientific software with AI agents. The goal isn't merely to produce working code: the researcher remains in control of decisions and develops a deep understanding of the code and algorithms. The researcher and agent agree on manageable pieces of work, review what changes, work through anything unclear, and preserve important decisions and progress. A separate wiki helps map what the researcher understands.
 
 ## Status
 
-**Core HILD skills and mechanical tooling have merged.** [Scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4) is developing first-time installation into new repositories.
+**The first-time installer is available; guided onboarding is being validated.** [Scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4) is testing HILD with an actual new repository.
 
-- [PR #5](https://github.com/Motor-Learning-Lab/HILD/pull/5) provided the common skills, onboarding guidance, and wiki templates.
+- [PR #5](https://github.com/Motor-Learning-Lab/HILD/pull/5) added the reusable skills, onboarding guidance and wiki templates.
 - [PR #6](https://github.com/Motor-Learning-Lab/HILD/pull/6) added tested orientation and wiki-staleness scripts and optional agent setup templates.
-- [PR #7](https://github.com/Motor-Learning-Lab/HILD/pull/7) develops preview-first installation and mechanical verification. **A working installer is not released until that PR merges.** Live agent startup, wiki creation and end-to-end onboarding remain to be validated.
+- [PR #7](https://github.com/Motor-Learning-Lab/HILD/pull/7) merged the preview-first installer, agent selection and mechanical verification. **Live agent startup, wiki creation and an end-to-end onboarding cycle are still unverified.**
 
 The [current plan](HILD/plan.md) distinguishes implemented, mechanically tested and unverified capabilities.
 
@@ -43,11 +43,15 @@ The [project instructions](AGENTS.md) direct coding agents to follow the [HILD p
 
 ## Read-only adoption assessment
 
-The first [`hild-integrate` skill](.agents/skills/hild-integrate/SKILL.md) is a **procedure for assessing**, not installing, HILD. Its first version was merged in [PR #3](https://github.com/Motor-Learning-Lab/HILD/pull/3).
+The [`hild-integrate` skill](.agents/skills/hild-integrate/SKILL.md) starts with a **read-only assessment**. It also introduces HILD to the researcher and helps develop an installation scope through conversation, so the first work is useful to the researcher's own project.
 
-To ask an agent to assess a scientific repository **before** HILD is installed, give it the upstream [skill URL on main](https://github.com/Motor-Learning-Lab/HILD/blob/main/.agents/skills/hild-integrate/SKILL.md) and the repository to assess, and tell it: *read that procedure, assess this repository read-only, propose a scope, and stop without making changes*. For reproducible assessments, pin a specific commit.
+To begin, open a chat with an agent that can access your repository. Give it the [upstream integration skill](https://github.com/Motor-Learning-Lab/HILD/blob/main/.agents/skills/hild-integrate/SKILL.md) and your target repository, then ask:
 
-The default installation location is `HILD/`. A preview-first installer for **new, minimally initialized repositories** is under review in [PR #7](https://github.com/Motor-Learning-Lab/HILD/pull/7); do not assume it has been released. Integration with established repositories, upgrading locally modified HILD installations and three-way reconciliation remain **unimplemented**. Existing authoritative files must never be overwritten without a separately agreed integration plan.
+> I want to learn HILD and use it in this repository. Please read the HILD README, integration skill and process, and assess my repository without making changes. Explain what HILD can help me achieve here, then work with me to **develop our first installation scope**. Don't create an issue or modify the repository until we agree on the scope.
+
+The first conversation is meant to **build shared understanding**, not make the researcher approve a lengthy installation specification immediately. A scope issue records the finished agreement; it does not replace the conversation that leads to it. For a reproducible assessment, pin an exact upstream commit.
+
+The default installation location is `HILD/`. The [preview-first installer](HILD/scripts/install_hild.py) currently supports **new, minimally initialized Git repositories** after explicit approval. Existing-repository integration, upgrading locally modified installations, and three-way reconciliation remain **unimplemented**; established knowledge must never be overwritten silently.
 
 ## Starting work with HILD
 
@@ -57,7 +61,7 @@ After HILD is installed, open an agent chat **with access to your repository** a
 
 **Onboarding is recommended for new users, not required.** Experienced researchers can replace it with their actual first development task. The scope skill reads its [onboarding companion](.agents/skills/hild-scope/onboarding-scope.md) only when onboarding is requested. A completed onboarding exercise may propose a fresh `Process-HILD` wiki draft for creation after the PR merges.
 
-The skills and core tools are on `main`, but source availability is **not** proof of a functioning host installation. Mechanical first-install testing is in [PR #7](https://github.com/Motor-Learning-Lab/HILD/pull/7); a real onboarding exercise and wiki publication remain future validation steps in [scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4).
+The skills, scripts and installer are on `main`, with mechanical checks, but **installed files are not evidence of agent behavior**. The real onboarding cycle, GitHub wiki publishing and agent runtime compatibility are being tested under [scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4).
 
 ## Contributions
 
