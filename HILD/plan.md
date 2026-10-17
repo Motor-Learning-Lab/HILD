@@ -21,7 +21,7 @@ The living plan records goals, current state and next steps. History is recorded
 
 ## Next steps
 
-1. Review [PR #8](https://github.com/Motor-Learning-Lab/HILD/pull/8), which proposes **purpose-led, conversational integration and scoping**, after the first [HILD-onboarding-test](https://github.com/opherdonchin/HILD-onboarding-test) read-only assessment was technically correct but too long and too installation-focused. It also corrects the upstream README's stale installer status. Do not merge without human approval.
+1. Review [PR #8](https://github.com/Motor-Learning-Lab/HILD/pull/8). The researcher's comment identified **duplicated onboarding procedure**; the branch now keeps newcomer introductions and examples exclusively in the onboarding companion, which integration and scope skills load as needed. General scoping rules remain in the process. Await human read-track approval before merge.
 2. **Repeat the first-contact experiment** with a fresh agent after that change merges. Check whether it introduces HILD's purpose, connects it to the researcher's project, invites scope-building rather than presenting a finished agreement, and respects read-only and approval boundaries.
 3. Continue the test in the existing [opherdonchin/HILD-onboarding-test](https://github.com/opherdonchin/HILD-onboarding-test) repository only through a human-approved scope: install into the clean checkout, check files/configuration, and validate a real HILD onboarding cycle, wiki and fresh-session recovery.
 4. Update the still-`Proposed` status of [decision 0004](decisions/0004-selectable-agent-integrations.md) via a reviewed PR, and close [scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4) only when its validation goals are met or amended.
