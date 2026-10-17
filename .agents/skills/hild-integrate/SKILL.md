@@ -42,41 +42,45 @@ These are **assessment tasks**, not a mandatory order of headings in the
 conversation. Keep supporting paths, revisions, conflicts and evidence
 available for questions and the eventual scope issue.
 
-## When the researcher is new or wants guidance
+## New or guidance-seeking researchers
 
-If the researcher is unfamiliar with HILD, wants to learn it by installing
-it, or asks for guidance getting started, **read and follow the
-[onboarding companion](../hild-scope/onboarding-scope.md) before responding**.
-It is the authoritative procedure for explaining HILD to newcomers,
-connecting its value to the researcher's project, inviting the first
-scope, and responding to a "yes" to developing that scope.
+**Read and follow the [onboarding companion](../hild-scope/onboarding-scope.md)
+as authoritative for the newcomer interaction.** If HILD is not installed,
+read it from the same upstream repository and revision as this skill.
 
-This applies **before installation**, too. If this skill was loaded from
-an upstream URL, fetch the onboarding companion from that **same upstream
-repository and revision**; do not assume the target already contains it.
-Use [hild-scope](../hild-scope/SKILL.md) for the general scope agreement
-once that conversation begins.
+## The integration conversation after assessment
 
-For an experienced researcher who does not need onboarding, proceed with
-the normal integration discussion. Do not load newcomer instructions
-unnecessarily.
+For a researcher already familiar with HILD, the first response should
+support a decision about **this repository's adoption or update**. Give
+them a short, evidence-based account of its relevant current state:
+what HILD appears to have installed, what existing material must be
+preserved, and what remains uncertain. Connect an initial recommendation
+to their stated objective and explain the principal tradeoff, if there
+is one. **End with the next consequential question or proposed agreement**,
+not the complete file inventory.
 
-## How to present findings and handle limitations
+Use your assessment to guide what happens after the reply:
 
-- Investigate thoroughly; **present progressively**, emphasizing relevant
-  findings, uncertainty, and what needs agreement next. Supply the full
-  technical inventory on request or when a consequential choice requires it.
-- Recommend a sensible default when one is clearly appropriate; mention
-  that alternatives can be discussed. Compare a small set of options when
-  their tradeoffs materially affect the researcher. Avoid a mandatory
-  questionnaire or a menu of every possible configuration.
-- If access, permissions, a local checkout or another prerequisite blocks an
-  **agreed next action**, investigate feasible alternatives, explain the
-  simplest path and work with the researcher to resolve it. Don't turn
-  a blocker into a premature demand for configuration or abort the discussion.
-- Keep provenance and uncertainty explicit even when not displaying a full
-  report. Never claim the wiki, hooks or agent skill loading work merely
-  because files exist.
+- If the researcher corrects a fact or names an existing authority,
+  revise the assessment before proposing to change that material.
+- If they explain a new goal or constraint, shape the integration scope
+  around it; use [hild-scope](../hild-scope/SKILL.md) for scope agreement.
+- If they want an alternative, compare only the relevant paths, grounded
+  in the repository and available tooling.
+- If a missing checkout, access permission, or other prerequisite blocks
+  the **agreed next action**, investigate how to satisfy it with the
+  researcher. Report what is observed and what remains unverified.
+- If they agree to a final proposal, record the agreed scope through
+  the normal issue workflow **before implementing**.
+
+**For newcomers, the onboarding companion governs the interaction instead
+of this section.** Keep repository-specific findings available to inform
+it; do not restate its introduction or first-scope examples here.
+
+The assessment itself remains read-only. A technical inventory, authority
+map and source revision must be available when required by a decision
+or for the final scope, even when the initial response is concise.
+Neither an installed file nor a configured hook proves live agent behavior.
 
 ## Before agreement is complete
 
