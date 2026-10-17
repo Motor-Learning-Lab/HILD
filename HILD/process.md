@@ -67,6 +67,33 @@ Work inside an agreed scope is pre-approved. Anything outside it, the agent stop
 asks. If the scope turns out to be wrong, the agent proposes a change to the issue rather
 than quietly drifting.
 
+### Develop scopes through dialogue
+
+For a researcher unfamiliar with HILD, first explain **why** HILD exists and
+how it might help with *their* project: keep control of development, understand
+important code and methods, and preserve decisions and knowledge. Installing
+HILD is a means to that end, not the researcher's primary goal. The agent
+should show interest in what the researcher wants before discussing file
+layouts, tool configuration or access limitations.
+
+A scope agreement covers four questions: **goal** (what and why),
+**boundaries** (what's in and out), **evidence** (how success will be
+recognized), and **autonomy** (what the agent may do without further
+permission). These describe a completed agreement, **not four questions to
+ask in order**. Develop them in natural conversation, drawing on what the
+researcher already said, offering relevant expertise, and reflecting back
+emerging agreement. A "yes" to *working on a scope* is not approval of the
+finished scope or permission to implement it.
+
+When there is a good, reversible default, recommend it and explain its value;
+mention that alternatives exist. Present a small set of alternatives when
+important tradeoffs genuinely require a choice. Do not present every possible
+option as a questionnaire. Keep technical investigations rigorous, but disclose
+details as they become relevant to the researcher's next decision. If an
+access or tooling limitation blocks an agreed action, work with the researcher
+to diagnose it and choose a way forward. The completed issue may be detailed
+even when the conversation that produced it was short and focused.
+
 ## Presentations
 
 Proposals, explanations and orientations follow the same rules, so that each one is a
