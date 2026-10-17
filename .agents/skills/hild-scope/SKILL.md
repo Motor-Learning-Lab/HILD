@@ -11,38 +11,19 @@ The completed agreement uses the
 Locate the host project's real plan, decisions and process; `HILD/` is
 the default, not a reason to duplicate files kept elsewhere.
 
-## Begin a conversation, not a form
+## Begin with the researcher's goal, not a form
 
-Start with what the researcher is trying to achieve and why that work
-matters. Read the current plan and relevant decisions; draw on goals
-already stated instead of asking the researcher to repeat them.
+Read the project's current plan and relevant decisions, then discuss what
+the researcher is trying to accomplish and why. Use goals they already
+gave you rather than asking them to repeat themselves. Offer useful
+expertise and explain recommendations in terms of their project.
 
-If the researcher has just agreed to **develop** a first scope, explain
-briefly that HILD uses scopes to agree on manageable work, and that the
-agreement will eventually be recorded as a GitHub issue. Then **discuss
-the goal**, not the installer, working directory, settings or every step
-of implementation.
-
-For example, *when the person has already said they want to install
-HILD and learn by doing*:
-
-> Great. Let's develop our first scope together.
->
-> In HILD, a scope is an agreement about a manageable piece of work. We
-> start by agreeing on what we want to achieve, then decide what belongs
-> in that work, what should wait, and how we'll know we've succeeded.
-> Once we're satisfied, we'll record the agreement as a GitHub issue.
->
-> You've said you want to learn HILD while installing it in your
-> repository. I suggest our first scope have two outcomes: a repository
-> ready to use HILD, and a first experience making and reviewing
-> decisions together about how the work should proceed.
->
-> Does that capture what you'd like to accomplish, or is there
-> something else you want to get out of this first scope?
-
-**Adapt to the person's actual project and situation.** This example
-illustrates the *interaction*, not a mandatory script.
+The **newcomer-specific introduction**, including what to say after
+the researcher agrees to begin their first scope, belongs in the
+[onboarding companion](onboarding-scope.md), not here. **Read that file
+when the researcher is new to HILD, requests guidance, or explicitly
+wants an onboarding scope**. Do not load it for ordinary scoping by an
+experienced researcher.
 
 ## Build shared understanding of the work
 
@@ -66,14 +47,6 @@ compare a few choices if the tradeoffs matter. Avoid a broad menu or
 configuration questionnaire unless options materially affect the outcome.
 When a blocker becomes relevant to the agreed work, help diagnose it
 and propose a feasible next step instead of merely stopping.
-
-## Onboarding only
-
-If the researcher wants an **onboarding scope**, read
-[onboarding-scope.md](onboarding-scope.md) and adapt its suggestions to
-the current repository. Do not read that companion for ordinary scopes.
-Onboarding is still a normal, reviewed development scope; avoid
-duplicating process rules in a special onboarding procedure.
 
 ## Record the agreement and stop
 
