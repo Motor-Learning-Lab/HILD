@@ -29,6 +29,7 @@ An approved squash merge should use the PR title and final description as its co
 - After new commits, **rewrite the explanation in place**, updating permalinks to the new head. At its end append a dated *Changes after review* section; later rounds append, not prepend.
 - **Full track:** compare the human's explain-back with the code, then clarify or change the code if they differ.
 - **Fast track:** label the PR `understanding-debt`, create a follow-up issue, and set related wiki pages `needs-review` after merge.
-- **After the human merges:** update the plan/journal using `hild-journal`, then prepare agreed wiki pages using `hild-understood`.
+- **During implementation:** use `hild-journal` at meaningful milestones; scope, PR status and test evidence must be recoverable before merge.
+- **After the human merges:** finalize the plan/journal using `hild-journal`, then prepare agreed wiki pages using `hild-understood`.
 
 Never claim review approval, successful tests or a merge before the actual evidence exists.

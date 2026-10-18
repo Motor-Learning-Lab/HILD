@@ -106,7 +106,7 @@ def build_files(source, target, agents):
     plan = {}
     shared = ["HILD/README.md", "HILD/process.md", "HILD/agent-setup.md"]
     shared += [
-        str(p.relative_to(source)) for folder, pattern in (
+        p.relative_to(source).as_posix() for folder, pattern in (
             ("HILD/templates", "*.md"), ("HILD/templates", "*.json"),
             ("HILD/scripts", "*.py"),
             ("HILD/scripts", "*.sh"), (".agents/skills", "**/*"),
@@ -225,7 +225,7 @@ def apply_plan(target, plan):
                 folder.mkdir()
                 created_dirs.append(folder)
             if data is None:
-                path.symlink_to("../.agents/skills", target_is_directory=True)
+                path.symlink_to(Path("..") / ".agents" / "skills", target_is_directory=True)
             else:
                 path.write_bytes(data)
             created_files.append(path)
@@ -270,7 +270,11 @@ def verify(target):
     for rel, expected in info["files"].items():
         path = target / rel
         if "symlink" in expected:
-            if not path.is_symlink() or str(path.readlink()) != expected["symlink"]:
+            # Readlink returns native separators on Windows; the manifest is POSIX.
+            # Also reject dangling links, even if their target text matches.
+            if (not path.is_symlink()
+                    or path.readlink().as_posix() != expected["symlink"]
+                    or not path.is_dir()):
                 missing.append(f"{rel}: missing or incorrect skill-directory link")
         elif not path.is_file():
             missing.append(f"{rel}: missing expected file")
@@ -332,7 +336,15 @@ def main(argv=None):
             return 0
         apply_plan(target, plan)
         print(f"Installed HILD for {', '.join(agents)} into {target}")
-        return verify(target)
+        result = verify(target)
+        if result:
+            print(
+                "INSTALLATION NEEDS ATTENTION: verification failed after file creation. "
+                "New files remain in place for inspection; no automatic rollback "
+                "or second --apply was performed.",
+                file=sys.stderr,
+            )
+        return result
     except (InstallationError, json.JSONDecodeError) as error:
         print("HILD:", error, file=sys.stderr)
         return 2

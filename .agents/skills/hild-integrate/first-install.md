@@ -53,13 +53,21 @@ The command must print a read-only installation proposal, including all
 target paths and the selected agents. Discuss any unexpected additions.
 Do not treat the preview as approval.
 
-Only once the researcher agrees to that exact proposal:
+Only once the researcher agrees to that exact proposal **and authorizes applying it**:
+
+If you asked about an implementation choice *and* separately requested permission to
+run `--apply`, an answer naming only the choice is not authorization to execute.
+Briefly confirm the action before proceeding; do not reconfirm approval that was
+already unambiguous.
 
 ```bash
 python3 HILD/scripts/install_hild.py --target /path/to/new-repo --agents all --apply
 ```
 
-The script refuses dirty repositories and collisions. It records a source
+The script refuses dirty repositories and collisions. If file creation fails,
+new files are rolled back; **verification failure after creation leaves the
+new files in place** for inspection. Explain this distinction rather than
+claiming every failure is automatically reversed. The script records a source
 commit and per-file hashes in `HILD/installation.json`, creates a starter
 plan/journal and only the selected agent adapters. The first implementation
 does **not** modify existing files; installation into a partially configured
