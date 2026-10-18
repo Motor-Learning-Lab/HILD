@@ -1,70 +1,91 @@
-# GitHub access: diagnose the next blocked action together
+# GitHub access: diagnose the next blocked action
 
-**Load this companion only when the researcher needs to establish or repair
-GitHub access** during HILD adoption or onboarding. It supports
-[hild-integrate](SKILL.md) and
-[the onboarding companion](../hild-scope/onboarding-scope.md);
-the [HILD process](../../../HILD/process.md) still governs approval and
-autonomy. This is a troubleshooting guide, not permission to perform
-unapproved GitHub writes.
+**Load this companion when GitHub or local checkout access needs checking
+or repair** during HILD integration or onboarding. It can also support
+an optional readiness check requested by the researcher. It is shared
+by [hild-integrate](SKILL.md) and
+[onboarding](../hild-scope/onboarding-scope.md); it does not replace
+[HILD's approval rules](../../../HILD/process.md).
 
-## Begin with the actual obstacle
+The goal is to help the researcher **continue their own project**.
+Identify the next useful operation, establish what the agent can already
+do, and work toward the smallest necessary remedy. Avoid a full
+environment audit when one capability is all that is needed.
 
-Briefly tell the researcher **what action is blocked and why it matters**
-(e.g., "We have agreed on an installation scope, but I can't create its
-GitHub issue yet"). Ask one useful question only when needed: which
-environment or command is failing? Prefer checking accessible evidence
-over asking the researcher to perform unnecessary steps.
+## First identify the action and environment
 
-Different capabilities need different checks:
+Find out what is failing, or what the researcher wants to verify:
+- Read or edit files in the **working repository**
+- Create or comment on **issues or pull requests**
+- Create a branch, commit or **push**
+- Read or update the **GitHub wiki**, if that is part of the agreed work
 
-- **Read the repository:** Can the agent see the target's committed files?
-- **Access its working tree:** Is there a local Git checkout that the agent's
-  terminal can actually reach? A GitHub-connected chat is not a checkout.
-- **Create issues/PRs:** Can the chosen GitHub tool act on the target repo?
-- **Push code:** Can local Git authenticate and write to the target remote?
-- **Run the installer:** Can the agent access **both** a clean source HILD
-  checkout and a clean target checkout on the appropriate branch?
+Then identify how **this agent** accesses GitHub. Use accessible evidence,
+asking one targeted question if needed. Examples include:
+- A coding agent in a local editor or terminal (VS Code, Codex CLI,
+  Claude Code), potentially using SSH to a remote development machine
+- A hosted/cloud coding agent or a GitHub Codespace with its own shell
+- An agent with a connected GitHub tool/API but **no local Git checkout**
+- An agent and researcher using the GitHub website to perform some
+  steps manually
 
-An authenticated web browser, a valid GitHub CLI login, an agent's own
-terminal environment and an authorized Git credential helper are **not
-necessarily the same identity or capability**. Verify the specific action
-rather than declaring the entire GitHub connection broken.
+These are **examples, not an exhaustive platform list or a ranking**.
+Tool availability depends on the specific installation and permissions,
+not just the agent's brand.
 
-## First diagnostics (read-only)
+A signed-in browser, a connected GitHub app, the researcher's terminal,
+the agent's tool environment and Git's own push credentials may all
+differ. Test the capability required for the next approved step;
+do not conclude that all GitHub access works or fails from one result.
 
-Run these from the agent's **own terminal environment**, ideally in the
-workspace associated with the target repository:
+## Diagnose through the access route actually available
+
+**Connected GitHub tool or hosted agent, without a shell:** Identify the
+repo and check what the available connector/tool can **read**. Review
+its declared permissions if exposed. Use its supported GitHub actions
+for the agreed workflow; do not demand a local clone or `gh auth login`
+if a working connector is sufficient. Conversely, API access does not
+establish the ability to run a *local* installation script. If the
+needed operation is not supported, explain the limitation and discuss
+a suitable environment or a researcher-operated GitHub UI step.
+
+**Agent with a terminal and Git checkout:** First find the real working
+directory rather than assuming a checkout is absent because a command
+was run from a scratch directory:
 
 ```sh
 pwd
 git rev-parse --show-toplevel
 git status --short
-gh auth status
+git remote -v
 ```
 
-If `git rev-parse` fails, inspect the actual workspace directories or
-working-directory setting **before** concluding that no checkout exists.
-In a Codespace, the project commonly lives under `/workspaces/REPO`, but
-use the actual path. Confirm that the resolved Git root is the **target**,
-not an unrelated checkout or a temporary download directory.
+These are read-only diagnostics. Confirm that the resolved Git root
+and remote refer to the **intended target repository**, not upstream
+HILD or another project. If `git rev-parse` fails, locate the workspace
+directory or ask where the checkout is. Be careful to avoid displaying
+credential-bearing remote URLs in output shared with the researcher;
+redact any embedded secrets.
 
-If `gh` is available and the target is `OWNER/REPO`, the following
-GitHub **read** checks can help:
+**If GitHub CLI (`gh`) is installed and relevant**, check its own
+authentication before suggesting a login:
 
 ```sh
+gh auth status
 gh api repos/OWNER/REPO --jq '{full_name, permissions}'
-gh api repos/OWNER/REPO/issues --jq 'length'
 ```
 
-`OWNER/REPO` is a placeholder; substitute the confirmed target.
-A GET request proves some read access; it does **not** prove that creating
-issues, PRs or pushes is authorized. Only perform the **actual intended
-write** after HILD's relevant approval gate, not a dummy issue or test
-commit created to probe permissions.
+Replace `OWNER/REPO` with the confirmed target. The second command
+requires access and is read-only. A successful GitHub GET demonstrates
+some read capability, **not** permission to create issues, open PRs or
+push. Do not create dummy GitHub issues or commits solely to test
+write permissions; exercise the real operation only after its HILD
+approval gate.
 
-To understand why `gh` behaves differently across environments, inspect
-**presence, not values**, of its environment credentials:
+If the tools, the researcher's terminal and the agent's own subprocess
+report inconsistent results, **compare the environments before changing
+authentication**. Shell users can check *presence only*, not values,
+of GitHub CLI's token variables:
 
 ```sh
 for n in GH_TOKEN GITHUB_TOKEN; do
@@ -76,84 +97,88 @@ for n in GH_TOKEN GITHUB_TOKEN; do
 done
 ```
 
-Compare results from the **agent's tool terminal** with the researcher's
-interactive terminal if they disagree. In particular, the environment
-variables `GH_TOKEN` and `GITHUB_TOKEN` take precedence over credentials
-stored by GitHub CLI (in that order). A command working in the user's
-terminal may fail when run by an agent whose subprocess inherits a
-different environment.
+GitHub CLI honors `GH_TOKEN` and `GITHUB_TOKEN` ahead of stored
+credentials. Their presence or identity can differ between terminals,
+containers, SSH hosts and agent processes.
 
-## Choose the least disruptive remedy
+## Pick one appropriate recovery path
 
-**Existing Codespace for the target repository.** GitHub normally supplies
-credentials scoped to the Codespace's source repository; they may not
-authorize access to another repository. First locate the real checkout
-and check `gh auth status` **in the agent's environment**. If GitHub CLI
-access is blocked but a connected GitHub integration can perform the
-approved operation, use that integration instead of changing the user's
-credentials. Report which method is verified.
+- **Wrong directory or missing checkout:** Locate the existing workspace
+  or establish an appropriate clone *after agreement*, preserving
+  uncommitted work. A GitHub API-connected agent may need a separate
+  terminal environment only when an approved step requires it.
+- **Issue or PR permissions missing:** Check the authenticated identity,
+  target repository, credential scopes, and organization policy. Use a
+  supported connected GitHub tool if it already has the needed rights,
+  or offer a researcher-operated GitHub UI step. Explain any permission
+  changes before requesting them.
+- **CLI reports no usable login:** If `gh` is required and there is
+  no working credential, explain the supported login options for the
+  current environment. A browser login can be initiated by the
+  researcher with `gh auth login --hostname github.com --git-protocol https --web`.
+  If an inherited token prevents interactive login, one *optional*
+  approach—with consent—is to omit the variables **for that command
+  only**, instead of clearing them permanently:
 
-**A token environment variable prevents interactive `gh auth login`.**
-Explain that the CLI already sees an environment token but this need not
-be the credential the agent's own terminal sees. If an interactive login
-is genuinely needed and the researcher agrees to change authentication
-setup, temporarily omit the token **for that one command**, leaving
-the original environment intact:
+  ```sh
+  env -u GH_TOKEN -u GITHUB_TOKEN gh auth login --hostname github.com --git-protocol https --web
+  ```
 
-```sh
-env -u GH_TOKEN -u GITHUB_TOKEN gh auth login --hostname github.com --git-protocol https --web
-```
+  Confirm `gh auth status` afterward in the **agent's actual execution
+  environment**. Login stores or changes credentials, so explain that
+  side effect. Do not ask anyone to paste a token or device code.
+- **`gh` API works but `git push` fails:** Inspect whether the
+  remote uses SSH or HTTPS and which Git credentials apply. When
+  appropriate, `gh auth setup-git` can configure an authenticated
+  GitHub CLI as an HTTPS Git credential helper, with the researcher's
+  agreement; it changes Git configuration. Diagnose SSH separately
+  rather than switching protocols blindly.
+- **Wiki access missing:** Establish whether the repository has an
+  initialized wiki and whether the current tool supports wiki writes.
+  A wiki is an additional, separately authorized step; it is **not
+  a prerequisite for the first read-only assessment or installation**.
+  If tools cannot edit it, explain an appropriate manual review/edit
+  handoff or a later scoped setup rather than claiming it was updated.
 
-The browser/device authorization is the researcher's action. Confirm it
-worked using `gh auth status` in the environment that will run `gh`.
-Authentication can store credentials or modify user-level configuration:
-explain that side effect before asking the researcher to approve it.
-Avoid broad, permanent changes to environment variables just to make
-one command work.
+### Environment-specific notes, only when relevant
 
-**GitHub API works but `git push` fails.** This may be a **separate Git
-credential or remote-protocol issue**, not a failed login. Check the
-target remote and whether it uses HTTPS or SSH, without printing embedded
-credentials. If GitHub CLI is authenticated and the researcher agrees to
-configure Git's credential helper, `gh auth setup-git` is a documented
-option for HTTPS. It changes Git configuration, so first explain the
-scope of that change; in a Codespace, changing the default helper can
-affect other repositories. Diagnose SSH errors separately rather than
-blindly switching protocols.
+- **Local editor, terminal, or SSH:** The local repository, editor chat,
+  SSH shell and credential store may be distinct. Run diagnostics in
+  the environment **the agent uses to act**.
+- **GitHub Codespaces:** The checkout is commonly under
+  `/workspaces/REPO`. GitHub may provide a repository-scoped token;
+  token availability in the user's interactive shell does not prove
+  availability in the agent's execution environment. Verify both when
+  they disagree.
+- **Hosted agents or GitHub connectors:** Look for supported GitHub
+  actions and their permissions before proposing CLI configuration.
+  They may have no shell and still manage issues or PRs.
 
-**Permission still denied.** Check that the authenticated account is
-authorized for the **correct** repo and the requested operation (issues,
-pull requests, branch writes). Repository permissions, token permissions
-and org policy may differ. Offer a relevant manual GitHub UI route or
-a different already-authorized tool if available. Do not bypass branch
-protections or broaden token permissions without a clear need and the
-researcher's approval.
+These notes are starting points, not claims of support for every product
+version. Consult maintained platform documentation for actual behavior.
 
-## Keep the researcher in control
+## Security, consent and return to HILD
 
-- Explain **one next diagnostic or repair** and its expected outcome; offer
-  alternatives when a meaningful tradeoff exists.
-- Never ask the researcher to paste access tokens, private SSH keys,
-  device codes or other credentials into chat, issues, PRs or logs.
-- Avoid commands that print tokens (such as `gh auth token`), embed
-  credentials in a remote URL, or publish credentials in Git history.
-- Installing credentials, editing Git configuration and creating GitHub
-  resources are distinct side effects; obtain agreement for each.
-- When a problem is resolved, verify the **specific blocked capability**,
-  record what was tested and what remains unknown, and return to the
-  original HILD stopping point. Access repair does **not** waive review
-  of the proposed scope issue or approval of installation.
+Keep any explanation concrete and brief. Recommend **one next action**,
+with alternatives when their tradeoffs matter.
 
-## Current sources
+- Never request or publish credentials, private keys, device codes or
+  raw `gh auth token` output in chat, terminal logs, issues or PRs.
+- Avoid embedding credentials in Git remote URLs or commits.
+- Explain and seek agreement for login, credential storage, Git config
+  changes, new clones, permissions, or any other consequential action.
+- After recovery, verify the **specific blocked capability**, and say
+  what is still unverified. Resume at the original HILD review gate:
+  repairing GitHub access never grants approval to create or implement
+  a scope, install HILD, or merge a PR.
 
-Prefer the provider's maintained documentation over assuming an older
-authentication recipe always applies:
+## Maintained references
 
-- [GitHub: Troubleshooting repository authentication in Codespaces](https://docs.github.com/en/codespaces/troubleshooting/troubleshooting-authentication-to-a-repository)
-- [GitHub CLI: environment variables and token precedence](https://cli.github.com/manual/gh_help_environment)
-- [GitHub CLI: login](https://cli.github.com/manual/gh_auth_login)
-- [GitHub CLI: configure Git credential helper](https://cli.github.com/manual/gh_auth_setup-git)
+- [GitHub CLI environment variables](https://cli.github.com/manual/gh_help_environment)
+- [GitHub CLI login](https://cli.github.com/manual/gh_auth_login)
+- [GitHub CLI Git credential helper](https://cli.github.com/manual/gh_auth_setup-git)
+- [GitHub: Codespaces repository authentication](https://docs.github.com/en/codespaces/troubleshooting/troubleshooting-authentication-to-a-repository)
 
-The exact availability of Copilot/Codex/Claude terminals and permissions
-must be verified in the running environment; a documented fix is not proof
-it worked in this session.
+Use the documentation of whichever agent/editor/host actually applies;
+the listed GitHub documents are not a substitute for platform-specific
+evidence.
