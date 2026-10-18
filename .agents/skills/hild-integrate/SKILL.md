@@ -91,10 +91,11 @@ what has been observed from what remains to be tested. Record the result in
 the [scope-issue format](../../../HILD/templates/scope-issue.md) **after
 developing the agreement**, not as an upfront form for the researcher.
 
-**Stop before creating an issue or making changes until the researcher agrees
-to the proposed scope.** The initial read-only assessment is not permission
-to create an issue. A conversation agreeing to *discuss* scoping is not
-permission to install. After the researcher explicitly agrees to install,
-read [first-install.md](first-install.md) for a fresh repository only; it
-describes a separately approved preview-first procedure. It does not
-implement existing-wiki integration or upgrade reconciliation.
+**Stop before making changes.** A read-only assessment or agreement to
+*discuss* scoping does not authorize an issue or installation. Use
+[hild-scope](../hild-scope/SKILL.md) to record a **proposed** installation
+scope issue after the researcher agrees to create it, and then obtain the
+researcher's review and **recorded approval of that actual issue**.
+Only after that approval should you read [first-install.md](first-install.md)
+for a new repository. That separately approved preview-first procedure
+does not implement existing-wiki integration or upgrade reconciliation.
