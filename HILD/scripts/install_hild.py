@@ -336,7 +336,15 @@ def main(argv=None):
             return 0
         apply_plan(target, plan)
         print(f"Installed HILD for {', '.join(agents)} into {target}")
-        return verify(target)
+        result = verify(target)
+        if result:
+            print(
+                "INSTALLATION NEEDS ATTENTION: verification failed after file creation. "
+                "New files remain in place for inspection; no automatic rollback "
+                "or second --apply was performed.",
+                file=sys.stderr,
+            )
+        return result
     except (InstallationError, json.JSONDecodeError) as error:
         print("HILD:", error, file=sys.stderr)
         return 2
