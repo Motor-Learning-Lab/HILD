@@ -1,9 +1,11 @@
 # Installing HILD after the researcher approves the scope
 
 Read this companion **only after** completing the strict read-only
-`hild-integrate` assessment and receiving explicit human agreement to install
-into a **new, clean repository**. An approved assessment alone is not
-authorization to install. Reconciliation of an existing HILD installation or
+`hild-integrate` assessment and receiving explicit human approval of the
+**actual installation scope issue** for a new, clean repository, with that
+approval recorded in the issue. Agreement in chat to *develop* a scope,
+permission to create the issue, or a completed assessment alone does not
+authorize installation. Reconciliation of an existing HILD installation or
 pre-existing wiki is outside this procedure.
 
 ## Before execution
@@ -23,10 +25,11 @@ pre-existing wiki is outside this procedure.
 
 ## Preview (read-only) then install (approved write)
 
-1. After the researcher agrees to the installation scope, record that agreement
-   in a GitHub scope issue for the **target** repository. Create a working
-   branch there. The install will create files on that branch, **not** silently
-   change the default branch.
+1. Confirm the **target repository's approved scope issue link and recorded
+   approval**. If either is missing, return to [hild-scope](../hild-scope/SKILL.md):
+   present the issue for human review and pause. Once approval is documented,
+   create a working branch in the target repository. Installation changes
+   belong on that branch, not silently on the default branch.
 2. From the **HILD source checkout**, run the preview command below. Discuss
    the exact proposed file changes before applying them.
 3. Run the approved install, commit and push its first small change, and open
