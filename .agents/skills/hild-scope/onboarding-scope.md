@@ -132,10 +132,11 @@ plan and journal. Onboarding is recommended, not required for every update.
 ## When a practical step is blocked
 
 Investigate what tools or access are available. Explain the simplest
-feasible path and help the researcher use it. For example, a missing
-local Git checkout becomes relevant when installation is the agreed
-next action; work together to establish the environment then. Keep
-the dialogue centered on the researcher's goal.
+feasible path and help the researcher use it. For GitHub, Codespaces,
+checkout or authentication problems, load the on-demand
+[GitHub-access companion](../hild-integrate/github-access.md). A missing
+local checkout matters when installation becomes the agreed next action;
+keep the dialogue centered on the researcher's goal.
 
 Before modifying an existing wiki or installing over existing process
 files, establish a separate approved plan that preserves that work.
