@@ -17,6 +17,9 @@ pre-existing wiki is outside this procedure.
 3. Identify any existing files or uncommitted work that would be affected.
    Never overwrite an existing AGENTS file, gitignore, agent settings, wiki
    files or local HILD state without a separate, explicit reconciliation plan.
+   For a blocked GitHub operation or unavailable local checkout, use
+   [github-access.md](github-access.md) to diagnose access without overriding
+   the researcher's approval gates.
 4. Make sure the source checkout contains the **whole** HILD package:
    README, process, scripts, templates, shared skills and selected hook
    templates. Using an incomplete upstream checkout is not a valid install.
