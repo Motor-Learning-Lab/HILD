@@ -232,7 +232,7 @@ New kinds are added here when a real page needs one. The [code-page template](te
 | `not-written` | nobody | No page exists yet. Another page links to it, or a pull request proposes it. |
 | `stub` | agent | A page that exists only as a placeholder, still to be written. |
 | `draft` | agent | Written by the agent; the reviewer has not confirmed it. |
-| `hild-understood` | reviewer only | The reviewer has read, edited and confirmed it. |
+| `understood` | reviewer only | The reviewer has read, edited and confirmed it. |
 | `needs-revision` | either | The reviewer has read it and it did not do its job, or the agent knows it falls short. The agent owes a rewrite. |
 | `needs-review` | either | Merged on the fast track, or the reviewer is no longer sure. |
 | `stale` | script | The code changed materially since the commit the page describes. |
