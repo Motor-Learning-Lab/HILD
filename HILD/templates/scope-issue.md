@@ -7,8 +7,10 @@ plan it serves. Describe the process objective, not merely the tools to use.
 
 ## In scope
 
-What gets built, and the files or directories it touches. If it needs more than one PR,
-list them: each PR must be explainable in one sitting.
+How the work will be carried out using this project's agreed tools and records;
+which files or directories it touches. GitHub PRs are the reference review
+mechanism. If several PRs are needed, list them: each must be explainable in
+one sitting.
 
 ## Out of scope
 
