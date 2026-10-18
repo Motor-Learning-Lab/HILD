@@ -1,12 +1,15 @@
 # Installing HILD after the researcher approves the scope
 
-Read this companion **only after** completing the strict read-only
-`hild-integrate` assessment and receiving explicit human approval of the
-**actual installation scope issue** for a new, clean repository, with that
-approval recorded in the issue. Agreement in chat to *develop* a scope,
-permission to create the issue, or a completed assessment alone does not
-authorize installation. Reconciliation of an existing HILD installation or
-pre-existing wiki is outside this procedure.
+Read this companion after the read-only `hild-integrate` assessment
+and the researcher's approval of the installation scope. First make sure
+the researcher has **seen the actual GitHub scope issue**, has had a chance
+to correct it, and has approved it. Record that approval in the issue.
+If you cannot establish this, return to the
+[hild-scope conversation](../hild-scope/SKILL.md) before starting work;
+an earlier "OK" to discussing a proposal is not enough.
+
+This procedure supports a new, clean repository. Reconciling an existing
+HILD installation or wiki requires a separate scope.
 
 ## Before execution
 
