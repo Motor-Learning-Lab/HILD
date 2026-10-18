@@ -9,6 +9,11 @@ Rules: [HILD process](../../../HILD/process.md), *Understanding map*.
 Templates: [wiki code page](../../../HILD/templates/wiki-code-page.md) and
 [general wiki page](../../../HILD/templates/wiki-page.md).
 
+**Purpose:** preserve a visible map of what the researcher understands,
+needs to review, or finds uncertain. A GitHub wiki is the reference
+implementation; its status labels and staleness checker help, but the
+researcher's confirmation is what makes a page `understood`.
+
 In the original project, the wiki is a separate Git repository copied into a local `wiki/` folder that the main repository ignores. The installed project's configuration should identify its actual wiki location. **Do not create or overwrite a wiki implicitly.** In particular, existing-wiki integration is outside the first-install scope.
 
 **Creating a new wiki:** If there is no wiki and the researcher has approved creating one, read [new-wiki.md](new-wiki.md). This companion is for a *fresh* wiki only. If an existing wiki is found, stop and propose a separate integration scope; do not replace it.
