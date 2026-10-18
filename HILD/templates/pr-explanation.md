@@ -12,7 +12,8 @@ Name two or three things the human reviewer should be able to explain afterward.
 
 ## Summary
 
-Explain the change in plain language. Mention any departure from the scope.
+Explain **how the chosen implementation achieves the stated purpose** in
+plain language. Mention relevant mechanisms and any departure from the scope.
 
 <!-- Include mathematical background only when it is relevant to the change.
 Do not add an empty "Math" section to documentation-only PRs. -->
