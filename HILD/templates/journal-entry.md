@@ -5,7 +5,8 @@
 **Goal:** What process or project outcome were we trying to achieve (not just
 which command or GitHub operation were we performing)?
 
-**Done:** What actually changed? Link to issues, PRs, commits or notebooks.
+**Done:** What was actually implemented or observed? Link to the concrete
+issues, PRs, commits or notebooks used in this project.
 
 **Open questions / next:** What remains unresolved? Ensure the current plan
 reflects the next steps.
