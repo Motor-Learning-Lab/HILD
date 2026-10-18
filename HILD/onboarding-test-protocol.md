@@ -38,7 +38,7 @@ Open a **new conversation** with a coding agent that can work on the newly appro
 >
 > HILD develops a human-supervised scientific software process, and currently provides a GitHub-and-agent-skills reference implementation.
 >
-> For this test, use HILD **at commit `<CANDIDATE_SHA>`**, not the `main` branch. Read its [README](https://github.com/Motor-Learning-Lab/HILD) and its `hild-integrate` skill at
+> For this test, use HILD **at commit `<CANDIDATE_SHA>`**, not the `main` branch. Read its README at `https://github.com/Motor-Learning-Lab/HILD/blob/<CANDIDATE_SHA>/README.md` and its `hild-integrate` skill at
 > `https://github.com/Motor-Learning-Lab/HILD/blob/<CANDIDATE_SHA>/.agents/skills/hild-integrate/SKILL.md`. Read the process and any companions it directs you to **from the same commit**.
 >
 > I'm new to HILD. Guide me through deciding whether and how to adopt it in this repository. Explain the purpose behind our choices, not just the GitHub or shell commands. Don't change local files or GitHub resources without our appropriate agreement.
