@@ -57,15 +57,15 @@ was run from a scratch directory:
 pwd
 git rev-parse --show-toplevel
 git status --short
-git remote -v
+git remote
 ```
 
 These are read-only diagnostics. Confirm that the resolved Git root
 and remote refer to the **intended target repository**, not upstream
 HILD or another project. If `git rev-parse` fails, locate the workspace
-directory or ask where the checkout is. Be careful to avoid displaying
-credential-bearing remote URLs in output shared with the researcher;
-redact any embedded secrets.
+directory or ask where the checkout is. Inspect a remote URL only when
+needed, and **redact embedded credentials before displaying or sharing
+it**.
 
 **If GitHub CLI (`gh`) is installed and relevant**, check its own
 authentication before suggesting a login:
