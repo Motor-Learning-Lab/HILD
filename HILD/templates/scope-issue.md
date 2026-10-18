@@ -2,7 +2,8 @@
 
 ## Goal
 
-What this development is for, and which goal in the plan it serves.
+What result this work must achieve for the researcher, and which goal in the
+plan it serves. Describe the process objective, not merely the tools to use.
 
 ## In scope
 
