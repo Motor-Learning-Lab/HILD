@@ -9,6 +9,11 @@ Rules: [HILD process](../../../HILD/process.md), *Durable state files*.
 Formats: [journal entry](../../../HILD/templates/journal-entry.md) and
 [decision record](../../../HILD/templates/decision-record.md).
 
+**Purpose:** keep goals, actual progress, evidence and decisions recoverable
+between sessions. The daily Markdown journal and living plan below are
+our reference files for that continuity; record milestones while work is
+in progress, not only after a GitHub PR merges.
+
 1. **Check what's missing.** Compare the latest journal, Git history, open PRs and work completed since the last update. Find the project's actual plan, journal and decisions; by default they live in `HILD/`.
 2. **Record facts plainly** in `YYYY-MM-DD.md` at the configured journal location. Append within the current session; a second session on the same date gets another session heading. Keep the goal, completed work, and next steps clear; include results, findings and permission points only when applicable. Link material results to the command, source, notebook or commit that produced them.
 3. **Record important decisions separately** in the project's decision directory, through a reviewed PR. A draft is not an accepted decision. Mention smaller choices directly in the journal.
