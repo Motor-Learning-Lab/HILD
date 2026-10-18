@@ -259,6 +259,12 @@ def test_full_hild_checkout_when_tooling_pr_is_merged(tmp_path):
     assert (target / "HILD/scripts/wiki_status.py").exists()
     assert (target / "HILD/agent-setup.md").exists()
     assert (target / ".agents/skills/hild-understood/new-wiki.md").exists()
+    # Optional companions must travel with the shared skills; a file in
+    # upstream HILD is not enough if the host installer omits it.
+    access_companion = ".agents/skills/hild-integrate/github-access.md"
+    assert (target / access_companion).is_file()
+    manifest = json.loads((target / "HILD/installation.json").read_text())
+    assert access_companion in manifest["files"]
     assert install(source, target, "--verify").returncode == 0
 
 
