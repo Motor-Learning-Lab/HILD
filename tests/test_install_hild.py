@@ -71,13 +71,23 @@ def install(source, target, *options):
 
 def test_preview_does_not_write_anything(repositories):
     source, target = repositories
-    before = sorted(path.relative_to(target) for path in target.rglob("*"))
+
+    def working_tree_paths():
+        # Git may create/remove internal maintenance locks during read-only
+        # commands. The install preview promises no project file changes.
+        return sorted(
+            path.relative_to(target)
+            for path in target.rglob("*")
+            if ".git" not in path.relative_to(target).parts
+        )
+
+    before = working_tree_paths()
     result = install(source, target, "--agents", "codex")
     assert result.returncode == 0, result.stderr
     assert "READ-ONLY" in result.stdout
     assert ".codex/hooks.json" in result.stdout
     assert ".claude/settings.json" not in result.stdout
-    assert sorted(path.relative_to(target) for path in target.rglob("*")) == before
+    assert working_tree_paths() == before
 
 
 def test_single_agent_apply_verify_and_changed_file_detection(repositories):
@@ -259,6 +269,12 @@ def test_full_hild_checkout_when_tooling_pr_is_merged(tmp_path):
     assert (target / "HILD/scripts/wiki_status.py").exists()
     assert (target / "HILD/agent-setup.md").exists()
     assert (target / ".agents/skills/hild-understood/new-wiki.md").exists()
+    # Optional companions must travel with the shared skills; a file in
+    # upstream HILD is not enough if the host installer omits it.
+    access_companion = ".agents/skills/hild-integrate/github-access.md"
+    assert (target / access_companion).is_file()
+    manifest = json.loads((target / "HILD/installation.json").read_text())
+    assert access_companion in manifest["files"]
     assert install(source, target, "--verify").returncode == 0
 
 

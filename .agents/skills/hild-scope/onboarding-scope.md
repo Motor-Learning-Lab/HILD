@@ -52,6 +52,18 @@ The first conversation should give the researcher a reason to care and a
 clear invitation. Save implementation detail for decisions that need it,
 and offer to explain further whenever it would help.
 
+**Set expectations for access early, without turning them into a
+prerequisite questionnaire.** HILD works best when the agent can read and
+change the project's Git files and can use GitHub to create issues and
+pull requests. A wiki may require additional access later if the researcher
+chooses to use it. Briefly explain this at a suitable early point; offer to check readiness
+now **or** defer checking until an operation needs access, depending on
+the conversation. Avoid making this another required question. The researcher
+need not configure every permission before developing the first scope;
+some steps may be completed through an agreed manual GitHub handoff.
+If an access check is requested or a step fails, use the
+[GitHub-access companion](../hild-integrate/github-access.md).
+
 ## After the researcher says yes to developing a scope
 
 First build a shared **goal**, then let boundaries, evidence and autonomy
@@ -132,10 +144,11 @@ plan and journal. Onboarding is recommended, not required for every update.
 ## When a practical step is blocked
 
 Investigate what tools or access are available. Explain the simplest
-feasible path and help the researcher use it. For example, a missing
-local Git checkout becomes relevant when installation is the agreed
-next action; work together to establish the environment then. Keep
-the dialogue centered on the researcher's goal.
+feasible path and help the researcher use it. For GitHub, Git checkout or
+authentication problems, load the on-demand
+[GitHub-access companion](../hild-integrate/github-access.md). A missing
+local checkout matters when installation becomes the agreed next action;
+keep the dialogue centered on the researcher's goal.
 
 Before modifying an existing wiki or installing over existing process
 files, establish a separate approved plan that preserves that work.

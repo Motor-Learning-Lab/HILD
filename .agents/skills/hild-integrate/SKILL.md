@@ -67,9 +67,10 @@ Use your assessment to guide what happens after the reply:
   around it; use [hild-scope](../hild-scope/SKILL.md) for scope agreement.
 - If they want an alternative, compare only the relevant paths, grounded
   in the repository and available tooling.
-- If a missing checkout, access permission, or other prerequisite blocks
-  the **agreed next action**, investigate how to satisfy it with the
-  researcher. Report what is observed and what remains unverified.
+- If a missing checkout, authentication, permission or Git remote blocks
+  the **agreed next action**, load the on-demand
+  [GitHub-access companion](github-access.md) and diagnose the specific
+  failure together. Report what was verified and what remains untested.
 - If they agree to a final proposal, record the agreed scope through
   the normal issue workflow **before implementing**.
 
