@@ -29,9 +29,11 @@ scope issue ─► branch + draft PR ─► work in small commits ─► explana
      ─► journal, plan, wiki updated
 ```
 
-1. **Scope.** Every nontrivial development starts as an issue labelled `scope`: the
-   contract for the work (see *Scope agreements*). The agent drafts it; the reviewer
-   agrees or edits it. No work starts before agreement.
+1. **Scope.** Every nontrivial development starts as an issue labelled `scope`:
+   the contract for the work (see *Scope agreements*). After discussing the scope,
+   the agent creates the **proposed** issue, links it and pauses for the reviewer
+   to examine its actual contents. No work starts until the reviewer explicitly
+   approves that issue and approval is recorded there.
 2. **Branch and draft PR.** The agent works on a branch named `<area>/<short-description>`
    and opens a draft PR that closes the scope issue as soon as the branch is first pushed,
    so every commit is retained by GitHub from the start.
@@ -42,8 +44,9 @@ scope issue ─► branch + draft PR ─► work in small commits ─► explana
 4. **Explanation.** The agent writes the PR description as an explanation (see
    *Presentations*), which lists the wiki pages the change relies on and proposes the
    pages it calls for.
-5. **Approval.** The reviewer approves on one of the tracks in *Approval*, in a PR
-   comment.
+5. **Approval.** The agent links the reviewable PR and asks the researcher
+   to review its explanation and current changes. The reviewer confirms the
+   chosen track in a PR comment as described under *Approval*.
 6. **Final cleanup.** The last commit before merge deletes `archive/` and anything else
    temporary (see *Superseded material* under *Git and GitHub*).
 7. **Squash merge.** The reviewer merges. `main` gets one commit per development, whose
@@ -63,9 +66,26 @@ A scope issue follows [the scope template](templates/scope-issue.md): the goal, 
 and out of scope, which standing stopping points are lifted, and how we will know the
 work is done.
 
-Work inside an agreed scope is pre-approved. Anything outside it, the agent stops and
-asks. If the scope turns out to be wrong, the agent proposes a change to the issue rather
-than quietly drifting.
+**There are two distinct agreements.** First, the researcher agrees to
+**record a proposed scope issue**. The agent creates it (if access allows),
+shares its GitHub link, briefly explains what it authorizes and excludes,
+and **stops**. The researcher then examines the **actual issue** and explicitly
+approves it or requests changes. A conversational agreement to a summary,
+including a brief "OK" to proceed with scoping, is not approval of an unseen
+issue. If an issue cannot be created, present a draft and resolve the blocker;
+do not begin implementation on the strength of that draft.
+
+**Record scope approval in the issue before work starts.** The researcher may
+comment there directly, or the agent may faithfully record approval given in
+chat, clearly attributed to the researcher rather than written as the agent's
+own approval. In either case the record identifies the agreed issue. A later
+material amendment requires renewed review and approval of the revised scope.
+Creating an issue, reviewing an installer preview, and approving a PR are
+**different** decisions; none substitutes for scope approval.
+
+Work inside an approved scope is pre-approved. Anything outside it, the agent
+stops and asks. If the scope turns out to be wrong, the agent proposes a change
+to the issue rather than quietly drifting.
 
 ### Develop scopes through dialogue
 
@@ -161,11 +181,14 @@ A procedure that is clear only to the agent still needs improvement.
 
 ## Approval
 
-Approval happens **in a PR comment**, so it is part of the PR's permanent record. (If it
-happens in chat, the agent posts a short summary of it as a PR comment.) The agent cannot
-merge, so approval is not enforced by the agent: it is the reviewer's own gate before
-pressing merge. The PR description ends by proposing a track; the reviewer may choose
-another.
+Approval happens **in a PR comment**, so it is part of the PR's permanent record.
+The agent must present the **actual PR link** and its current explanation and
+request review; opening a draft PR or silently providing the link as a status
+update does not count as approval. If the researcher approves in chat, the
+agent posts a faithful, clearly attributed summary as a PR comment. The agent
+cannot merge: the researcher's explicit review and merge remain distinct
+from the agent's implementation work. The PR description ends by proposing
+a track; the reviewer may choose another.
 
 | Track | For | The reviewer's comment | After merge |
 |---|---|---|---|

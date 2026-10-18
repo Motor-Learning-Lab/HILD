@@ -48,19 +48,31 @@ configuration questionnaire unless options materially affect the outcome.
 When a blocker becomes relevant to the agreed work, help diagnose it
 and propose a feasible next step instead of merely stopping.
 
-## Record the agreement and stop
+## Record, show, and obtain approval of the actual scope
 
-Once the researcher understands and agrees on the work, prepare an issue
-using the [canonical template](../../../HILD/templates/scope-issue.md).
-Explain in plain language what it authorizes and what it does not.
-If GitHub is accessible and the researcher has explicitly agreed to
-**create the scope issue**, create it labelled `scope` and link it.
-Otherwise present the draft without claiming it exists.
+Once you have developed a coherent scope together, prepare a proposal using
+the [canonical template](../../../HILD/templates/scope-issue.md).
+Obtain agreement to **create the proposed issue**, then, if GitHub access
+permits, create it labelled `scope`. Otherwise show the draft, explain the
+access blocker and remain stopped.
 
-**An invitation to start scoping is not approval of the final scope.**
-Do not implement the work until the human explicitly approves that
-scope; record approval in the issue. If an agreed boundary changes later,
-propose an amendment and wait rather than drifting.
+**Immediately after creating the issue:** give the researcher its clickable
+GitHub link; briefly explain what the **actual issue** allows and excludes,
+and ask them to **review and approve that issue or suggest corrections**.
+This is a genuine stopping point. Do not start a branch, run an installer,
+apply changes, or treat an earlier conversational `OK` as approval of a
+GitHub document the researcher has not reviewed.
 
-Never merge a pull request or mark the researcher's understanding
+When the researcher explicitly approves the completed issue, record that
+approval **in the issue** before beginning implementation. They can approve
+in an issue comment, or you can add an accurate, attributed summary of their
+approval in chat. Link back to that record when starting work. If the issue
+changes materially, show the updated issue and obtain fresh approval.
+
+Approval to **discuss a scope**, permission to **create its issue**,
+approval of the **issue's contents**, permission to **apply an installer
+preview**, and **PR review/merge** are separate decisions. Keep the
+conversation concise, but never silently combine these gates.
+
+Do not merge a pull request or mark the researcher's understanding
 confirmed on their behalf.
