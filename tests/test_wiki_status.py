@@ -161,3 +161,16 @@ def test_board_has_no_not_written_section_when_every_link_resolves(repo):
     )
     assert "## needs-revision (1)" in board
     assert "not-written" not in board
+
+def test_first_write_does_not_report_generated_board_as_missing(repo, capsys):
+    wiki = repo / "wiki"
+    (wiki / "Home.md").write_text("[[Status-board]]\n", encoding="utf-8")
+
+    # Before generation, the reference really is missing.
+    assert wiki_status.not_written(wiki) == {"Status-board": ["Home"]}
+    assert wiki_status.main(["--repo", str(repo), "--ref", "HEAD", "--write"]) == 0
+
+    board = (wiki / "Status-board.md").read_text(encoding="utf-8")
+    assert "## not-written" not in board
+    assert "not-written" not in capsys.readouterr().out
+    assert wiki_status.not_written(wiki) == {}
