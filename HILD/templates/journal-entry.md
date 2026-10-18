@@ -2,7 +2,8 @@
 
 ## Session 1 — <topic>
 
-**Goal:** What were we trying to do?
+**Goal:** What process or project outcome were we trying to achieve (not just
+which command or GitHub operation were we performing)?
 
 **Done:** What actually changed? Link to issues, PRs, commits or notebooks.
 
