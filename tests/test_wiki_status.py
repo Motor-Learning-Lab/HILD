@@ -174,3 +174,9 @@ def test_first_write_does_not_report_generated_board_as_missing(repo, capsys):
     assert "## not-written" not in board
     assert "not-written" not in capsys.readouterr().out
     assert wiki_status.not_written(wiki) == {}
+
+def test_process_describes_the_same_reviewer_status_as_wiki_tool():
+    process = (SCRIPT.parents[1] / "HILD/process.md").read_text(encoding="utf-8")
+    assert "| `understood` | reviewer only |" in process
+    assert "| `hild-understood` |" not in process
+    assert "understood" in wiki_status.STATUSES
