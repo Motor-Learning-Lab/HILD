@@ -26,7 +26,8 @@ The aim is that the human **reviewer** stays fully on top of a scientific softwa
 ```
 scope issue ─► branch + draft PR ─► work in small commits ─► explanation
      ─► explain-back (or fast track) ─► final cleanup ─► squash merge
-     ─► journal, plan, wiki updated
+     ─► final plan/journal update + agreed wiki pages
+          (plan and journal also updated during work)
 ```
 
 1. **Scope.** Every nontrivial development starts as an issue labelled `scope`:
@@ -37,8 +38,10 @@ scope issue ─► branch + draft PR ─► work in small commits ─► explana
 2. **Branch and draft PR.** The agent works on a branch named `<area>/<short-description>`
    and opens a draft PR that closes the scope issue as soon as the branch is first pushed,
    so every commit is retained by GitHub from the start.
-3. **Work.** Small commits, each explaining why. Commits are cheap; the PR is where
-   organization happens. PR branches are never rewritten (no force-push, no rebase), so
+3. **Work.** Small commits, each explaining why. Update the plan and journal
+   at meaningful milestones **while the PR remains open**, so the next session
+   can reconstruct the current work before merge. Commits are cheap; the PR
+   is where organization happens. PR branches are never rewritten (no force-push, no rebase), so
    any link to a branch commit stays valid. Superseded material on a branch moves to
    `archive/` instead of being deleted, so it stays at hand while the work continues.
 4. **Explanation.** The agent writes the PR description as an explanation (see
@@ -51,9 +54,9 @@ scope issue ─► branch + draft PR ─► work in small commits ─► explana
    temporary (see *Superseded material* under *Git and GitHub*).
 7. **Squash merge.** The reviewer merges. `main` gets one commit per development, whose
    message is the PR's title and description: the explanation lives in `main`'s history.
-8. **Record.** The agent brings the journal and plan up to date and drafts the wiki
-   pages proposed in the explanation and agreed by the reviewer (see *Understanding
-   map*).
+8. **Record.** Finalize the journal and plan after merge (do not defer
+   milestone entries until this point), then draft wiki pages proposed in
+   the explanation and agreed by the reviewer (see *Understanding map*).
 
 Work done directly on `main` (small fixes, plan and journal updates, anything the
 reviewer asks for there) may be committed and pushed to `main`. Decision records are the
