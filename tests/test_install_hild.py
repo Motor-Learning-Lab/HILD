@@ -71,13 +71,23 @@ def install(source, target, *options):
 
 def test_preview_does_not_write_anything(repositories):
     source, target = repositories
-    before = sorted(path.relative_to(target) for path in target.rglob("*"))
+
+    def working_tree_paths():
+        # Git may create/remove internal maintenance locks during read-only
+        # commands. The install preview promises no project file changes.
+        return sorted(
+            path.relative_to(target)
+            for path in target.rglob("*")
+            if ".git" not in path.relative_to(target).parts
+        )
+
+    before = working_tree_paths()
     result = install(source, target, "--agents", "codex")
     assert result.returncode == 0, result.stderr
     assert "READ-ONLY" in result.stdout
     assert ".codex/hooks.json" in result.stdout
     assert ".claude/settings.json" not in result.stdout
-    assert sorted(path.relative_to(target) for path in target.rglob("*")) == before
+    assert working_tree_paths() == before
 
 
 def test_single_agent_apply_verify_and_changed_file_detection(repositories):
