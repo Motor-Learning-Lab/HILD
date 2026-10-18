@@ -3,7 +3,8 @@ Part of #<scope issue>
 
 ## Purpose
 
-What are we trying to accomplish, and why now?
+What human/research objective does this change serve, and why now? State the
+purpose independently of the particular file, tool or GitHub operation.
 
 ## What you should understand after reading this
 
