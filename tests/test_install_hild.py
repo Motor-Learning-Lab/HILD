@@ -292,6 +292,7 @@ def test_broken_local_link_in_installed_process_fails_verification(repositories)
     applied = install(source, target, "--agents", "codex", "--apply")
     assert applied.returncode == 1
     assert "broken local link" in applied.stdout
+    assert "New files remain in place for inspection" in applied.stderr
     assert (target / "HILD/process.md").exists()
 
 
