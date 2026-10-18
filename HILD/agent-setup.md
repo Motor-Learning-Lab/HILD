@@ -4,9 +4,12 @@ HILD has **one copy of its rules and skills**. The researcher's choice of agent
 controls which platform-specific discovery files and startup hooks the installer
 will offer. The default choice is all supported agents.
 
-This page explains **what the adapter templates can do**. The installer that
-will select and install these adapters is **not implemented yet**. Nothing
-described here proves that a real agent has used the skills.
+This page explains **what the adapter templates can do**. The
+[preview-first installer](scripts/install_hild.py) supports new, minimally
+initialized Git repositories and selects agent-specific adapters; reconciling
+an existing HILD installation or established repository is not yet supported.
+Neither installed files nor a valid configuration proves that a real agent
+has discovered or used the skills.
 
 | Agent | Shared skills | Optional startup file | Current evidence |
 |---|---|---|---|
