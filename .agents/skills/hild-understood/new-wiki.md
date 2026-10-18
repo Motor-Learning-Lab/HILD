@@ -4,6 +4,11 @@ This procedure is used by [hild-understood](SKILL.md) **only when the project
 has no existing wiki** and the researcher has agreed to create a new one.
 It is not a procedure for integrating or replacing an established wiki.
 
+This is the **fresh GitHub-wiki setup for HILD's reference implementation**.
+It does not mean that HILD as a process requires a GitHub wiki; an
+alternative understanding map must still allow the researcher to confirm
+understanding and future sessions to find the relevant explanations.
+
 ## Why a separate wiki?
 
 The wiki is a map of what the human reviewer understands. It links to the
