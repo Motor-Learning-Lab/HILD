@@ -1,9 +1,12 @@
 # Using HILD in this repository
 
-HILD helps a researcher guide, understand and review software written with AI
-coding agents. [The HILD process](process.md) explains how the researcher and
-agent work together. The project's [agent instructions](../AGENTS.md) describe
-its particular scientific goals and coding conventions.
+HILD is a **human-supervised development process** for guiding, understanding
+and reviewing scientific software produced with coding agents. Its core
+requirements are explicit authorization, inspectable changes, meaningful
+review and recoverable understanding. [The process](process.md) explains
+those requirements; GitHub issues, PRs, skills and other installed files are
+its **reference implementation**. The project's [agent instructions](../AGENTS.md)
+describe its scientific goals and coding conventions.
 
 This page shows **how to begin**; it does not replace the process rules.
 The [plan](plan.md) records the project's goals and what to do next.
@@ -34,12 +37,12 @@ onboarding skill.
 
 The agent first helps you **develop a scope together**: what would be useful
 to accomplish, what to leave for later, and what success would look like.
-It explains HILD as you use it, rather than presenting its entire internal
-workflow upfront. Once you agree on the scope, the agent follows the ordinary HILD process:
-an issue records the agreement, a branch and **draft pull request (PR)**
-make proposed changes visible, and you review and approve the work before
-merging. A journal and plan help the next session pick up where this one left
-off.
+It explains HILD as you use it, rather than presenting its internal tooling
+upfront. **The process** requires a durable approved work agreement,
+inspectable changes and a human review before acceptance. **In the installed
+GitHub implementation**, an issue records the agreement, a branch and draft
+pull request (PR) keep changes visible, and you review and merge them. The
+plan and journal help future sessions recover current development state.
 
 The PR can propose a wiki page called `Process-HILD` explaining how this
 particular project uses HILD. If you agree, the agent drafts that page
