@@ -4,6 +4,45 @@ This is a faithful adaptation of the [MotorAdpatationSBI process](https://github
 
 The aim is that the human **reviewer** stays fully on top of a scientific software project: what is being built, why, how it works, what has been checked, and what they understand less well. Agent-produced documentation supports that understanding.
 
+## What HILD requires, and how we implement it
+
+**HILD is a human-supervised development process, not a particular software
+package or GitHub workflow.** It is meant to preserve the researcher's
+authority, understanding and ability to resume work as agents help develop
+scientific software. Five outcomes make the process recognizable:
+
+1. **Agreed authority:** nontrivial work has an explicit, inspectable agreement
+   about its goal, boundaries, success evidence and agent autonomy; the
+   researcher reviews and authorizes it before implementation.
+2. **Inspectable change:** proposed changes stay separate from accepted work
+   until the researcher can examine their purpose, effects and evidence.
+3. **Meaningful review:** the researcher understands and approves the result
+   on an appropriate review track; the agent never silently accepts it on
+   the researcher's behalf.
+4. **Recoverable development state:** the goals, progress, decisions, tests
+   and unresolved questions remain accessible beyond any one chat session.
+5. **Researcher-confirmed understanding:** the agent can propose explanations
+   and flag uncertainty, but only the researcher confirms what they understand.
+
+**GitHub issues, Git branches, draft PRs, squash merges, agent skills, hooks,
+a plan, a journal and an understanding wiki are HILD's reference
+implementation.** They are concrete, recommended ways to achieve those
+outcomes—not the definition of the outcomes. The procedures below describe
+that implementation precisely because it is the one currently developed and
+tested; describing another possible implementation does **not** claim it
+already works.
+
+When the normal mechanism is unavailable or a project has established
+alternatives, the agent should explain **what function the mechanism serves**,
+work with the researcher on an equivalent way to provide that function, and
+record the agreed choice and remaining limitations. For example, another
+durable issue tracker could record a scope if the researcher can inspect and
+approve the actual record and future sessions can recover that approval.
+A casual conversation without a reviewable record is **not** an equivalent
+replacement. Do not silently substitute tools, weaken stopping points or
+claim equivalence without evidence. When compatibility issues arise, report
+specific problems and demonstrated workarounds upstream for later review.
+
 ## Authority and local configuration
 
 - **Default:** process, plan, journal, decisions and templates live under `HILD/`.
@@ -21,7 +60,11 @@ The aim is that the human **reviewer** stays fully on top of a scientific softwa
   installation-time mandates. Every procedure must resolve the host's recorded
   authoritative paths before acting. Choice of configuration format is deferred.
 
-## The life of a piece of work
+## The life of a piece of work — GitHub reference workflow
+
+The following sequence is HILD's **current, concrete GitHub implementation**
+of the process requirements above. Use it by default. An agreed alternative
+must preserve the underlying human authorization, review and recoverability.
 
 ```
 scope issue ─► branch + draft PR ─► work in small commits ─► explanation
@@ -65,7 +108,8 @@ exception among the durable state files: they always arrive by pull request (see
 
 ## Scope agreements
 
-A scope issue follows [the scope template](templates/scope-issue.md): the goal, what is in
+In the GitHub reference workflow, a scope issue follows
+[the scope template](templates/scope-issue.md): the goal, what is in
 and out of scope, which standing stopping points are lifted, and how we will know the
 work is done.
 
@@ -184,7 +228,8 @@ A procedure that is clear only to the agent still needs improvement.
 
 ## Approval
 
-Approval happens **in a PR comment**, so it is part of the PR's permanent record.
+In the GitHub reference workflow, approval happens **in a PR comment**,
+so it remains part of the PR's permanent record.
 The agent must present the **actual PR link** and its current explanation and
 request review; opening a draft PR or silently providing the link as a status
 update does not count as approval. If the researcher approves in chat, the
@@ -415,7 +460,11 @@ The agent cannot tell when a session will end, so the plan and journal are updat
   the journal's *Permission points*.
 - For non-obvious tradeoffs, explain briefly and choose the simpler, less stateful option.
 
-## Git and GitHub
+## Git and GitHub — reference implementation details
+
+These rules define the currently supported Git-based realization of HILD's
+review and provenance requirements, not an assertion that a GitHub feature
+is intrinsically required for human-supervised development.
 
 - Before starting, decide whether the work needs a branch, say what was decided, and
   commit any pending work.
