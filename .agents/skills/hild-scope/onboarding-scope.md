@@ -16,15 +16,16 @@ Introduce HILD as a way to develop scientific software with an AI coding
 agent while keeping the researcher in control of decisions and supporting
 a deep understanding of the code and algorithms.
 
-**Explain where HILD lives and what happens in practice.** HILD is adopted
-*into the researcher's own Git repository*. It adds process instructions,
-agent skills and optional hooks, along with plans, journals and decision
-records. The researcher and agent use GitHub issues to agree on bounded
-work and pull requests to examine and approve proposed changes. A separate
-GitHub wiki can document important concepts, code and the researcher's
-understanding. Coding agents carry out the agreed work using the repository,
-its development tools and GitHub; HILD is a development process and toolkit,
-rather than a continuously running service.
+**Explain purpose before setup.** The HILD process helps a researcher
+authorize bounded work, inspect what changed, review evidence and maintain
+an understanding that survives chat sessions. **In our reference
+implementation**, HILD is adopted into the researcher's Git repository:
+process instructions, agent skills and optional hooks support issues for
+scope agreements, PRs for human review, and plans and journals for continuity.
+A separate GitHub wiki can map the researcher's understanding. The toolkit
+is not a continuously running service, and these GitHub mechanisms are not
+what *defines* the process. Explain them concretely as the default way we
+currently help researchers use HILD.
 
 Connect those practices to **the researcher's existing goals and repository**.
 Ask what they want to build only when it is not already clear. For a nearly
