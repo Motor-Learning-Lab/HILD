@@ -99,7 +99,7 @@ def test_single_agent_apply_verify_and_changed_file_detection(repositories):
     info = json.loads((target / "HILD/installation.json").read_text())
     assert info["agents"] == ["codex"]
     # Paths in a durable installation record must work on Linux and Windows.
-    assert all("\\\\" not in name for name in info["files"])
+    assert all(chr(92) not in name for name in info["files"])
     assert "HILD/scripts/install_hild.py" in info["files"]
     assert ".agents/skills/hild-scope/SKILL.md" in info["files"]
     assert info["source_repository"] is None  # synthetic source has no remote
