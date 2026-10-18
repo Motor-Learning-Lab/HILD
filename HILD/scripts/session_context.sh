@@ -26,7 +26,7 @@ if [ -n "$latest_journal" ]; then
     cat "$latest_journal"
     echo
     echo "--- Commits since the journal was last updated ---"
-    last_journal_commit="$(git log -1 --format=%H -- docs/journal 2>/dev/null)"
+    last_journal_commit="$(git log -1 --format=%H -- HILD/journal 2>/dev/null)"
     if [ -n "$last_journal_commit" ]; then
         git log --oneline "${last_journal_commit}..HEAD" | head -30
         git log --oneline "${last_journal_commit}..origin/main" 2>/dev/null | head -30
