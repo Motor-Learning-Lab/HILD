@@ -314,3 +314,14 @@ def test_windows_claude_skill_link_is_working_and_portable(repositories):
         check=True, capture_output=True, text=True,
     ).stdout
     assert blob == "../.agents/skills"
+
+    # Recreate the user's actual next step: a fresh Windows Git checkout.
+    git(target, "commit", "-qm", "Install HILD")
+    cloned = target.parent / "roundtrip"
+    subprocess.run(
+        ["git", "-c", "core.symlinks=true", "clone", "-q",
+         str(target), str(cloned)],
+        check=True, capture_output=True, text=True,
+    )
+    assert (cloned / ".claude/skills").is_symlink()
+    assert (cloned / ".claude/skills/hild-scope/SKILL.md").is_file()
