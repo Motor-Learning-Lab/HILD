@@ -7,6 +7,9 @@ description: Prepare a human-understandable pull-request explanation with code p
 
 Rules: [HILD process](../../../HILD/process.md), *Presentations* and *Approval*.
 Format: [PR explanation template](../../../HILD/templates/pr-explanation.md).
+**Purpose:** enable the researcher to understand a proposed change, evaluate
+the evidence and choose an appropriate review before accepting it. A
+GitHub PR description and review track are our reference implementation.
 An approved squash merge should use the PR title and final description as its commit message.
 
 ## Write
