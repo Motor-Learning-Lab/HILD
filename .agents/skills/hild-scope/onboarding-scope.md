@@ -56,8 +56,9 @@ and offer to explain further whenever it would help.
 prerequisite questionnaire.** HILD works best when the agent can read and
 change the project's Git files and can use GitHub to create issues and
 pull requests. A wiki may require additional access later if the researcher
-chooses to use it. Briefly explain this and offer to check readiness now,
-check when needed, or work through a limitation together. The researcher
+chooses to use it. Briefly explain this at a suitable early point; offer to check readiness
+now **or** defer checking until an operation needs access, depending on
+the conversation. Avoid making this another required question. The researcher
 need not configure every permission before developing the first scope;
 some steps may be completed through an agreed manual GitHub handoff.
 If an access check is requested or a step fails, use the
