@@ -11,6 +11,12 @@ The completed agreement uses the
 Locate the host project's real plan, decisions and process; `HILD/` is
 the default, not a reason to duplicate files kept elsewhere.
 
+**Purpose:** establish a durable, inspectable agreement about what the agent
+is authorized to do. The GitHub issue procedure below is HILD's reference
+way of recording and approving that agreement, not the purpose itself.
+Keep its actual issue-review and approval stopping point when using GitHub;
+if an alternative is proposed, agree on an equally inspectable record.
+
 ## Begin with the researcher's goal, not a form
 
 Read the project's current plan and relevant decisions, then discuss what
