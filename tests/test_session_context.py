@@ -48,3 +48,42 @@ def test_startup_reports_commits_since_latest_hild_journal(tmp_path):
     assert result.returncode == 0, result.stderr
     assert "--- Latest journal entry: HILD/journal/2026-10-18.md ---" in result.stdout
     assert "Code milestone after journal" in result.stdout
+
+@pytest.mark.skipif(shutil.which("bash") is None, reason="bash unavailable")
+def test_startup_does_not_pull_remote_wiki_changes(tmp_path):
+    """Orientation can inspect a local wiki, but must not modify its Git state."""
+    repo = tmp_path / "project"
+    repo.mkdir()
+    git(repo, "init", "-q")
+    (repo / "README.md").write_text("# Project\n", encoding="utf-8")
+    git(repo, "add", ".")
+    git(repo, "commit", "-qm", "Initial project")
+
+    bare = tmp_path / "wiki.git"
+    subprocess.run(["git", "init", "--bare", "-q", str(bare)], check=True)
+    seed = tmp_path / "wiki-seed"
+    seed.mkdir()
+    git(seed, "init", "-q")
+    git(seed, "remote", "add", "origin", str(bare))
+    (seed / "Home.md").write_text("Version one\n", encoding="utf-8")
+    git(seed, "add", ".")
+    git(seed, "commit", "-qm", "Initial wiki")
+    git(seed, "push", "-q", "-u", "origin", "HEAD")
+
+    wiki = repo / "wiki"
+    subprocess.run(["git", "clone", "-q", str(bare), str(wiki)], check=True)
+    original_head = git(wiki, "rev-parse", "HEAD")
+    (seed / "Home.md").write_text("Version two\n", encoding="utf-8")
+    git(seed, "commit", "-qam", "Remote wiki edit")
+    git(seed, "push", "-q")
+    assert git(seed, "rev-parse", "HEAD") != original_head
+
+    result = subprocess.run(
+        ["bash", str(SCRIPT)], cwd=repo, text=True,
+        capture_output=True, timeout=30,
+        env=dict(os.environ, PATH=os.environ["PATH"]),
+    )
+    assert result.returncode == 0, result.stderr
+    assert git(wiki, "rev-parse", "HEAD") == original_head
+    assert (wiki / "Home.md").read_text(encoding="utf-8") == "Version one\n"
+    assert "remote changes were not fetched" in result.stdout
