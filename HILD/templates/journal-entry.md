@@ -22,7 +22,9 @@ that produced it.
 decision directory (default: HILD/decisions/). Smaller choices can be listed
 directly here.
 
-**Permission points:** Only when working independently: where permission
-would ordinarily have been requested, and what was decided.
+**Permission points:** When working independently: the ordinary checkpoint
+that was passed, the agent's choice, the proposed scope/decision still
+awaiting approval, links to affected commits/PRs, and the later work
+that depends on it. Mark that work provisional until human review.
 
 Don't write empty sections merely to match the template. -->
