@@ -53,12 +53,12 @@ current status and why they matter.
 it belongs before review or after merge. Do not claim a page exists if it is
 only proposed.
 
+<!-- Optional section when independent work created provisional material:
 ## Deferred human decisions
-
-<!-- Include only when relevant: link each missing permission or scope
-decision, what was done provisionally, and dependent changes that cannot
-yet be accepted. State clearly that successful tests do not accept
-unapproved choices. -->
+Link each missing permission or scope decision, what was done provisionally,
+and dependent changes that cannot yet be accepted. Successful tests do not
+accept unapproved choices.
+-->
 
 ## Review track and acceptance
 
