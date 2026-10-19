@@ -16,10 +16,15 @@ one sitting.
 
 What this work will not do.
 
-## Stopping points
+## Stopping points and autonomy
 
-Which standing stopping points are lifted for this work (new classes, helper functions,
-directories, dependencies...). Everything not listed still applies.
+Name exactly which standing checkpoints this scope delegates (new classes,
+helper functions, directories, dependencies, etc.). The ordinary GitHub
+workflow requires approval of this issue before implementation. If the
+researcher separately authorizes independent continuation, record the
+mandate, the ordinary approval points deferred and how provisional
+dependent work will be surfaced for later human review. Delegated execution
+never constitutes acceptance of unreviewed choices or a PR.
 
 ## Done when
 
