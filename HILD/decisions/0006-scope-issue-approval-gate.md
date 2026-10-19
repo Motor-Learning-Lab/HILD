@@ -10,7 +10,7 @@
 > accepted by human review and merge of its PR.
 
 
-**Date:** 2026-10-18 · **Status:** Proposed; pending review in [PR #9](https://github.com/Motor-Learning-Lab/HILD/pull/9).
+**Date:** 2026-10-18 · **Status:** Accepted (human-reviewed and merged in [PR #9](https://github.com/Motor-Learning-Lab/HILD/pull/9)); proposed partial supersession is described in the opening notice above.
 
 ## Context
 
