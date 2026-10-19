@@ -1,5 +1,15 @@
 # Fresh HILD onboarding validation — combined candidate
 
+> **BLOCKED — candidate revision requires propagation (2026-10-19).**
+> [PR #13](https://github.com/Motor-Learning-Lab/HILD/pull/13) now contains
+> later process/decision revisions through commit
+> [`92de97e84bd1c6b61f9e1c997765e361dc7cd458`](https://github.com/Motor-Learning-Lab/HILD/commit/92de97e84bd1c6b61f9e1c997765e361dc7cd458),
+> which are **not yet ancestors of this PR #14 branch**. Do not use the older
+> PR #14 candidate SHA for the new onboarding test. First merge the updated
+> PR #13 branch **forward into PR #14** without rewriting history, rerun
+> CI, and pin the resulting new PR #14 head. The ordinary supervised
+> onboarding acceptance gate remains unchanged.
+
 **Status:** Proposed under [approved scope #12](https://github.com/Motor-Learning-Lab/HILD/issues/12). This protocol is not evidence that a live test has run. It is kept upstream in HILD, not installed into the host repository by default.
 
 ## Purpose
