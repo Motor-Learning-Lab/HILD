@@ -38,8 +38,11 @@ onboarding skill.
 The agent first helps you **develop a scope together**: what would be useful
 to accomplish, what to leave for later, and what success would look like.
 It explains HILD as you use it, rather than presenting its internal tooling
-upfront. **The process** requires a durable approved work agreement,
-inspectable changes and a human review before acceptance. **In the installed
+upfront. **In ordinary supervised work**, the process requires a durable,
+approved work agreement before implementation, inspectable changes and human
+acceptance. If the researcher expressly delegates independent work, the
+agent may go further provisionally, recording approvals deferred for later
+human review; independence is not acceptance. **In the installed
 GitHub implementation**, an issue records the agreement, a branch and draft
 pull request (PR) keep changes visible, and you review and merge them. The
 plan and journal help future sessions recover current development state.
