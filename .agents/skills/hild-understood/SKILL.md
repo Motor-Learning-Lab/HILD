@@ -12,7 +12,9 @@ Templates: [wiki code page](../../../HILD/templates/wiki-code-page.md) and
 **Purpose:** preserve a visible map of what the researcher understands,
 needs to review, or finds uncertain. A GitHub wiki is the reference
 implementation; its status labels and staleness checker help, but the
-researcher's confirmation is what makes a page `understood`.
+researcher's **current** confirmation is what makes a page `understood`.
+The researcher may later withdraw that confirmation; a stored status
+does not override their current judgment.
 
 In the original project, the wiki is a separate Git repository copied into a local `wiki/` folder that the main repository ignores. The installed project's configuration should identify its actual wiki location. **Do not create or overwrite a wiki implicitly.** In particular, existing-wiki integration is outside the first-install scope.
 
@@ -20,7 +22,9 @@ In the original project, the wiki is a separate Git repository copied into a loc
 
 1. **Find the wiki and get the latest pages.** Read its configured location and remote address. If it uses Git, pull only when Git can add the new changes without rewriting existing work (`--ff-only`). If that fails, stop and explain rather than overwrite anyone's edits.
 2. **Draft from the actual code.** A code page should describe what is already on `main`, with the commit it describes. If a page might be out of date, compare that commit with the current code. Use a process, concept, guide or resource page for other subjects.
-3. **Keep human confirmation meaningful.** The agent can mark a page as a draft, placeholder, needing revision or needing another review. **Only the researcher** can confirm it as `understood`. Link related pages; create placeholders only when the agreed work needs them.
+3. **Keep human confirmation meaningful.** The agent can mark a page as a draft, placeholder, needing revision or needing another review. **Only the researcher** can confirm it as `understood`; if they later
+retract that assessment, record `needs-review` or `needs-revision`
+as appropriate. Link related pages; create placeholders only when the agreed work needs them.
 4. **Keep navigation and status current.** Update Home and the sidebar. If the staleness checker exists, run `HILD/scripts/wiki_status.py --write` on the configured wiki and inspect what it changed. This script does not commit or publish anything.
 5. **Publish promptly.** Commit and push the wiki after each approved update; report page links and those awaiting human review.
 
