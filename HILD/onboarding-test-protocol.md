@@ -1,16 +1,17 @@
 # Fresh HILD onboarding validation — combined candidate
 
-> **BLOCKED — candidate revision requires propagation (2026-10-19).**
-> [PR #13](https://github.com/Motor-Learning-Lab/HILD/pull/13) now contains
-> later process/decision revisions through commit
-> [`92de97e84bd1c6b61f9e1c997765e361dc7cd458`](https://github.com/Motor-Learning-Lab/HILD/commit/92de97e84bd1c6b61f9e1c997765e361dc7cd458),
-> which are **not yet ancestors of this PR #14 branch**. Do not use the older
-> PR #14 candidate SHA for the new onboarding test. First merge the updated
-> PR #13 branch **forward into PR #14** without rewriting history, rerun
-> CI, and pin the resulting new PR #14 head. The ordinary supervised
-> onboarding acceptance gate remains unchanged.
+> **BRANCH RECONCILED — live onboarding NOT YET RUN (2026-10-26).**
+> Revised [PR #13](https://github.com/Motor-Learning-Lab/HILD/pull/13)
+> through [`92de97e`](https://github.com/Motor-Learning-Lab/HILD/commit/92de97e84bd1c6b61f9e1c997765e361dc7cd458)
+> was merged **forward into PR #14's branch**, without rewriting history,
+> in [`172290a`](https://github.com/Motor-Learning-Lab/HILD/commit/172290abb33e90f3c8607a1a70ab1e58824a9768).
+> Both installation and mechanical CI passed on that merge commit; subsequent
+> PR #14 commits need their **own** current CI evidence. Before the live test,
+> verify the latest PR #14 head, ancestry, and green CI; record the exact head
+> as the pinned test source. Creating the host and wiki still requires separate
+> researcher authorization.
 
-**Status:** Proposed under [approved scope #12](https://github.com/Motor-Learning-Lab/HILD/issues/12). This protocol is not evidence that a live test has run. It is kept upstream in HILD, not installed into the host repository by default.
+**Status:** Protocol prepared under [approved scope #12](https://github.com/Motor-Learning-Lab/HILD/issues/12), pending approval of a fresh test host and live validation. The researcher [accepted PR #13's contents](https://github.com/Motor-Learning-Lab/HILD/pull/13#issuecomment-6422857797), but HILD PRs #11/#13/#14 remain unmerged until supervised onboarding succeeds and the researcher separately approves their merges. This document is not evidence that a live test has run. It is kept upstream in HILD, not installed into the host repository by default.
 
 ## Purpose
 
@@ -21,7 +22,7 @@ Use a **stacked, unmerged candidate** until the researcher has observed a succes
 | PR | Contains | Base branch |
 |---|---|---|
 | [#11](https://github.com/Motor-Learning-Lab/HILD/pull/11) | Concrete installation, startup, approval and state corrections | `main` |
-| [#13](https://github.com/Motor-Learning-Lab/HILD/pull/13) | Process requirements separated from reference mechanisms, plus proposed decision 0007 | `fix/portable-first-install-validation` |
+| [#13](https://github.com/Motor-Learning-Lab/HILD/pull/13) | Process/reference clarification; researcher-approved decisions 0007 and 0008 and partial supersession of 0006 (effective on merge) | `fix/portable-first-install-validation` |
 | [#14](https://github.com/Motor-Learning-Lab/HILD/pull/14) | This validation protocol and review evidence | `docs/process-versus-reference-implementation` |
 
 The **HEAD commit of PR #14** is the combined candidate: its ancestry includes the commits in PRs #11 and #13. This is a *test source revision*, not the stable HILD `main`. Record its exact 40-character SHA **immediately before the test** using:
