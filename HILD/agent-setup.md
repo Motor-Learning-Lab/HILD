@@ -1,8 +1,11 @@
 # Agent startup integrations
 
-HILD has **one copy of its rules and skills**. The researcher's choice of agent
-controls which platform-specific discovery files and startup hooks the installer
-will offer. The default choice is all supported agents.
+**This page describes the agent-specific mechanics of HILD's reference
+implementation, not the requirements that define HILD.** Agent instructions
+and hooks help agents follow the human-supervised process; they are not
+required to define or understand it. The installer keeps one copy of HILD's
+rules and skills and offers platform-specific adapters according to the
+researcher's agent selection (default: all supported agents).
 
 This page explains **what the adapter templates can do**. The
 [preview-first installer](scripts/install_hild.py) supports new, minimally

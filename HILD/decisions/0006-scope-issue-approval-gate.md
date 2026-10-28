@@ -1,6 +1,16 @@
 # 0006 — Review the actual scope issue before implementation
 
-**Date:** 2026-10-18 · **Status:** Proposed; pending review in [PR #9](https://github.com/Motor-Learning-Lab/HILD/pull/9).
+> **Proposed partial supersession (not yet accepted):**
+> [Decision 0008 — Independent work, provisionality and human acceptance](0008-independent-work-and-human-acceptance.md)
+> would permit *explicitly authorized independent execution* to continue past
+> ordinary scope checkpoints, while keeping unapproved choices and dependent
+> work provisional pending human review. This record's normal supervised
+> scope-approval gate remains the default. The original decision below is
+> retained as historical evidence; decision 0008 is not operative unless
+> accepted by human review and merge of its PR.
+
+
+**Date:** 2026-10-18 · **Status:** Accepted (human-reviewed and merged in [PR #9](https://github.com/Motor-Learning-Lab/HILD/pull/9)); proposed partial supersession is described in the opening notice above.
 
 ## Context
 
