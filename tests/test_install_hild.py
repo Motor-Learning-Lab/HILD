@@ -112,8 +112,37 @@ def test_single_agent_apply_verify_and_changed_file_detection(repositories):
     assert "LOCAL CHANGE (preserved): HILD/process.md" in verify.stdout
 
 
+def test_claude_preview_and_apply_refuse_disabled_git_symlinks(repositories):
+    """The first created link may work, while a subsequent Git checkout destroys it."""
+    source, target = repositories
+    git(target, "config", "core.symlinks", "false")
+    for options in ((), ("--apply",)):
+        result = install(source, target, "--agents", "claude", *options)
+        assert result.returncode == 2
+        assert "core.symlinks=true" in result.stderr
+        assert not (target / "HILD").exists()
+    # Other agents do not require the Claude discovery link.
+    assert install(source, target, "--agents", "codex").returncode == 0
+
+
+def test_claude_verify_detects_checkout_risk_after_successful_install(repositories):
+    source, target = repositories
+    git(target, "config", "core.symlinks", "true")
+    result = install(source, target, "--agents", "claude", "--apply")
+    assert result.returncode == 0, result.stderr + result.stdout
+    assert (target / ".claude/skills").is_symlink()
+
+    # Reproduces the live pilot: the link still works until Git checks out
+    # a commit, but the repository configuration cannot preserve it.
+    git(target, "config", "core.symlinks", "false")
+    result = install(source, target, "--verify")
+    assert result.returncode == 1
+    assert "core.symlinks=true" in result.stdout
+
+
 def test_default_installs_all_adapters_without_duplicate_skills(repositories):
     source, target = repositories
+    git(target, "config", "core.symlinks", "true")
     result = install(source, target, "--apply")
     assert result.returncode == 0, result.stderr
     assert (target / ".claude/skills").is_symlink()
@@ -268,6 +297,7 @@ def test_full_hild_checkout_when_tooling_pr_is_merged(tmp_path):
     )
     target = tmp_path / "fresh-repo"
     init_repo(target)
+    git(target, "config", "core.symlinks", "true")
     installed = install(source, target, "--apply")
     assert installed.returncode == 0, installed.stderr
     assert (target / "HILD/scripts/wiki_status.py").exists()
@@ -326,3 +356,17 @@ def test_windows_claude_skill_link_is_working_and_portable(repositories):
     )
     assert (cloned / ".claude/skills").is_symlink()
     assert (cloned / ".claude/skills/hild-scope/SKILL.md").is_file()
+
+    # Reproduce the actual failure: Git with symlinks disabled materializes
+    # the same committed link as a plain text file in a new Windows clone.
+    disabled = target.parent / "roundtrip-disabled"
+    subprocess.run(
+        ["git", "clone", "-q", "-c", "core.symlinks=false",
+         str(target), str(disabled)],
+        check=True, capture_output=True, text=True,
+    )
+    assert not (disabled / ".claude/skills").is_symlink()
+    assert (disabled / ".claude/skills").is_file()
+    failure = install(source, disabled, "--verify")
+    assert failure.returncode == 1
+    assert "core.symlinks=true" in failure.stdout
