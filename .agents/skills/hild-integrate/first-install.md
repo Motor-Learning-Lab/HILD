@@ -29,6 +29,26 @@ HILD installation or wiki requires a separate scope.
    README, process, scripts, templates, shared skills and selected hook
    templates. Using an incomplete upstream checkout is not a valid install.
 
+## Claude Code on Windows: check Git symlink durability
+
+The Claude Code adapter uses one shared skills directory through the
+`.claude/skills` symlink. Git with `core.symlinks=false` turns that committed
+link into a **plain text file on the next checkout or clone**, even when
+the installer's first creation and verification succeeded. The installer
+therefore refuses the Claude preview/apply when the target Git checkout is
+configured this way; on Windows it requires an explicit `core.symlinks=true`.
+Verification also reports the problem, even if a previously created symlink
+still appears to work.
+
+Check `git -C <target> config --get core.symlinks` before the preview.
+If it is `false` (or unset on Windows), explain the risk and confirm that
+Windows can create symlinks. With the researcher's permission, set the
+**target repository's local** Git setting via
+`git -C <target> config --local core.symlinks true` and rerun the preview.
+The installer does not change Git settings itself. After committing,
+verify the skills link after a fresh checkout or clone with symlinks enabled;
+an initial `--verify` alone does not establish checkout durability.
+
 ## Preview (read-only) then install (approved write)
 
 1. Confirm the **target repository's approved scope issue link and recorded
@@ -53,13 +73,21 @@ The command must print a read-only installation proposal, including all
 target paths and the selected agents. Discuss any unexpected additions.
 Do not treat the preview as approval.
 
-Only once the researcher agrees to that exact proposal:
+Only once the researcher agrees to that exact proposal **and authorizes applying it**:
+
+If you asked about an implementation choice *and* separately requested permission to
+run `--apply`, an answer naming only the choice is not authorization to execute.
+Briefly confirm the action before proceeding; do not reconfirm approval that was
+already unambiguous.
 
 ```bash
 python3 HILD/scripts/install_hild.py --target /path/to/new-repo --agents all --apply
 ```
 
-The script refuses dirty repositories and collisions. It records a source
+The script refuses dirty repositories and collisions. If file creation fails,
+new files are rolled back; **verification failure after creation leaves the
+new files in place** for inspection. Explain this distinction rather than
+claiming every failure is automatically reversed. The script records a source
 commit and per-file hashes in `HILD/installation.json`, creates a starter
 plan/journal and only the selected agent adapters. The first implementation
 does **not** modify existing files; installation into a partially configured

@@ -70,6 +70,30 @@ def selected_agents(value):
     return names
 
 
+def claude_symlink_checkout_problem(target):
+    """Reject Git settings that turn the Claude skills link into a plain file on checkout."""
+    result = subprocess.run(
+        ["git", "-C", str(target), "config", "--bool", "--get", "core.symlinks"],
+        capture_output=True, text=True, check=False,
+    )
+    if result.returncode not in (0, 1):
+        raise InstallationError(result.stderr.strip() or "Cannot inspect Git core.symlinks")
+    setting = result.stdout.strip() if result.returncode == 0 else None
+    # Git's default is safe on POSIX. Windows must positively confirm support:
+    # the initial installer-created symlink can work even though the next
+    # checkout with core.symlinks=false silently writes a plain text file.
+    if setting == "false" or (sys.platform == "win32" and setting != "true"):
+        return (
+            "Claude Code requires Git core.symlinks=true for durable skill "
+            "discovery after a checkout or clone. This target currently has "
+            f"core.symlinks={setting or 'unset'}. With researcher approval and "
+            "working OS symlink support, run "
+            "'git -C <target> config --local core.symlinks true' and then "
+            "repeat the preview/verification. HILD does not change Git configuration."
+        )
+    return None
+
+
 def ensure_new_repo(target):
     if not target.is_dir():
         raise InstallationError(f"Repository does not exist: {target}")
@@ -106,7 +130,7 @@ def build_files(source, target, agents):
     plan = {}
     shared = ["HILD/README.md", "HILD/process.md", "HILD/agent-setup.md"]
     shared += [
-        str(p.relative_to(source)) for folder, pattern in (
+        p.relative_to(source).as_posix() for folder, pattern in (
             ("HILD/templates", "*.md"), ("HILD/templates", "*.json"),
             ("HILD/scripts", "*.py"),
             ("HILD/scripts", "*.sh"), (".agents/skills", "**/*"),
@@ -225,7 +249,7 @@ def apply_plan(target, plan):
                 folder.mkdir()
                 created_dirs.append(folder)
             if data is None:
-                path.symlink_to("../.agents/skills", target_is_directory=True)
+                path.symlink_to(Path("..") / ".agents" / "skills", target_is_directory=True)
             else:
                 path.write_bytes(data)
             created_files.append(path)
@@ -267,10 +291,18 @@ def verify(target):
         raise InstallationError(f"No {MANIFEST} to verify")
     info = json.loads(metadata_path.read_text(encoding="utf-8"))
     missing, local_edits = [], []
+    if "claude" in info["agents"]:
+        checkout_problem = claude_symlink_checkout_problem(target)
+        if checkout_problem:
+            missing.append(checkout_problem)
     for rel, expected in info["files"].items():
         path = target / rel
         if "symlink" in expected:
-            if not path.is_symlink() or str(path.readlink()) != expected["symlink"]:
+            # Readlink returns native separators on Windows; the manifest is POSIX.
+            # Also reject dangling links, even if their target text matches.
+            if (not path.is_symlink()
+                    or path.readlink().as_posix() != expected["symlink"]
+                    or not path.is_dir()):
                 missing.append(f"{rel}: missing or incorrect skill-directory link")
         elif not path.is_file():
             missing.append(f"{rel}: missing expected file")
@@ -323,6 +355,10 @@ def main(argv=None):
         ensure_new_repo(target)
         plan = build_files(source, target, agents)
         check_collisions(target, plan)
+        if "claude" in agents:
+            checkout_problem = claude_symlink_checkout_problem(target)
+            if checkout_problem:
+                raise InstallationError(checkout_problem)
         if not args.apply:
             print("READ-ONLY INSTALLATION PROPOSAL: no files were changed.")
             print("Selected agents:", ", ".join(agents))
@@ -332,7 +368,15 @@ def main(argv=None):
             return 0
         apply_plan(target, plan)
         print(f"Installed HILD for {', '.join(agents)} into {target}")
-        return verify(target)
+        result = verify(target)
+        if result:
+            print(
+                "INSTALLATION NEEDS ATTENTION: verification failed after file creation. "
+                "New files remain in place for inspection; no automatic rollback "
+                "or second --apply was performed.",
+                file=sys.stderr,
+            )
+        return result
     except (InstallationError, json.JSONDecodeError) as error:
         print("HILD:", error, file=sys.stderr)
         return 2

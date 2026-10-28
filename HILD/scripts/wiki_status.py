@@ -275,6 +275,9 @@ def main(argv=None):
     pages = read_pages(repo, wiki, args.threshold, args.ref)
     missing = not_written(wiki)
     if args.write:
+        # The first write creates the generated board; don't report that
+        # imminent output as a missing wiki page.
+        missing.pop(Path(BOARD_NAME).stem, None)
         for page in pages:
             if page["stale"] and page["status"] != "stale":
                 set_status(page["path"], "stale")
