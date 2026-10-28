@@ -70,6 +70,30 @@ def selected_agents(value):
     return names
 
 
+def claude_symlink_checkout_problem(target):
+    """Reject Git settings that turn the Claude skills link into a plain file on checkout."""
+    result = subprocess.run(
+        ["git", "-C", str(target), "config", "--bool", "--get", "core.symlinks"],
+        capture_output=True, text=True, check=False,
+    )
+    if result.returncode not in (0, 1):
+        raise InstallationError(result.stderr.strip() or "Cannot inspect Git core.symlinks")
+    setting = result.stdout.strip() if result.returncode == 0 else None
+    # Git's default is safe on POSIX. Windows must positively confirm support:
+    # the initial installer-created symlink can work even though the next
+    # checkout with core.symlinks=false silently writes a plain text file.
+    if setting == "false" or (sys.platform == "win32" and setting != "true"):
+        return (
+            "Claude Code requires Git core.symlinks=true for durable skill "
+            "discovery after a checkout or clone. This target currently has "
+            f"core.symlinks={setting or 'unset'}. With researcher approval and "
+            "working OS symlink support, run "
+            "'git -C <target> config --local core.symlinks true' and then "
+            "repeat the preview/verification. HILD does not change Git configuration."
+        )
+    return None
+
+
 def ensure_new_repo(target):
     if not target.is_dir():
         raise InstallationError(f"Repository does not exist: {target}")
@@ -267,6 +291,10 @@ def verify(target):
         raise InstallationError(f"No {MANIFEST} to verify")
     info = json.loads(metadata_path.read_text(encoding="utf-8"))
     missing, local_edits = [], []
+    if "claude" in info["agents"]:
+        checkout_problem = claude_symlink_checkout_problem(target)
+        if checkout_problem:
+            missing.append(checkout_problem)
     for rel, expected in info["files"].items():
         path = target / rel
         if "symlink" in expected:
@@ -327,6 +355,10 @@ def main(argv=None):
         ensure_new_repo(target)
         plan = build_files(source, target, agents)
         check_collisions(target, plan)
+        if "claude" in agents:
+            checkout_problem = claude_symlink_checkout_problem(target)
+            if checkout_problem:
+                raise InstallationError(checkout_problem)
         if not args.apply:
             print("READ-ONLY INSTALLATION PROPOSAL: no files were changed.")
             print("Selected agents:", ", ".join(agents))
