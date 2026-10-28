@@ -32,6 +32,26 @@ as already tested.
    README, process, scripts, templates, shared skills and selected hook
    templates. Using an incomplete upstream checkout is not a valid install.
 
+## Claude Code on Windows: check Git symlink durability
+
+The Claude Code adapter uses one shared skills directory through the
+`.claude/skills` symlink. Git with `core.symlinks=false` turns that committed
+link into a **plain text file on the next checkout or clone**, even when
+the installer's first creation and verification succeeded. The installer
+therefore refuses the Claude preview/apply when the target Git checkout is
+configured this way; on Windows it requires an explicit `core.symlinks=true`.
+Verification also reports the problem, even if a previously created symlink
+still appears to work.
+
+Check `git -C <target> config --get core.symlinks` before the preview.
+If it is `false` (or unset on Windows), explain the risk and confirm that
+Windows can create symlinks. With the researcher's permission, set the
+**target repository's local** Git setting via
+`git -C <target> config --local core.symlinks true` and rerun the preview.
+The installer does not change Git settings itself. After committing,
+verify the skills link after a fresh checkout or clone with symlinks enabled;
+an initial `--verify` alone does not establish checkout durability.
+
 ## Preview (read-only) then install (approved write)
 
 1. Confirm the **target repository's approved scope issue link and recorded
