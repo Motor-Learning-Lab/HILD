@@ -1,15 +1,18 @@
 # Fresh HILD onboarding validation — combined candidate
 
-> **BRANCH RECONCILED — live onboarding NOT YET RUN (2026-10-26).**
-> Revised [PR #13](https://github.com/Motor-Learning-Lab/HILD/pull/13)
-> through [`92de97e`](https://github.com/Motor-Learning-Lab/HILD/commit/92de97e84bd1c6b61f9e1c997765e361dc7cd458)
-> was merged **forward into PR #14's branch**, without rewriting history,
-> in [`172290a`](https://github.com/Motor-Learning-Lab/HILD/commit/172290abb33e90f3c8607a1a70ab1e58824a9768).
-> Both installation and mechanical CI passed on that merge commit; subsequent
-> PR #14 commits need their **own** current CI evidence. Before the live test,
-> verify the latest PR #14 head, ancestry, and green CI; record the exact head
-> as the pinned test source. Creating the host and wiki still requires separate
-> researcher authorization.
+> **WINDOWS CHECKOUT REGRESSION FIXED IN CANDIDATE — LIVE RETEST PENDING (2026-10-28).**
+> The [latest Windows Claude onboarding pilot](https://github.com/opherdonchin/HILD-onboarding-ipad-2026-10/pull/2)
+> showed that an initially valid `.claude/skills` symlink becomes a plain text
+> file when Git checks out a commit with `core.symlinks=false`. The pilot
+> repaired its local clone, but this is not evidence that the installer was
+> safe in its initial form.
+> [PR #11](https://github.com/Motor-Learning-Lab/HILD/pull/11) now checks this
+> setting before installing; its correction was merged forward into
+> [PR #13](https://github.com/Motor-Learning-Lab/HILD/commit/a2116cdb8f75d70dfdc42840d7d7994bcd445600)
+> and [PR #14](https://github.com/Motor-Learning-Lab/HILD/commit/01be34ad97d2594a3b73ea19a30e65d2bba36549)
+> without merging into `main`. Automated Windows/Linux tests passed on PR #11;
+> before another live test, pin the newest PR #14 head and verify its CI.
+> Provisioning a new host/wiki still requires separate researcher authorization.
 
 **Status:** Protocol prepared under [approved scope #12](https://github.com/Motor-Learning-Lab/HILD/issues/12), pending approval of a fresh test host and live validation. The researcher [accepted PR #13's contents](https://github.com/Motor-Learning-Lab/HILD/pull/13#issuecomment-6422857797), but HILD PRs #11/#13/#14 remain unmerged until supervised onboarding succeeds and the researcher separately approves their merges. This document is not evidence that a live test has run. It is kept upstream in HILD, not installed into the host repository by default.
 
@@ -90,7 +93,7 @@ python HILD/scripts/install_hild.py --target /path/to/test-repo --verify
 
 Use the exact chosen agent selection instead of `all` when agreed. `--verify` checks structural integrity, not live agent behavior. If file creation fails, report the rollback; if verification fails *after* file creation, report that newly created files remain in place and **do not re-run `--apply` blindly**.
 
-For Windows, verify that the linked Claude skills folder actually resolves, that Git records the link as mode `120000` and that a fresh checkout with appropriate symlink support preserves the link. A shell, Git configuration or permission problem invites collaborative diagnosis, not false success.
+For native Windows Claude Code, inspect the target repository's `git config --get core.symlinks` **before preview/apply**. The candidate must refuse `false` (and unset on Windows), explaining that a later checkout will destroy the skills link. If the researcher separately authorizes enabling symlinks, set the target's local Git configuration to `true` and confirm Windows can create directory symlinks before continuing. Verify that the committed skills link has Git mode `120000`, and that a **fresh Windows checkout with symlinks enabled** preserves an actual directory link. Never treat the installer's first symlink creation as proof that the clone is durable; report any configuration or permission problem.
 
 The session orientation script must report local state without fetching/pulling the wiki clone. Confirm current plan and journal *contain* the recent milestones rather than merely checking that the collector read a file.
 
