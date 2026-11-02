@@ -1,6 +1,6 @@
 # HILD plan
 
-The living plan records goals, current state and next steps. History is recorded in Git and the [latest journal](journal/2026-10-28.md).
+The living plan records goals, current state and next steps. History is recorded in Git and the [latest journal](journal/2026-11-02.md).
 
 ## Goals
 
@@ -9,7 +9,7 @@ The living plan records goals, current state and next steps. History is recorded
 3. Validate the installed process through genuine human-agent onboarding in a fresh repository.
 4. Later, preserve and reconcile existing installations and project knowledge, beginning with MotorAdpatationSBI.
 
-## Current state — 2026-10-28
+## Current state — 2026-11-02
 
 - [Scope #1](https://github.com/Motor-Learning-Lab/HILD/issues/1) is complete. [Scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4) is approved and remains **open** for onboarding validation.
 - [PR #5](https://github.com/Motor-Learning-Lab/HILD/pull/5) merged the reusable HILD skills, onboarding guidance and wiki templates.
@@ -25,14 +25,17 @@ The living plan records goals, current state and next steps. History is recorded
 
 - **2026-10-28 live onboarding finding and repair:** [Claude's Windows trial](https://github.com/opherdonchin/HILD-onboarding-ipad-2026-10/pull/2) demonstrated scope approval, separate `--apply` consent and human squash merge, but revealed that `core.symlinks=false` destroys `.claude/skills` on the next Git checkout even when initial verification passed. The trial's local correction was not a reusable installer fix. Under [PR #11](https://github.com/Motor-Learning-Lab/HILD/pull/11), the installer now refuses unsafe Claude Git settings before writing and `--verify` detects the risk; explicit Windows checkout regression tests were added. [Windows/Linux CI](https://github.com/Motor-Learning-Lab/HILD/actions/runs/40746166251) and [mechanical CI](https://github.com/Motor-Learning-Lab/HILD/actions/runs/40746166212) passed. The correction was merged **forward** into stacked [PR #13](https://github.com/Motor-Learning-Lab/HILD/pull/13) and [PR #14](https://github.com/Motor-Learning-Lab/HILD/pull/14), without accepting or merging any PR on `main`. The full end-to-end acceptance exercise remains **incomplete**: the original trial did not establish durable installation at first checkout, full wiki navigation/status board or fresh-session recovery; a new supervised validation is required. See the [2026-10-28 journal](journal/2026-10-28.md) and [protocol](onboarding-test-protocol.md).
 
+- **2026-11-02 explanation review:** After the researcher found [PR #13](https://github.com/Motor-Learning-Lab/HILD/pull/13) and [PR #14](https://github.com/Motor-Learning-Lab/HILD/pull/14) difficult to interpret, PR #13's description was reorganized around the actual decisions and earlier evidence. PR #14's [test protocol](onboarding-test-protocol.md) and PR description were revised to distinguish a proposed live exercise from a completed test. Three draft concept/process wiki explanations were prepared, but the current HILD wiki could not be verified or updated; no wiki pages were published or marked `understood`. See the [November 2 journal](journal/2026-11-02.md). The corrected combined candidate still awaits live onboarding validation and separate human merge approval.
+
 ## Next steps
 
-1. Confirm the **latest** [PR #14](https://github.com/Motor-Learning-Lab/HILD/pull/14) head includes [PR #13](https://github.com/Motor-Learning-Lab/HILD/pull/13) and verify both CI suites on that exact head. Record the candidate SHA and any untested behavior; green CI is only structural/mechanical evidence.
-2. Review [PR #14's protocol](onboarding-test-protocol.md) and separately obtain the researcher's authorization for a **new disposable test repository**, agent/platform and any wiki setup. Do not provision or alter these before approval.
-3. Run an ordinary **human-supervised end-to-end onboarding** from the pinned candidate: approved scope issue, separate installer-apply consent, early draft PR, plan/journal milestones, agent discovery and orientation, meaningful review and human-only merge, fresh understanding wiki, and new-session recovery. Record PASSED / FAILED / BLOCKED / NOT TESTED with actual evidence.
-4. If a test fails, correct the owning unmerged HILD PR, carry the change forward without rewriting history, rerun CI and retry in a genuinely fresh host.
-5. Only after the acceptance exercise succeeds and the researcher separately authorizes each merge, squash-merge #11, #13 and #14 in order. Mark decisions 0007 and 0008 accepted and decision 0006 partially superseded when effective on `main`; then check published onboarding before closing [scopes #4](https://github.com/Motor-Learning-Lab/HILD/issues/4) and [#12](https://github.com/Motor-Learning-Lab/HILD/issues/12).
-6. Later review stale proposed metadata for [decision 0004](decisions/0004-selectable-agent-integrations.md) and [decision 0005](decisions/0005-conversational-scope-building.md) in a focused state-correction PR.
+1. Confirm the researcher can follow the revised [PR #13](https://github.com/Motor-Learning-Lab/HILD/pull/13) and [PR #14](https://github.com/Motor-Learning-Lab/HILD/pull/14) explanations, and determine whether an existing HILD understanding wiki is accessible or separate initialization is desired. Do not invent page links or publish drafts into an unverified wiki.
+2. Confirm the **latest** [PR #14](https://github.com/Motor-Learning-Lab/HILD/pull/14) head includes [PR #13](https://github.com/Motor-Learning-Lab/HILD/pull/13) and verify both CI suites on that exact head. Record the candidate SHA and any untested behavior; green CI is only structural/mechanical evidence.
+3. Review [PR #14's protocol](onboarding-test-protocol.md) and separately obtain the researcher's authorization for a **new disposable test repository**, agent/platform and any wiki setup. Do not provision or alter these before approval.
+4. Run an ordinary **human-supervised end-to-end onboarding** from the pinned candidate: approved scope issue, separate installer-apply consent, early draft PR, plan/journal milestones, agent discovery and orientation, meaningful review and human-only merge, fresh understanding wiki, and new-session recovery. Record PASSED / FAILED / BLOCKED / NOT TESTED with actual evidence.
+5. If a test fails, correct the owning unmerged HILD PR, carry the change forward without rewriting history, rerun CI and retry in a genuinely fresh host.
+6. Only after the acceptance exercise succeeds and the researcher separately authorizes each merge, squash-merge #11, #13 and #14 in order. Mark decisions 0007 and 0008 accepted and decision 0006 partially superseded when effective on `main`; then check published onboarding before closing [scopes #4](https://github.com/Motor-Learning-Lab/HILD/issues/4) and [#12](https://github.com/Motor-Learning-Lab/HILD/issues/12).
+7. Later review stale proposed metadata for [decision 0004](decisions/0004-selectable-agent-integrations.md) and [decision 0005](decisions/0005-conversational-scope-building.md) in a focused state-correction PR.
 
 ## Deliberately deferred
 
