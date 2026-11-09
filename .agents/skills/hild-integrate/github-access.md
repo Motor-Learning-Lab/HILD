@@ -7,9 +7,11 @@ by [hild-integrate](SKILL.md) and
 [onboarding](../hild-scope/onboarding-scope.md); it does not replace
 [HILD's approval rules](../../../HILD/process.md).
 
-The goal is to help the researcher **continue their own project**.
-Identify the next useful operation, establish what the agent can already
-do, and work toward the smallest necessary remedy. Avoid a full
+The goal is to help the researcher **continue their own project**. This
+companion troubleshoots the **GitHub reference implementation**, not HILD's
+underlying human-control requirements. Identify the next useful operation,
+establish what the agent can already do, and work toward the smallest
+necessary remedy. Avoid a full
 environment audit when one capability is all that is needed.
 
 ## First identify the action and environment

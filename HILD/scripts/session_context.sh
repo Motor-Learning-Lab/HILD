@@ -26,7 +26,7 @@ if [ -n "$latest_journal" ]; then
     cat "$latest_journal"
     echo
     echo "--- Commits since the journal was last updated ---"
-    last_journal_commit="$(git log -1 --format=%H -- docs/journal 2>/dev/null)"
+    last_journal_commit="$(git log -1 --format=%H -- HILD/journal 2>/dev/null)"
     if [ -n "$last_journal_commit" ]; then
         git log --oneline "${last_journal_commit}..HEAD" | head -30
         git log --oneline "${last_journal_commit}..origin/main" 2>/dev/null | head -30
@@ -51,9 +51,8 @@ fi
 
 if [ -d wiki/.git ]; then
     echo "--- Understanding map (wiki) ---"
-    # Pick up pages the reviewer edited in the browser.
-    timeout 10 git -C wiki pull --ff-only --quiet 2>/dev/null \
-        || echo "(could not update the wiki clone)"
+    # Session orientation does not fetch, pull, or change the wiki clone.
+    echo "(local wiki snapshot; remote changes were not fetched)"
     unpushed="$(git -C wiki status --short; git -C wiki log --oneline '@{u}..' 2>/dev/null)"
     if [ -n "$unpushed" ]; then
         echo "Wiki changes not yet committed or pushed:"

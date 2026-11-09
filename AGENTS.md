@@ -2,7 +2,7 @@
 
 ## Purpose and authority
 
-This repository develops HILD, a reusable approach to AI-assisted scientific software development that keeps the researcher able to understand, direct, review and maintain the result.
+This repository develops HILD, a reusable **human-supervised development process** for AI-assisted scientific software. Its essential requirements concern researcher authority, inspectable agreements and changes, evidence-based review and durable understanding; GitHub/skills/hooks provide the current reference implementation.
 
 This root `AGENTS.md` governs work **on HILD itself**. It is not a file that `hild-integrate` copies into host repositories: an existing project's agent instructions remain authoritative, with a proposed pointer to its locally installed HILD process.
 

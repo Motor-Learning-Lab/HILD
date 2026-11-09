@@ -1,6 +1,6 @@
 # HILD plan
 
-The living plan records goals, current state and next steps. History is recorded in Git and the [latest journal](journal/2026-10-18.md).
+The living plan records goals, current state and next steps. History is recorded in Git and the [latest journal](journal/2026-11-09.md).
 
 ## Goals
 
@@ -9,7 +9,7 @@ The living plan records goals, current state and next steps. History is recorded
 3. Validate the installed process through genuine human-agent onboarding in a fresh repository.
 4. Later, preserve and reconcile existing installations and project knowledge, beginning with MotorAdpatationSBI.
 
-## Current state — 2026-10-18
+## Current state — 2026-11-09
 
 - [Scope #1](https://github.com/Motor-Learning-Lab/HILD/issues/1) is complete. [Scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4) is approved and remains **open** for onboarding validation.
 - [PR #5](https://github.com/Motor-Learning-Lab/HILD/pull/5) merged the reusable HILD skills, onboarding guidance and wiki templates.
@@ -24,13 +24,17 @@ The living plan records goals, current state and next steps. History is recorded
 - **Corrective [draft PR #11](https://github.com/Motor-Learning-Lab/HILD/pull/11) remains OPEN / UNMERGED by agreement.** The focused fixes are now accompanied by [Windows and Linux installation CI](https://github.com/Motor-Learning-Lab/HILD/actions/runs/39152812601) and [mechanical CI](https://github.com/Motor-Learning-Lab/HILD/actions/runs/39152812593), all passed, including a native Windows symlink-and-fresh-checkout regression. **Do not merge or close this stabilization PR until a fresh separately authorized onboarding installation from that PR's unmerged commit works.**
 - **[Scope #12](https://github.com/Motor-Learning-Lab/HILD/issues/12) approved on 2026-10-18**, with [approval recorded](https://github.com/Motor-Learning-Lab/HILD/issues/12#issuecomment-6254443843). The three-PR sequence is now open, all **DRAFT and UNMERGED**: [PR #11](https://github.com/Motor-Learning-Lab/HILD/pull/11) repairs the concrete Windows/pilot findings (the researcher endorsed its original direction); [PR #13](https://github.com/Motor-Learning-Lab/HILD/pull/13) clarifies essential HILD processes versus GitHub/skills reference implementation repo-wide, including **proposed** decision 0007; [PR #14](https://github.com/Motor-Learning-Lab/HILD/pull/14) prepares the combined candidate onboarding validation protocol. PR #13 is based on PR #11's branch and PR #14 on PR #13's branch. Nothing is merged and no new host test has begun.
 - Repository GitHub settings agree with the squash-only decision: PR title and body as the squash message and automatic branch deletion.
+- **Scope #12 / PRs #11, #13 and #14:** The three stacked draft PRs are still open and unmerged. PR #11 corrects concrete installation/startup behavior; PR #13 differentiates process requirements from the GitHub reference workflow; PR #14 provides a candidate test protocol. The researcher requested passage-level rather than vertical process/implementation organization, explicit independent-work provisionality, acceptance on every review track, revisable understanding status, and forward-linked successor decisions ([scope refinement](https://github.com/Motor-Learning-Lab/HILD/issues/12#issuecomment-6268680948)). PR #13 now includes a revised [process](process.md), updated skills/templates, proposed [decision 0008](decisions/0008-independent-work-and-human-acceptance.md), and a proposed successor notice atop accepted [decision 0006](decisions/0006-scope-issue-approval-gate.md). **These revisions await human review and are not accepted HILD rules yet.**
+- **2026-11-09: scope #12 amended to use an integration branch** ([amendment, approved by the researcher](https://github.com/Motor-Learning-Lab/HILD/issues/12#issuecomment-6739027054)). Component PRs squash-merge into `integration/scope-12`; one onboarding test runs at the end; a finalization PR then brings the branch to `main`. PR #13 was approved and squash-merged by the researcher on 2026-11-09 as [`1d1e5f1`](https://github.com/Motor-Learning-Lab/HILD/commit/1d1e5f16947edecd1d5b43c8d728e8448276004e). Its base was still PR #11's branch, so it landed there, and **PR #11 now carries both changes** into the integration branch. The [HILD wiki](https://github.com/Motor-Learning-Lab/HILD/wiki) was started with three draft concept pages for PR #11.
 
 ## Next steps
 
-1. **Review the three unmerged, stacked PRs in sequence:** [#11 concrete repairs](https://github.com/Motor-Learning-Lab/HILD/pull/11), [#13 HILD process-versus-reference distinction](https://github.com/Motor-Learning-Lab/HILD/pull/13), and [#14 fresh onboarding test protocol](https://github.com/Motor-Learning-Lab/HILD/pull/14). Existing mechanical and installation checks must stay green; the proposed decision 0007 remains unaccepted until reviewed.
-2. **Approve a new disposable host repository and run a supervised fresh installation from the exact PR #14 candidate SHA**, following [the proposed protocol](https://github.com/Motor-Learning-Lab/HILD/blob/test/fresh-onboarding-candidate/HILD/onboarding-test-protocol.md). This is a separate approval: do not create a test repo, wiki or external permissions automatically.
-3. If the live trial reveals another defect, correct its owning still-open PR, propagate the change through downstream stacked branches (without rewriting history), rerun tests, and restart with a new candidate revision. **No corrective HILD PR merges until this validation succeeds and the researcher separately approves merge.**
-4. After the accepted PRs merge in order, retest the public `main` onboarding path and close [scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4) and [scope #12](https://github.com/Motor-Learning-Lab/HILD/issues/12) only after their agreed remaining criteria are met. Older proposed decision statuses (0004–0006) still need separate review.
+1. **Researcher reviews and merges [PR #11](https://github.com/Motor-Learning-Lab/HILD/pull/11) into `integration/scope-12`.** That PR now also carries PR #13's approved content (see current state).
+2. Agent merges the integration branch forward into [PR #14](https://github.com/Motor-Learning-Lab/HILD/pull/14)'s branch. #14 then shows only its own changes. Its protocol is updated to test the integration branch head instead of PR #14's head. Then the researcher reviews #14 and merges it into the integration branch.
+3. **Researcher separately approves a fresh disposable test host.** Then run the single supervised onboarding test on the integration branch head. Defects are fixed by small PRs into the integration branch, and the test is repeated.
+4. **After the test passes: a finalization PR from `integration/scope-12` to `main`.** The researcher merges it. Decision statuses (0007 and 0008 accepted, 0006 partly superseded) take effect then. Then close [scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4) and [scope #12](https://github.com/Motor-Learning-Lab/HILD/issues/12).
+5. **Approved scopes [#18](https://github.com/Motor-Learning-Lab/HILD/issues/18) (tighten skills), [#19](https://github.com/Motor-Learning-Lab/HILD/issues/19) (skills without the symlink) and [#20](https://github.com/Motor-Learning-Lab/HILD/issues/20) (understanding map): start each with its read-only step 1.** Begin with #19, since its result affects the others. Skill edits under #18 and code pages under #20 wait for scope #12 to finish.
+6. Later, review stale proposed metadata for [decision 0004](decisions/0004-selectable-agent-integrations.md) and [decision 0005](decisions/0005-conversational-scope-building.md) in a focused state-correction PR.
 
 ## Deliberately deferred
 
