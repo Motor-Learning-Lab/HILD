@@ -8,8 +8,11 @@ If you cannot establish this, return to the
 [hild-scope conversation](../hild-scope/SKILL.md) before starting work;
 an earlier "OK" to discussing a proposal is not enough.
 
-This procedure supports a new, clean repository. Reconciling an existing
-HILD installation or wiki requires a separate scope.
+This procedure installs **the current GitHub-and-skills reference
+implementation** into a new, clean repository. HILD itself is a development
+process, not the installer; reconciling an existing installation or wiki
+requires a separate scope and unsupported workarounds must not be presented
+as already tested.
 
 ## Before execution
 

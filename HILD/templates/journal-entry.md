@@ -2,9 +2,11 @@
 
 ## Session 1 — <topic>
 
-**Goal:** What were we trying to do?
+**Goal:** What process or project outcome were we trying to achieve (not just
+which command or GitHub operation were we performing)?
 
-**Done:** What actually changed? Link to issues, PRs, commits or notebooks.
+**Done:** What was actually implemented or observed? Link to the concrete
+issues, PRs, commits or notebooks used in this project.
 
 **Open questions / next:** What remains unresolved? Ensure the current plan
 reflects the next steps.
@@ -20,7 +22,9 @@ that produced it.
 decision directory (default: HILD/decisions/). Smaller choices can be listed
 directly here.
 
-**Permission points:** Only when working independently: where permission
-would ordinarily have been requested, and what was decided.
+**Permission points:** When working independently: the ordinary checkpoint
+that was passed, the agent's choice, the proposed scope/decision still
+awaiting approval, links to affected commits/PRs, and the later work
+that depends on it. Mark that work provisional until human review.
 
 Don't write empty sections merely to match the template. -->

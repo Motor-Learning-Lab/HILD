@@ -1,6 +1,12 @@
 # HILD — Human-in-the-Loop Development
 
-HILD is a human-supervised approach to developing scientific software with AI agents. The goal isn't merely to produce working code: the researcher remains in control of decisions and develops a deep understanding of the code and algorithms. The researcher and agent agree on manageable pieces of work, review what changes, work through anything unclear, and preserve important decisions and progress. A separate wiki helps map what the researcher understands.
+HILD is a **human-supervised development process** for scientific software created with AI agents. The goal isn't merely working code: the researcher remains in control of development decisions and develops an understanding of the code and algorithms. HILD requires inspectable authority and work agreements, reviewable changes,
+evidence-based human acceptance, interconnected durable project knowledge and
+researcher-confirmed *current* understanding. Explicitly delegated independent
+execution may outrun ordinary approval points, but unapproved choices and
+their dependent results remain provisional until the researcher reviews them.
+
+**GitHub, Git branches and pull requests, agent skills and hooks, journals and an understanding wiki are our recommended reference implementation** of that process, not its definition. An agent and researcher may adapt those mechanisms to their actual environment if the essential human-control and understanding functions remain intact and the alternatives are agreed and documented.
 
 ## Status
 
@@ -33,7 +39,7 @@ that file with this repository's AGENTS.md**.
 
 HILD is extracted from the working process developed in [MotorAdpatationSBI](https://github.com/opherdonchin/MotorAdpatationSBI). Its starting points are [scope #5](https://github.com/opherdonchin/MotorAdpatationSBI/issues/5), [PR #6](https://github.com/opherdonchin/MotorAdpatationSBI/pull/6), [PR #7](https://github.com/opherdonchin/MotorAdpatationSBI/pull/7), and its current [process specification](https://github.com/opherdonchin/MotorAdpatationSBI/blob/main/docs/process.md).
 
-HILD preserves scope agreements, early draft PRs, small commits, layered explanations, human review tracks, durable plans and journals, decisions, and a researcher-confirmed understanding map. Project-specific scientific conventions remain in the host project.
+HILD preserves the *process requirements* of bounded authorization, independently inspectable work, meaningful explanation/review, durable decisions and progress, and researcher-confirmed understanding. The initial *GitHub reference implementation* uses scope issues, early draft PRs, small commits, plans, journals and an understanding wiki. Project-specific scientific conventions remain in the host project.
 
 ## Developing HILD with HILD
 
@@ -65,4 +71,7 @@ The skills, scripts and installer are on `main`, with mechanical checks, but **i
 
 ## Contributions
 
-Read [AGENTS.md](AGENTS.md), [the process](HILD/process.md), and [the current plan](HILD/plan.md) before substantive work. Scope agreements precede implementation. Branches are squash-merged only after the researcher's explicit approval.
+Read [AGENTS.md](AGENTS.md), [the process](HILD/process.md), and [the current plan](HILD/plan.md) before substantive work. The ordinary supervised workflow requires an approved scope before
+implementation; explicitly authorized independent work preserves any
+deferred approvals and dependent work as provisional. Only the researcher
+accepts and squash-merges a PR, including a trivial one.
