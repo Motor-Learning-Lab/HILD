@@ -17,7 +17,7 @@ This is deliberately more than a test of scripts. Automated checks can show that
 
 1. **Accept this procedure.** Reviewing [PR #14](https://github.com/Motor-Learning-Lab/HILD/pull/14) means reviewing the plan for the test. It does not mean the test happened.
 2. **Authorize a particular live test.** Before creating a new GitHub repository or wiki, changing Git settings, or writing to the target, the researcher must separately agree to the actual environment and the relevant actions. Record that agreement on [scope #12](https://github.com/Motor-Learning-Lab/HILD/issues/12) or an agreed validation issue.
-3. **Judge the results and subsequent merges.** After observing the exercise, the researcher decides whether the evidence is sufficient. A successful test alone does not merge HILD PRs #11, #13 or #14; only the researcher can separately approve and perform those merges.
+3. **Judge the results and the final merge.** After observing the exercise, the researcher decides whether the evidence is sufficient. A successful test alone does not merge the integration branch into `main`. Only the researcher can approve and perform that finalization merge.
 
 ## The proposed exercise
 
@@ -33,31 +33,31 @@ These stages are the **required end-to-end evidence** for the combined candidate
 
 ## Prepare the exact candidate
 
-The three PRs are stacked, not merged into `main`:
+Under the [amended scope #12](https://github.com/Motor-Learning-Lab/HILD/issues/12#issuecomment-6739027054), the three PRs are reviewed and squash-merged, one at a time, into the integration branch [`integration/scope-12`](https://github.com/Motor-Learning-Lab/HILD/tree/integration/scope-12), not into `main`:
 
-| PR | Contribution to the candidate | Base |
-|---|---|---|
-| [#11](https://github.com/Motor-Learning-Lab/HILD/pull/11) | Fixes observed installation, startup, consent and state problems | `main` |
-| [#13](https://github.com/Motor-Learning-Lab/HILD/pull/13) | Clarifies HILD's process and its GitHub/skills workflow | PR #11's branch |
-| [#14](https://github.com/Motor-Learning-Lab/HILD/pull/14) | Provides this test plan and its supporting plan/journal updates | PR #13's branch |
+| PR | Contribution to the candidate |
+|---|---|
+| [#11](https://github.com/Motor-Learning-Lab/HILD/pull/11) | Fixes observed installation, startup, consent and state problems. It also carries #13, which was merged into #11's branch. |
+| [#13](https://github.com/Motor-Learning-Lab/HILD/pull/13) | Clarifies HILD's process and its GitHub/skills workflow. |
+| [#14](https://github.com/Motor-Learning-Lab/HILD/pull/14) | Provides this test plan and its supporting plan/journal updates. |
 
-**Test the head commit of PR #14**, which includes the parents' changes. Its SHA is not fixed in this file because editing a PR or carrying later parent changes forward will change it. Immediately before the test, record the current 40-character SHA and verify CI for *that exact commit*:
+**Test the head commit of `integration/scope-12`**, once all three PRs are merged into it. Its SHA is not fixed in this file because any correction merged later changes it. Immediately before the test, record the current 40-character SHA and verify CI for *that exact commit*:
 
 ```sh
-gh pr view 14 --repo Motor-Learning-Lab/HILD --json headRefOid --jq .headRefOid
+git ls-remote https://github.com/Motor-Learning-Lab/HILD.git refs/heads/integration/scope-12
 ```
 
-If a parent PR changes, it is **not** automatically incorporated into existing descendants. Forward-merge the updated parent into each descendant without rewriting pushed history; check the PR #14 ancestry, record the new SHA, and rerun relevant automated checks. A past CI run or pilot tests only the revision it actually used.
+A past CI run or pilot tests only the revision it actually used.
 
 The initial [October 2026 Windows pilot](https://github.com/opherdonchin/HILD-onboarding-ipad-2026-10/pull/2) found that `core.symlinks=false` can turn `.claude/skills` into a plain file on checkout, even though the initial install looked successful. PR #11 now refuses unsafe Windows settings before writing. Its [Windows/Ubuntu installation checks](https://github.com/Motor-Learning-Lab/HILD/actions/runs/40746166251) and [mechanical checks](https://github.com/Motor-Learning-Lab/HILD/actions/runs/40746166212) passed. These are regression evidence, **not** a completed retest of the combined candidate.
 
 ## Agree on the test host before touching it
 
-Record the new target repository, local workspace, OS/shell, coding agent and version (when available), selected HILD integrations (default: all), PR #14 candidate SHA and known prerequisites. Confirm the target is genuinely new and contains no work to preserve. Do not provision a repository or wiki, change credentials or Git settings, or delete anything without the researcher's specific agreement. If an essential test component cannot be authorized or run, mark it **BLOCKED**, not passed.
+Record the new target repository, local workspace, OS/shell, coding agent and version (when available), selected HILD integrations (default: all), the integration branch's candidate SHA and known prerequisites. Confirm the target is genuinely new and contains no work to preserve. Do not provision a repository or wiki, change credentials or Git settings, or delete anything without the researcher's specific agreement. If an essential test component cannot be authorized or run, mark it **BLOCKED**, not passed.
 
 ### First-contact prompt
 
-Start a **new conversation** with the chosen coding agent working in the approved test repository. Replace `<CANDIDATE_SHA>` with the checked PR #14 head SHA:
+Start a **new conversation** with the chosen coding agent working in the approved test repository. Replace `<CANDIDATE_SHA>` with the checked head SHA of `integration/scope-12`:
 
 > I'd like to start using HILD (Human-in-the-Loop Development) in the repository currently open in my coding environment.
 >
@@ -90,8 +90,8 @@ Other agent platforms, runtime hooks and wiki access are separate capabilities. 
 
 For each stage in the exercise table, record **PASSED**, **FAILED**, **BLOCKED** or **NOT TESTED** with links to the issue, PR, commits, CI runs, wiki pages or a retained conversation transcript. Distinguish the agent's claim from an observed action. The result belongs on [scope #12](https://github.com/Motor-Learning-Lab/HILD/issues/12) or the agreed validation issue, not only in chat.
 
-Any missed human stopping point means the relevant stage **FAILED**, even if file verification passed. If the exercise fails, repair the owning still-open HILD PR (#11 for installer/tooling, #13 for process guidance, #14 for the procedure), carry the corrected parent forward, rerun CI and plan another **fresh** attempt. Do not substitute a repaired old test host for validating the new candidate.
+Any missed human stopping point means the relevant stage **FAILED**, even if file verification passed. If the exercise fails, fix the defect in a new small PR into `integration/scope-12`. The researcher reviews and merges it. Then rerun CI and plan another **fresh** attempt on the new branch head. Do not substitute a repaired old test host for validating the new candidate.
 
-Only after the full required exercise succeeds (or the researcher explicitly revises its criteria) may the researcher consider approving and squash-merging HILD PRs **#11, #13, #14 in order**. After each parent merges, check the next PR's base and resulting diff against `main`. Then verify the ordinary published `main` onboarding path separately. Close [scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4) and [scope #12](https://github.com/Motor-Learning-Lab/HILD/issues/12) only when their remaining agreed goals are actually met.
+Only after the full required exercise succeeds (or the researcher explicitly revises its criteria) does a **finalization PR** from `integration/scope-12` to `main` collect the evidence. The researcher may then approve and squash-merge it. After that, verify the ordinary published `main` onboarding path separately. Close [scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4) and [scope #12](https://github.com/Motor-Learning-Lab/HILD/issues/12) only when their remaining agreed goals are actually met.
 
 The test results and any changes to the criteria remain durable in the linked issues and PRs. This file remains the **historical procedure for the scope #12 candidate test**, not a claim that later releases have passed it.
