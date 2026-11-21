@@ -27,7 +27,7 @@ and description, built from the skill's frontmatter. The installer creates no
 `.claude/skills` link, so nothing depends on the user's OS or Git symlink
 settings. The consequence is that Claude Code treats the skills as
 instructions it is pointed to rather than as native slash-command skills; see
-[decision 0009](decisions/0009-claude-skills-via-agents-md.md), which is
+[decision 0009](https://github.com/Motor-Learning-Lab/HILD/blob/main/HILD/decisions/0009-claude-skills-via-agents-md.md), which is
 proposed and not yet accepted.
 
 ## What the startup scripts do

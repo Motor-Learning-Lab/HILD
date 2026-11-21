@@ -37,7 +37,7 @@ as already tested.
 Claude Code finds the skills through the generated `CLAUDE.md`, which imports
 `@AGENTS.md`, and the skills index in `AGENTS.md`. The installer creates no
 `.claude/skills` link, so it checks no Git symlink setting
-([decision 0009](../../../HILD/decisions/0009-claude-skills-via-agents-md.md)).
+([decision 0009](https://github.com/Motor-Learning-Lab/HILD/blob/main/HILD/decisions/0009-claude-skills-via-agents-md.md)).
 `--verify` checks the import and that every indexed skill exists.
 
 ## Preview (read-only) then install (approved write)
