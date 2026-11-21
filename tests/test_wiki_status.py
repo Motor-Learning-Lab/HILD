@@ -182,6 +182,19 @@ def test_process_describes_the_same_reviewer_status_as_wiki_tool():
     assert "understood" in wiki_status.STATUSES
 
 
+def test_link_syntax_in_code_is_not_a_link(repo):
+    wiki = repo / "wiki"
+    (wiki / "Concept-a.md").write_text(
+        page_text("draft", covers="x", as_of="x", kind="concept")
+        + "Write `[[Shown-in-span]]` or ``[[Double|Span]]`` to link.\n\n"
+        "```\n[[Shown-in-fence]]\n```\n\n"
+        "~~~text\n[[Shown-in-tilde-fence]]\n~~~\n\n"
+        "A real link: [[Real-missing]].\n",
+        encoding="utf-8",
+    )
+    assert wiki_status.not_written(wiki) == {"Real-missing": ["Concept-a"]}
+
+
 def test_templates_filled_in_are_read_correctly(repo):
     templates = Path(__file__).parents[1] / "HILD/templates"
     wiki = repo / "wiki"

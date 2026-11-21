@@ -34,6 +34,9 @@ STATUSES = ["stale", "needs-revision", "needs-review", "stub", "draft", "underst
 HEADER_ROW = re.compile(r"^\|\s*\*\*(?P<key>[^*|]+)\*\*\s*\|\s*(?P<value>.*?)\s*\|\s*$")
 # A wiki link, [[Page-name]] or [[shown text|Page-name]]; the group is the page name.
 WIKI_LINK = re.compile(r"\[\[(?:[^\]|]*\|)?([^\]|]+)\]\]")
+# Fenced code blocks and inline code spans: text a page shows, not links it makes.
+CODE_FENCE = re.compile(r"^(```|~~~).*?^\1[ \t]*$", re.MULTILINE | re.DOTALL)
+CODE_SPAN = re.compile(r"(`+).+?\1", re.DOTALL)
 BOARD_NAME = "Status-board.md"
 # Pages that are not part of the map itself.
 SKIPPED_PAGES = {"Home.md", "_Sidebar.md", "_Footer.md", BOARD_NAME}
@@ -142,11 +145,18 @@ def read_pages(repo, wiki, threshold, ref="HEAD"):
     return pages
 
 
+def strip_code(text):
+    """Remove fenced code blocks and inline code spans, so a page that merely shows
+    the link syntax (for example ``[[Name]]`` in backticks) makes no link."""
+    return CODE_SPAN.sub("", CODE_FENCE.sub("", text))
+
+
 def not_written(wiki):
     """Find the pages that are linked from the wiki but do not exist.
 
     Every page is searched for wiki links, ``Home`` and the sidebar included; only the
-    generated status board is left out. Returns a dict from the name of each missing
+    generated status board is left out. Text in code spans and code blocks is ignored.
+    Returns a dict from the name of each missing
     page to the sorted names of the pages that link to it.
     """
     existing = {path.stem for path in wiki.glob("*.md")}
@@ -154,7 +164,7 @@ def not_written(wiki):
     for path in sorted(wiki.glob("*.md")):
         if path.name == BOARD_NAME:
             continue
-        for target in WIKI_LINK.findall(path.read_text(encoding="utf-8")):
+        for target in WIKI_LINK.findall(strip_code(path.read_text(encoding="utf-8"))):
             name = target.strip().replace(" ", "-")
             if name not in existing:
                 missing.setdefault(name, set()).add(path.stem)
