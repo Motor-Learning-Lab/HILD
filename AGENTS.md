@@ -39,3 +39,4 @@ HILD's procedures are skills in [`.agents/skills/`](.agents/skills/). Read the l
 - Distinguish agreed design, proposals, implemented behavior, tests and outstanding questions.
 - No claims that unported skills, integrations or hooks work; verify them when they exist.
 - Skills and agent configurations live where agents discover them; keep authoritative policy and project knowledge at their recorded homes.
+- Test repositories used to validate HILD are disposable. Before deleting one, copy its evidence into a comment on the HILD scope issue the test served: the scope issue and PR text with their comments, the list of changed files, generated files, wiki pages, and any exported conversation. HILD's documents link to that comment, never into the test repository. A PR that completes the scope summarizes the evidence and links to the comment.

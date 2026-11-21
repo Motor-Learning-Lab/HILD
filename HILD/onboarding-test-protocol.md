@@ -1,6 +1,6 @@
 # Live onboarding test for the combined HILD candidate
 
-> **Test plan, not a test result.** This document describes the supervised onboarding experiment proposed under [scope #12](https://github.com/Motor-Learning-Lab/HILD/issues/12). The corrected candidate has **not** passed this experiment. The earlier [Windows/Claude pilot](https://github.com/opherdonchin/HILD-onboarding-ipad-2026-10/pull/2) was informative but exposed a broken checkout; see [PR #11](https://github.com/Motor-Learning-Lab/HILD/pull/11). This protocol records a particular validation exercise, not permanent instructions for installing future HILD releases.
+> **Test plan, not a test result.** This document describes the supervised onboarding experiment proposed under [scope #12](https://github.com/Motor-Learning-Lab/HILD/issues/12). The corrected candidate has **not** passed this experiment. The earlier [Windows/Claude pilot](https://github.com/Motor-Learning-Lab/HILD/issues/12#issuecomment-7070037492) was informative but exposed a broken checkout; see [PR #11](https://github.com/Motor-Learning-Lab/HILD/pull/11). This protocol records a particular validation exercise, not permanent instructions for installing future HILD releases.
 
 ## What we want to find out
 
@@ -49,7 +49,7 @@ git ls-remote https://github.com/Motor-Learning-Lab/HILD.git refs/heads/integrat
 
 A past CI run or pilot tests only the revision it actually used.
 
-The initial [October 2026 Windows pilot](https://github.com/opherdonchin/HILD-onboarding-ipad-2026-10/pull/2) found that `core.symlinks=false` can turn a committed `.claude/skills` link into a plain file on checkout, even though the initial install looked successful. HILD no longer creates that link: Claude Code finds the skills through `AGENTS.md` ([decision 0009](decisions/0009-claude-skills-via-agents-md.md)). Earlier CI runs tested the link and are not evidence for this arrangement.
+The initial [October 2026 Windows pilot](https://github.com/Motor-Learning-Lab/HILD/issues/12#issuecomment-7070037492) found that `core.symlinks=false` can turn a committed `.claude/skills` link into a plain file on checkout, even though the initial install looked successful. HILD no longer creates that link: Claude Code finds the skills through `AGENTS.md` ([decision 0009](decisions/0009-claude-skills-via-agents-md.md)). Earlier CI runs tested the link and are not evidence for this arrangement.
 
 ## Agree on the test host before touching it
 
@@ -93,5 +93,7 @@ For each stage in the exercise table, record **PASSED**, **FAILED**, **BLOCKED**
 Any missed human stopping point means the relevant stage **FAILED**, even if file verification passed. If the exercise fails, fix the defect in a new small PR into `integration/scope-12`. The researcher reviews and merges it. Then rerun CI and plan another **fresh** attempt on the new branch head. Do not substitute a repaired old test host for validating the new candidate.
 
 Only after the full required exercise succeeds (or the researcher explicitly revises its criteria) does a **finalization PR** from `integration/scope-12` to `main` collect the evidence. The researcher may then approve and squash-merge it. After that, verify the ordinary published `main` onboarding path separately. Close [scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4) and [scope #12](https://github.com/Motor-Learning-Lab/HILD/issues/12) only when their remaining agreed goals are actually met.
+
+**Keep the evidence in HILD, then delete the test repository.** Follow the rule in [`AGENTS.md`](../AGENTS.md#project-specific-guidance): before the test repository is deleted, its evidence is copied into a comment on [scope #12](https://github.com/Motor-Learning-Lab/HILD/issues/12), and the finalization PR summarizes it with links to that comment.
 
 The test results and any changes to the criteria remain durable in the linked issues and PRs. This file remains the **historical procedure for the scope #12 candidate test**, not a claim that later releases have passed it.
