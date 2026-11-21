@@ -192,7 +192,8 @@ def test_link_syntax_in_code_is_not_a_link(repo):
         + "Write `[[Shown-in-span]]` or ``[[Double|Span]]`` to link.\n\n"
         "```\n[[Shown-in-fence]]\n```\n\n"
         "~~~text\n[[Shown-in-tilde-fence]]\n~~~\n\n"
-        "A real link: [[Real-missing]].\n",
+        "A stray ` backtick must not hide what follows.\n\n"
+        "A real link: [[Real-missing]], and `code` after it.\n",
         encoding="utf-8",
     )
     assert wiki_status.not_written(wiki) == {"Real-missing": ["Concept-a"]}
