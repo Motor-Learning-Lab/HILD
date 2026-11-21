@@ -84,6 +84,9 @@ def test_large_change_is_stale_and_write_marks_it(repo):
     board = (repo / "wiki/Status-board.md").read_text()
     assert "## stale (1)" in board
     assert "[[Code-thing]]" in board
+    # --write must not produce CRLF line endings on Windows.
+    assert b"\r" not in wiki_page.read_bytes()
+    assert b"\r" not in (repo / "wiki/Status-board.md").read_bytes()
 
 
 def test_deleted_file_makes_page_stale(repo):
@@ -180,3 +183,45 @@ def test_process_describes_the_same_reviewer_status_as_wiki_tool():
     assert "| `understood` | reviewer only |" in process
     assert "| `hild-understood` |" not in process
     assert "understood" in wiki_status.STATUSES
+
+
+def test_link_syntax_in_code_is_not_a_link(repo):
+    wiki = repo / "wiki"
+    (wiki / "Concept-a.md").write_text(
+        page_text("draft", covers="x", as_of="x", kind="concept")
+        + "Write `[[Shown-in-span]]` or ``[[Double|Span]]`` to link.\n\n"
+        "```\n[[Shown-in-fence]]\n```\n\n"
+        "~~~text\n[[Shown-in-tilde-fence]]\n~~~\n\n"
+        "A stray ` backtick must not hide what follows.\n\n"
+        "A real link: [[Real-missing]], and `code` after it.\n",
+        encoding="utf-8",
+    )
+    assert wiki_status.not_written(wiki) == {"Real-missing": ["Concept-a"]}
+
+
+def test_templates_filled_in_are_read_correctly(repo):
+    templates = Path(__file__).parents[1] / "HILD/templates"
+    wiki = repo / "wiki"
+    (repo / "other.py").write_text("b = 2\n")
+    run_git(repo, "add", "other.py")
+    run_git(repo, "commit", "-qm", "second")
+
+    concept = (templates / "wiki-page.md").read_text(encoding="utf-8")
+    (wiki / "Concept-filled.md").write_text(concept, encoding="utf-8")
+
+    code = (templates / "wiki-code-page.md").read_text(encoding="utf-8")
+    code = code.replace("path/to/file.py", "code.py")
+    code = code.replace("path/to/other.py", "other.py")
+    code = code.replace("abc1234", head(repo))
+    (wiki / "Code-filled.md").write_text(code, encoding="utf-8")
+
+    pages = {p["name"]: p for p in wiki_status.read_pages(repo, wiki, threshold=10)}
+    concept_page = pages["Concept-filled"]
+    assert (concept_page["kind"], concept_page["status"]) == ("concept", "draft")
+    assert not concept_page["problem"]
+    code_page = pages["Code-filled"]
+    assert (code_page["kind"], code_page["status"]) == ("code", "draft")
+    assert code_page["covers"] == ["code.py", "other.py"]
+    assert code_page["as_of"] == head(repo)
+    assert code_page["changed"] == 0
+    assert not code_page["problem"]
