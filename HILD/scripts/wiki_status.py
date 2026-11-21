@@ -36,7 +36,8 @@ HEADER_ROW = re.compile(r"^\|\s*\*\*(?P<key>[^*|]+)\*\*\s*\|\s*(?P<value>.*?)\s*
 WIKI_LINK = re.compile(r"\[\[(?:[^\]|]*\|)?([^\]|]+)\]\]")
 # Fenced code blocks and inline code spans: text a page shows, not links it makes.
 CODE_FENCE = re.compile(r"^(```|~~~).*?^\1[ \t]*$", re.MULTILINE | re.DOTALL)
-CODE_SPAN = re.compile(r"(`+).+?\1", re.DOTALL)
+# An inline span stays on one line, so a stray backtick cannot hide later links.
+CODE_SPAN = re.compile(r"(`+).+?\1")
 BOARD_NAME = "Status-board.md"
 # Pages that are not part of the map itself.
 SKIPPED_PAGES = {"Home.md", "_Sidebar.md", "_Footer.md", BOARD_NAME}
