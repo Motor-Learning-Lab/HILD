@@ -84,6 +84,9 @@ def test_large_change_is_stale_and_write_marks_it(repo):
     board = (repo / "wiki/Status-board.md").read_text()
     assert "## stale (1)" in board
     assert "[[Code-thing]]" in board
+    # --write must not produce CRLF line endings on Windows.
+    assert b"\r" not in wiki_page.read_bytes()
+    assert b"\r" not in (repo / "wiki/Status-board.md").read_bytes()
 
 
 def test_deleted_file_makes_page_stale(repo):

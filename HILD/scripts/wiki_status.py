@@ -178,7 +178,7 @@ def set_status(path, status):
         match = HEADER_ROW.match(line.rstrip("\n"))
         if match and match["key"].strip().lower() == "status":
             lines[index] = f"| **Status** | {status} |\n"
-            path.write_text("".join(lines), encoding="utf-8")
+            path.write_text("".join(lines), encoding="utf-8", newline="\n")
             return
     raise ValueError(f"{path.name}: no Status row to update")
 
@@ -294,7 +294,7 @@ def main(argv=None):
                 page["status"] = "stale"
         commit = git(repo, "rev-parse", "--short", args.ref).strip()
         board = render_board(pages, args.ref, commit, missing)
-        (wiki / BOARD_NAME).write_text(board, encoding="utf-8")
+        (wiki / BOARD_NAME).write_text(board, encoding="utf-8", newline="\n")
 
     print(render_report(pages, missing))
     return 1 if any(p["problem"] for p in pages) else 0
