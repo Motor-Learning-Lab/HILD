@@ -70,30 +70,6 @@ def selected_agents(value):
     return names
 
 
-def claude_symlink_checkout_problem(target):
-    """Reject Git settings that turn the Claude skills link into a plain file on checkout."""
-    result = subprocess.run(
-        ["git", "-C", str(target), "config", "--bool", "--get", "core.symlinks"],
-        capture_output=True, text=True, check=False,
-    )
-    if result.returncode not in (0, 1):
-        raise InstallationError(result.stderr.strip() or "Cannot inspect Git core.symlinks")
-    setting = result.stdout.strip() if result.returncode == 0 else None
-    # Git's default is safe on POSIX. Windows must positively confirm support:
-    # the initial installer-created symlink can work even though the next
-    # checkout with core.symlinks=false silently writes a plain text file.
-    if setting == "false" or (sys.platform == "win32" and setting != "true"):
-        return (
-            "Claude Code requires Git core.symlinks=true for durable skill "
-            "discovery after a checkout or clone. This target currently has "
-            f"core.symlinks={setting or 'unset'}. With researcher approval and "
-            "working OS symlink support, run "
-            "'git -C <target> config --local core.symlinks true' and then "
-            "repeat the preview/verification. HILD does not change Git configuration."
-        )
-    return None
-
-
 def ensure_new_repo(target):
     if not target.is_dir():
         raise InstallationError(f"Repository does not exist: {target}")
@@ -122,8 +98,25 @@ def ensure_source_checkout(source):
         raise InstallationError("HILD source has uncommitted changes; cannot record a reproducible source commit")
 
 
+SKILL_PATH = re.compile(r"\.agents/skills/[A-Za-z0-9_-]+/SKILL\.md")
+
+
+def skills_index(source):
+    """One line per skill, built from each skill's frontmatter description."""
+    lines = []
+    for skill in sorted((source / ".agents/skills").glob("*/SKILL.md")):
+        text = skill.read_text(encoding="utf-8")
+        match = re.search(r"^description:\s*(.+?)\s*$", text, re.MULTILINE)
+        if not text.startswith("---") or not match:
+            raise InstallationError(f"{skill.relative_to(source).as_posix()} has no frontmatter description")
+        lines.append(f"- `{skill.parent.name}` "
+                     f"([{skill.relative_to(source).as_posix()}]({skill.relative_to(source).as_posix()})): "
+                     f"{match.group(1)}")
+    return lines
+
+
 def build_files(source, target, agents):
-    """Prepare every output as bytes; a None value represents the Claude symlink."""
+    """Prepare every output as bytes."""
     for rel in REQUIRED:
         if not (source / rel).is_file():
             raise InstallationError(f"HILD source is incomplete: missing {rel}")
@@ -140,21 +133,28 @@ def build_files(source, target, agents):
     for rel in sorted(set(shared)):
         plan[rel] = (source / rel).read_bytes()
 
+    index = skills_index(source)
+    if not index:
+        raise InstallationError("HILD source has no skills with a frontmatter description")
     plan["AGENTS.md"] = (
         "# Project agent instructions\n\n"
         "This project uses [HILD](HILD/process.md) to develop scientific software.\n"
         "Read [HILD's plan](HILD/plan.md) and [getting-started guide](HILD/README.md)\n"
         "before proposing substantive work. Project-specific scientific and coding\n"
-        "rules belong here; don't duplicate the HILD process.\n"
+        "rules belong here; don't duplicate the HILD process.\n\n"
+        "## HILD skills\n\n"
+        "HILD's procedures are skills. Read the listed file when its description\n"
+        "fits the request. Agents that discover skills natively may use them directly.\n\n"
+        + "\n".join(index) + "\n"
     ).encode()
 
     if "claude" in agents:
+        # Claude Code loads other files only through @path imports.
         plan["CLAUDE.md"] = (
             "# Claude Code entry point\n\n"
-            "Follow [project instructions](AGENTS.md), which link to the\n"
-            "[authoritative HILD process](HILD/process.md).\n"
+            "Project instructions, which link to the [HILD process](HILD/process.md):\n\n"
+            "@AGENTS.md\n"
         ).encode()
-        plan[".claude/skills"] = None
 
     for agent in agents:
         template, destination = ADAPTERS[agent]
@@ -212,8 +212,7 @@ def build_files(source, target, agents):
             "understanding_map": "wiki/",
         },
         "files": {
-            name: {"sha256": digest(data)} if data is not None
-            else {"symlink": "../.agents/skills"}
+            name: {"sha256": digest(data)}
             for name, data in sorted(plan.items())
         },
     }
@@ -248,10 +247,7 @@ def apply_plan(target, plan):
             for folder in reversed(missing):
                 folder.mkdir()
                 created_dirs.append(folder)
-            if data is None:
-                path.symlink_to(Path("..") / ".agents" / "skills", target_is_directory=True)
-            else:
-                path.write_bytes(data)
+            path.write_bytes(data)
             created_files.append(path)
     except (OSError, ValueError) as error:
         for path in reversed(created_files):
@@ -291,20 +287,9 @@ def verify(target):
         raise InstallationError(f"No {MANIFEST} to verify")
     info = json.loads(metadata_path.read_text(encoding="utf-8"))
     missing, local_edits = [], []
-    if "claude" in info["agents"]:
-        checkout_problem = claude_symlink_checkout_problem(target)
-        if checkout_problem:
-            missing.append(checkout_problem)
     for rel, expected in info["files"].items():
         path = target / rel
-        if "symlink" in expected:
-            # Readlink returns native separators on Windows; the manifest is POSIX.
-            # Also reject dangling links, even if their target text matches.
-            if (not path.is_symlink()
-                    or path.readlink().as_posix() != expected["symlink"]
-                    or not path.is_dir()):
-                missing.append(f"{rel}: missing or incorrect skill-directory link")
-        elif not path.is_file():
+        if not path.is_file():
             missing.append(f"{rel}: missing expected file")
         elif digest(path.read_bytes()) != expected["sha256"]:
             local_edits.append(rel)
@@ -312,6 +297,19 @@ def verify(target):
             missing.extend(local_link_problems(
                 target, rel, path.read_text(encoding="utf-8")
             ))
+
+    if "claude" in info["agents"]:
+        claude = target / "CLAUDE.md"
+        if not claude.is_file() or not re.search(
+                r"^@AGENTS\.md\s*$", claude.read_text(encoding="utf-8"), re.MULTILINE):
+            missing.append("CLAUDE.md: does not import @AGENTS.md, so Claude Code won't load it")
+    agents_md = target / "AGENTS.md"
+    listed = (set(SKILL_PATH.findall(agents_md.read_text(encoding="utf-8")))
+              if agents_md.is_file() else set())
+    if not listed:
+        missing.append("AGENTS.md: no HILD skills index")
+    missing.extend(f"AGENTS.md: indexed skill missing: {rel}"
+                   for rel in sorted(listed) if not (target / rel).is_file())
 
     for item in missing:
         print("FAIL", item)
@@ -355,10 +353,6 @@ def main(argv=None):
         ensure_new_repo(target)
         plan = build_files(source, target, agents)
         check_collisions(target, plan)
-        if "claude" in agents:
-            checkout_problem = claude_symlink_checkout_problem(target)
-            if checkout_problem:
-                raise InstallationError(checkout_problem)
         if not args.apply:
             print("READ-ONLY INSTALLATION PROPOSAL: no files were changed.")
             print("Selected agents:", ", ".join(agents))
