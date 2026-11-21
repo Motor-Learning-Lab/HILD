@@ -271,6 +271,13 @@ A procedure that is clear only to the agent still needs improvement.
 | Orientation | Start of every session (automatic) | Chat |
 | Journal | At milestones | `HILD/journal/` |
 
+**Automatic** orientation means it happens by default when a session opens,
+without the researcher having to ask for it. If the researcher's first message
+asks for something else, the orientation is brief and the request is then
+handled. A session-start hook achieves this where the agent supports one;
+otherwise a standing instruction in the host's agent instructions does. The
+hook is a convenience, not a precondition (see *How the tooling works*).
+
 
 ## Approval
 
@@ -291,7 +298,7 @@ a status link does not constitute human review.
 
 | Track | Appropriate for | Review expected | Acceptance |
 |---|---|---|---|
-| **Trivial** | Typos, straightforward wording changes, pinned dependency bumps, `explore_` notebooks | Brief inspection; no formal explain-back | Researcher accepts and merges |
+| **Trivial** | Typos, straightforward wording changes, pinned dependency bumps | Brief inspection; no formal explain-back | Researcher accepts and merges |
 | **Read** | Documentation, process text, decision records | Read the change and raise questions | Researcher accepts and merges |
 | **Full** | Code and changes whose behavior is not evident from text | Explain back what changed and why; agent checks against actual behavior | Researcher accepts and merges |
 | **Fast** | Code when immediate detailed review is not worthwhile | Confirm purpose, inputs/outputs and affected areas | Researcher accepts and merges, with visible understanding debt |
@@ -299,7 +306,9 @@ a status link does not constitute human review.
 On the full track, compare the researcher's explain-back with the
 implementation. A mismatch means the explanation or change needs work.
 On the fast track, label the PR `understanding-debt`, create a follow-up
-issue and mark related wiki pages `needs-review`. The conservative trivial
+issue and mark related wiki pages `needs-review`. On every track, accepting
+a PR does not by itself mean that any related page is understood (see
+*Understanding map*). The conservative trivial
 category may be recalibrated by the researcher. Review depth, explicit
 execution permission, PR acceptance and merging are separate decisions.
 
@@ -350,6 +359,10 @@ proposed and does not exist.
 `needs-revision` and `needs-review` point in opposite directions: the first says the
 page must change, the second that the reviewer must read it again.
 
+**Changed pages need review again.** When a merged change alters what a page
+describes, or the page itself is materially edited after the reviewer confirmed
+it, the page becomes `needs-review`, even if it was `understood`.
+
 In the reference implementation, a generated *Status board* page lists the pages that exist by status, and the
 `not-written` pages that some page links to.
 
@@ -360,8 +373,10 @@ judgment, update the page status (normally to `needs-review` or
 as authoritative.
 
 **Staleness.** A script compares the commit each code page describes with `main`;
-pages whose code has changed materially become `stale`, and an issue is opened to
-review them, once the corresponding tooling is installed. Code pages record `main` commits (code as it stands); journals and
+pages whose code has changed materially become `stale`. Nothing yet surfaces
+stale pages automatically ([#23](https://github.com/Motor-Learning-Lab/HILD/issues/23)):
+for now the `stale` status is the signal, which agents and the reviewer search
+for and the *Status board* lists. Code pages record `main` commits (code as it stands); journals and
 explanations may link to branch commits.
 
 **When the wiki is committed and pushed.** The wiki has no pull requests; its history is
@@ -487,6 +502,8 @@ The agent cannot tell when a session will end, so the plan and journal are updat
   change.
 - **How:** rewrite in place; the old versions are in `main`'s history (see *Git and
   GitHub*).
+- **Where between milestones:** not yet specified. The process does not yet say
+  on which branch a plan update made during open work is committed.
 - **When to read:** at the start of every session.
 
 ### Journal — `HILD/journal/YYYY-MM-DD.md` (default)
