@@ -49,7 +49,7 @@ git ls-remote https://github.com/Motor-Learning-Lab/HILD.git refs/heads/integrat
 
 A past CI run or pilot tests only the revision it actually used.
 
-The initial [October 2026 Windows pilot](https://github.com/opherdonchin/HILD-onboarding-ipad-2026-10/pull/2) found that `core.symlinks=false` can turn `.claude/skills` into a plain file on checkout, even though the initial install looked successful. PR #11 now refuses unsafe Windows settings before writing. Its [Windows/Ubuntu installation checks](https://github.com/Motor-Learning-Lab/HILD/actions/runs/40746166251) and [mechanical checks](https://github.com/Motor-Learning-Lab/HILD/actions/runs/40746166212) passed. These are regression evidence, **not** a completed retest of the combined candidate.
+The initial [October 2026 Windows pilot](https://github.com/opherdonchin/HILD-onboarding-ipad-2026-10/pull/2) found that `core.symlinks=false` can turn a committed `.claude/skills` link into a plain file on checkout, even though the initial install looked successful. HILD no longer creates that link: Claude Code finds the skills through `AGENTS.md` ([decision 0009](decisions/0009-claude-skills-via-agents-md.md)). Earlier CI runs tested the link and are not evidence for this arrangement.
 
 ## Agree on the test host before touching it
 
@@ -80,7 +80,7 @@ python HILD/scripts/install_hild.py --target /path/to/test-repo --verify
 
 Use the selected integrations instead of `all` if different. Verify that `HILD/installation.json` records the pinned `source_commit`. `--verify` checks files and links, **not** whether an agent uses the skills correctly. Distinguish skills that were installed, discovered, executed and actually used.
 
-For native **Windows + Claude Code**, inspect `git config --get core.symlinks` in the target before applying. The candidate should refuse `false` or unset configuration and explain why. If the researcher separately authorizes a local Git change, enable symlinks and verify Windows can create directory symlinks. Confirm `.claude/skills` has Git mode `120000` and is a working directory link **after a fresh checkout with symlinks enabled**; its existence immediately after installation is insufficient. Do not silently fix an unsafe configuration.
+For **Claude Code**, confirm after a fresh checkout or clone that `CLAUDE.md` contains the `@AGENTS.md` import, that `AGENTS.md` lists every skill with an existing path, and that no `.claude/skills` link exists; `--verify` checks the import and the listed paths. No Git symlink setting is involved.
 
 If the installer fails during file creation, report what it rolled back. If later verification fails, newly created files may remain; report that state and **do not blindly rerun `--apply`**. Confirm session orientation reads local status without fetching or pulling the wiki. Read the plan and journal themselves to see whether important milestones were actually recorded.
 
