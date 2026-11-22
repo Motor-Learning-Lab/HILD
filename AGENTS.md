@@ -6,7 +6,7 @@ This repository develops HILD, a reusable **human-supervised development process
 
 This root `AGENTS.md` governs work **on HILD itself**. It is not a file that `hild-integrate` copies into host repositories: an existing project's agent instructions remain authoritative, with a proposed pointer to its locally installed HILD process.
 
-**Read [the HILD process](HILD/process.md) first.** It defines scope agreements, approval tracks, explanation format, durable state, decision records, autonomy, git workflow and the understanding map. Do not copy or reinterpret those rules here.
+**Read [the HILD process](HILD/process.md) first.** It says how we work, and its map says when to read each topic file in [`HILD/process/`](HILD/process/): scope issues, review, Git, the plan and journal, decision records, the understanding map, installation and writing skills. Do not copy or reinterpret those rules here.
 
 The original working process is in [MotorAdpatationSBI](https://github.com/opherdonchin/MotorAdpatationSBI/blob/main/docs/process.md); relevant history is [issue #5](https://github.com/opherdonchin/MotorAdpatationSBI/issues/5), [PR #6](https://github.com/opherdonchin/MotorAdpatationSBI/pull/6), [PR #7](https://github.com/opherdonchin/MotorAdpatationSBI/pull/7). Preserve its actual decisions and documented subsequent changes. Do not turn HILD into a generic checklist.
 

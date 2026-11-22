@@ -12,6 +12,7 @@ INSTALLER = Path(__file__).parents[1] / "HILD/scripts/install_hild.py"
 REQUIRED = (
     "HILD/README.md",
     "HILD/process.md",
+    "HILD/process/scope.md",
     "HILD/agent-setup.md",
     "HILD/scripts/session_context.sh",
     "HILD/scripts/wiki_status.py",
@@ -134,8 +135,12 @@ def test_claude_md_imports_agents_md_and_index_lists_every_skill(repositories):
     git(source, "add", "-A")
     git(source, "commit", "-qm", "Second skill")
     assert install(source, target, "--agents", "claude", "--apply").returncode == 0
-    assert "@AGENTS.md" in (target / "CLAUDE.md").read_text().splitlines()
+    claude_lines = (target / "CLAUDE.md").read_text().splitlines()
+    assert "@AGENTS.md" in claude_lines
+    assert "@HILD/process.md" in claude_lines
     agents_md = (target / "AGENTS.md").read_text()
+    assert "At the start of every session, read [the HILD process](HILD/process.md)" in agents_md
+    assert (target / "HILD/process/scope.md").is_file()
     assert "Claude Code finds the skills only through this index" in agents_md
     for name, description in (("hild-scope", "Agree a scope. Use before work."),
                               ("hild-orient", "Orient. Use at start.")):
@@ -153,6 +158,11 @@ def test_verify_catches_missing_import_or_missing_indexed_skill(repositories):
     assert "does not import @AGENTS.md" in result.stdout
 
     (target / "CLAUDE.md").write_text("@AGENTS.md\n")
+    result = install(source, target, "--verify")
+    assert result.returncode == 1
+    assert "does not import @HILD/process.md" in result.stdout
+
+    (target / "CLAUDE.md").write_text("@AGENTS.md\n@HILD/process.md\n")
     assert install(source, target, "--verify").returncode == 0
     (target / ".agents/skills/hild-scope/SKILL.md").unlink()
     result = install(source, target, "--verify")

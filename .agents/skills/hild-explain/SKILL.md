@@ -5,7 +5,7 @@ description: Prepare a human-understandable pull-request explanation with code p
 
 # Explain
 
-Rules: [HILD process](../../../HILD/process.md), *Presentations* and *Approval*.
+Rules: [HILD process](../../../HILD/process.md), §3 and §4, and [the review topic](../../../HILD/process/review.md).
 Format: [PR explanation template](../../../HILD/templates/pr-explanation.md).
 **Purpose:** enable the researcher to understand a proposed change, evaluate
 the evidence and choose an appropriate review before accepting it. A
@@ -27,7 +27,7 @@ do not assume a stacked PR targets `main`). Explain what **currently exists**, n
 ## Check and publish
 
 - Render math in GitHub markdown or report that rendering was not checked. Verify links and line references.
-- Link the scope issue with `Closes` or `Part of` as [process, *Git and GitHub*](../../../HILD/process.md#git-and-github--reference-implementation-details) says.
+- Link the scope issue with `Closes` or `Part of` as [the Git topic](../../../HILD/process/git.md) says.
 - Update the PR description to describe the whole change as it stands. Mark ready for review when the explanation is accurate.
 
 ## Acceptance and review depth

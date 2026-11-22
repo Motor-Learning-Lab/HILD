@@ -1,6 +1,6 @@
 # 0012 — The process is a spine read every session, with topic files read on demand
 
-> **Proposed modification (not yet operative): [decision 0013](0013-narrow-spine-by-unprompted-need.md)** would replace this record's rule for what goes in the spine ("when unclear, it stays") with the test of whether an agent could go wrong without being prompted to look. It would set new spine contents and topic files (*Decision* 1, 2 and 4 here) and replace the two-step move and rewrite (*Decision* 7) with one PR. The spine-and-topics structure, loading the spine in every session, and "no rule changes meaning" would still apply.
+> **Modified by [decision 0013](0013-narrow-spine-by-unprompted-need.md)** (accepted in [PR #39](https://github.com/Motor-Learning-Lab/HILD/pull/39)): this record's rule for what goes in the spine ("when unclear, it stays") is replaced by the test of whether an agent could go wrong without being prompted to look. 0013 sets the spine's contents and the topic files (replacing *Decision* 1, 2 and 4 here) and replaces the two-step move and rewrite (*Decision* 7) with one PR. The spine-and-topics structure, loading the spine in every session, and "no rule changes meaning" still apply.
 
 **Date:** 2026-11-22 · **Status:** Accepted (human-reviewed and squash-merged in [PR #36](https://github.com/Motor-Learning-Lab/HILD/pull/36) on 2026-11-22; status updated in the PR proposing decision 0013)
 

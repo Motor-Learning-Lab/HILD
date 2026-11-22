@@ -1,15 +1,15 @@
 # 0010 — One skill-writing checklist in the process; no skill-authoring skill
 
-> **Proposed modification (not yet operative): [decision 0012](0012-process-spine-and-topic-files.md)** would move the *Writing skills* checklist from a section of `process.md` to the topic file `HILD/process/writing-skills.md`. Everything else in this record would still apply.
+> **Partially modified by [decision 0012](0012-process-spine-and-topic-files.md)** (accepted in [PR #36](https://github.com/Motor-Learning-Lab/HILD/pull/36); carried out under [decision 0013](0013-narrow-spine-by-unprompted-need.md)): the *Writing skills* checklist now lives in the topic file [`HILD/process/writing-skills.md`](../process/writing-skills.md), not in a section of `process.md`. Everything else in this record still applies.
 
 **Date:** 2026-11-22 · **Status:** Accepted on the researcher's merge of [PR #31](https://github.com/Motor-Learning-Lab/HILD/pull/31)
 
-**Relationship to earlier decisions:** None. It makes concrete the existing rule that skills hold procedure and point to rules ([process, *Where each thing lives*](../process.md#where-each-thing-lives-and-how-to-change-it)).
+**Relationship to earlier decisions:** None. It makes concrete the existing rule that skills hold procedure and point to rules ([process, *Where each thing lives*](../process.md#8-the-map)).
 
 **Context:** [Scope #18](https://github.com/Motor-Learning-Lab/HILD/issues/18) step 1 compared HILD's 11 skill files with published skill-authoring guidance ([research](https://github.com/Motor-Learning-Lab/HILD/wiki/Resource-skill-authoring-guidance), [audit](https://github.com/Motor-Learning-Lab/HILD/issues/18#issuecomment-7066427222)). The skills met every formal limit, but they restated about 67 rules from `process.md`. Three rules existed only in a skill or a template comment, and descriptions overlapped. The external sources also disagree on description voice: Anthropic asks for the third person, while agentskills.io prefers imperative "Use this skill when…".
 
 **Decision:**
-- **One checklist**, the section [*Writing skills*](../process.md#writing-skills) in `process.md`. Authors use it when writing or changing a skill, and `hild-digest` checks skills against it.
+- **One checklist**, the section [*Writing skills*](../process/writing-skills.md) in `process.md`. Authors use it when writing or changing a skill, and `hild-digest` checks skills against it.
 - **No skill-authoring skill.**
 - **Descriptions are in the third person and include a "Use when…" clause.**
 - **Rules a skill needs get a home outside the skill:** in `process.md`, or in a template if the rule is a format. The skill links to that home. The three skill-only rules moved accordingly:

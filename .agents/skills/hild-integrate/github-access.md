@@ -165,7 +165,7 @@ Keep any explanation concrete and brief. Recommend **one next action**,
 with alternatives when their tradeoffs matter.
 
 - Handle credentials and consequential actions as
-  [process, *Autonomy*](../../../HILD/process.md#autonomy) says.
+  [process, §3](../../../HILD/process.md#3-the-researchers-authority) says.
 - After recovery, verify the **specific blocked capability**, and say
   what is still unverified. Resume at the original HILD review gate:
   repairing GitHub access never grants approval to create or implement

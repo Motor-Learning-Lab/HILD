@@ -2,7 +2,7 @@
 
 A wiki page declares itself with a small table at the top (Kind, Status, and for code
 pages Covers and As of). The format is defined by the page templates in
-``HILD/templates/``; the statuses and their meaning by ``HILD/process.md``.
+``HILD/templates/``; the statuses and their meaning by ``HILD/process/understanding-map.md``.
 
 For every page of kind ``code``, this script counts the lines changed in the covered
 files between the page's ``As of`` commit and a reference (``origin/main`` by default,
@@ -29,7 +29,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-# Defined in HILD/process.md (Understanding map); listed here in board order.
+# Defined in HILD/process/understanding-map.md; listed here in board order.
 STATUSES = ["stale", "needs-revision", "needs-review", "stub", "draft", "understood"]
 HEADER_ROW = re.compile(r"^\|\s*\*\*(?P<key>[^*|]+)\*\*\s*\|\s*(?P<value>.*?)\s*\|\s*$")
 # A wiki link, [[Page-name]] or [[shown text|Page-name]]; the group is the page name.

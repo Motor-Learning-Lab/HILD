@@ -29,7 +29,7 @@ never constitutes acceptance of unreviewed choices or a PR.
 <!-- Installation or upgrade scopes also state: the target repository and the
 upstream HILD revision; which existing authority is preserved; the intended
 changes, conflicts and deferrals; whether the repository's merge settings will
-be changed to HILD's (process, Git and GitHub); and which checks show success,
+be changed to HILD's (HILD/process/git.md); and which checks show success,
 separating what has been observed from what remains to be tested. -->
 
 ## Done when
