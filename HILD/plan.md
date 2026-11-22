@@ -23,15 +23,16 @@ The living plan records goals, current state and next steps. History is in Git a
   - The researcher accepted the candidate as working and waived the final recovery session. See the [results and evidence](https://github.com/Motor-Learning-Lab/HILD/issues/12#issuecomment-7071278845).
   - Codex and Copilot remain **untested**. So does a full explain-back, which the researcher waived.
 - **Scope [#18](https://github.com/Motor-Learning-Lab/HILD/issues/18) (tighten the skills):** PR A ([#31](https://github.com/Motor-Learning-Lab/HILD/pull/31)) and PR B, the `hild-scope` rewrite ([#32](https://github.com/Motor-Learning-Lab/HILD/pull/32), merged as [`5b599eb`](https://github.com/Motor-Learning-Lab/HILD/commit/5b599eb00df03451fcb01c9f160b051666e72a8d)), are on `main`. Decisions 0005, 0010 and 0011 are `Accepted`; 0003 carries a successor notice. The merge-settings step and the index wording are **not yet tested live**. The remaining rewrites wait for #33.
-- **Scope [#33](https://github.com/Motor-Learning-Lab/HILD/issues/33) (process spine), approved.** Decision 0012 is accepted ([PR #36](https://github.com/Motor-Learning-Lab/HILD/pull/36)). The verbatim move is [PR #37](https://github.com/Motor-Learning-Lab/HILD/pull/37), awaiting review: a 447-line spine, six topic files, and hosts importing the spine. The rewrite follows.
+- **Scope [#33](https://github.com/Motor-Learning-Lab/HILD/issues/33) (process spine), approved.** Decision 0012 is accepted ([PR #36](https://github.com/Motor-Learning-Lab/HILD/pull/36)). Its first split ([PR #37](https://github.com/Motor-Learning-Lab/HILD/pull/37), closed) left a spine the researcher judged too broad. [PR #39](https://github.com/Motor-Learning-Lab/HILD/pull/39) proposes decision 0013: a spine of about 185 lines holding what an agent needs unprompted, with eight topic files. One PR then carries it out.
 - **Scope [#20](https://github.com/Motor-Learning-Lab/HILD/issues/20) (understanding map):** the concept pages and guide are written; code and skill pages are next.
 - **Not yet approved:** proposals [#15](https://github.com/Motor-Learning-Lab/HILD/issues/15) and [#17](https://github.com/Motor-Learning-Lab/HILD/issues/17), and proposed scope [#16](https://github.com/Motor-Learning-Lab/HILD/issues/16) on branch agreements. Decision [0004](decisions/0004-selectable-agent-integrations.md) still says `Proposed`.
 
 ## Next steps
 
-1. **The researcher reviews [PR #37](https://github.com/Motor-Learning-Lab/HILD/pull/37)** (the move, full track). Then under #33: the rewrite, including the researcher reading the spine as a whole; then the scope #18 rewrites against the split: `hild-integrate`, `hild-explain`, then the four short skills.
+1. **The researcher reviews [PR #39](https://github.com/Motor-Learning-Lab/HILD/pull/39)** (decision 0013, read track). Then under #33: one PR carrying out 0013, including the installer change, with the researcher reading the spine as a whole; then the scope #18 rewrites against the split: `hild-integrate`, `hild-explain`, then the four short skills.
 2. **Scope [#20](https://github.com/Motor-Learning-Lab/HILD/issues/20)'s code pages** now, in parallel; skill pages after each skill's rewrite merges.
-3. **Later:** review the stale `Proposed` status of decision 0004, and settle CI for integration branches under scope #16.
+3. **Issue [#38](https://github.com/Motor-Learning-Lab/HILD/issues/38)** (install guidance inactive until restart; `hild-explain` trigger misses draft PRs): not yet scoped.
+4. **Later:** review the stale `Proposed` status of decision 0004, and settle CI for integration branches under scope #16.
 
 ## Deliberately deferred
 
