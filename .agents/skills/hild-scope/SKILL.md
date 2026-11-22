@@ -13,7 +13,7 @@ If the host keeps its plan, decisions or process somewhere other than
 
 **Read the [onboarding companion](onboarding-scope.md) when** the
 researcher is new to HILD, asks for guidance getting started, or wants an
-onboarding scope ([decision 0003](../../../HILD/decisions/0003-onboarding-scope-and-validation.md)).
+onboarding scope ([decision 0003](https://github.com/Motor-Learning-Lab/HILD/blob/main/HILD/decisions/0003-onboarding-scope-and-validation.md)).
 Do not read it for ordinary scoping.
 
 **Read the [GitHub-access companion](../hild-integrate/github-access.md) when**
