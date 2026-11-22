@@ -199,7 +199,8 @@ For a researcher **new to HILD or requesting guidance**, the
 [onboarding companion](../.agents/skills/hild-scope/onboarding-scope.md)
 is the single procedural home for introductory explanations and the
 guided first-scope conversation. Both `hild-integrate` and `hild-scope`
-point there rather than restating those instructions.
+point there rather than restating those instructions
+([decision 0003](decisions/0003-onboarding-scope-and-validation.md)).
 
 ## Presentations
 
