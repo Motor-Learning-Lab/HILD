@@ -1,6 +1,6 @@
 # 0008 — Independent work, provisionality and human acceptance
 
-**Date:** 2026-10-19 · **Status:** Proposed in [PR #13](https://github.com/Motor-Learning-Lab/HILD/pull/13); effective only upon human acceptance/merge.
+**Date:** 2026-10-19 · **Status:** Accepted ([researcher's approval on PR #13](https://github.com/Motor-Learning-Lab/HILD/pull/13#issuecomment-6422857797), 2026-10-26; in effect on `main` from the scope #12 finalization pull request under [scope #12](https://github.com/Motor-Learning-Lab/HILD/issues/12)).
 
 **Relationship:** **Modifies** the general advance-implementation restriction of [decision 0006 — Review the actual scope issue before implementation](0006-scope-issue-approval-gate.md) *only* for expressly authorized independent work. Does not replace its ordinary scope-review procedure or remove human merge authority. Also clarifies review-track conventions in [the HILD process](../process.md).
 
@@ -75,7 +75,7 @@ that have not elected independent operation.
 
 The independent-work exception calls for targeted changes to the process,
 scope, explanation, orientation and journal guidance, plus an explicit
-**proposed successor notice at the beginning of decision 0006**. The
+**successor notice at the beginning of decision 0006**. The
 historical decision text is not rewritten. Once this decision is accepted,
 the successor notice must be marked effective, and the operative process
 and companion documents must agree.

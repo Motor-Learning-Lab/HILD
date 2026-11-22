@@ -1,6 +1,6 @@
 # 0009 — Claude Code finds HILD's skills through AGENTS.md, not a symlink
 
-**Date:** 2026-11-21 · **Status:** Proposed (accepted only if the researcher approves the pull request that adds it)
+**Date:** 2026-11-21 · **Status:** Accepted (the researcher approved and merged [PR #26](https://github.com/Motor-Learning-Lab/HILD/pull/26) into `integration/scope-12` on 2026-11-21; in effect on `main` from the scope #12 finalization pull request)
 
 **Relationship to earlier decisions:** Modifies [Decision 0004](0004-selectable-agent-integrations.md): one provision only, how Claude Code is pointed at the shared skills. One shared set of skills in `.agents/skills/`, selectable agents and the recorded installation metadata stay as 0004 says.
 

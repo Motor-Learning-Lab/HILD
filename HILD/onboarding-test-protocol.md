@@ -1,6 +1,6 @@
 # Live onboarding test for the combined HILD candidate
 
-> **Test plan, not a test result.** This document describes the supervised onboarding experiment proposed under [scope #12](https://github.com/Motor-Learning-Lab/HILD/issues/12). The corrected candidate has **not** passed this experiment. The earlier [Windows/Claude pilot](https://github.com/Motor-Learning-Lab/HILD/issues/12#issuecomment-7070037492) was informative but exposed a broken checkout; see [PR #11](https://github.com/Motor-Learning-Lab/HILD/pull/11). This protocol records a particular validation exercise, not permanent instructions for installing future HILD releases.
+> **Test plan, not a test result.** This document describes the supervised onboarding experiment under [scope #12](https://github.com/Motor-Learning-Lab/HILD/issues/12). **Result:** the test ran on 2026-11-22 against candidate `768bae1`. The researcher accepted the candidate as working and waived the final recovery session; the [stage-by-stage results](https://github.com/Motor-Learning-Lab/HILD/issues/12#issuecomment-7071278845) and evidence are on scope #12. The earlier [Windows/Claude pilot](https://github.com/Motor-Learning-Lab/HILD/issues/12#issuecomment-7070037492) was informative but exposed a broken checkout; see [PR #11](https://github.com/Motor-Learning-Lab/HILD/pull/11). This protocol records a particular validation exercise, not permanent instructions for installing future HILD releases.
 
 ## What we want to find out
 

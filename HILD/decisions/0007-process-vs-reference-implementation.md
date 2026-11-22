@@ -1,12 +1,12 @@
 # 0007 — Distinguish HILD process requirements from reference mechanisms
 
-**Date:** 2026-10-18 · **Status:** Proposed; awaiting human review under [scope #12](https://github.com/Motor-Learning-Lab/HILD/issues/12).
+**Date:** 2026-10-18 · **Status:** Accepted ([researcher's approval on PR #13](https://github.com/Motor-Learning-Lab/HILD/pull/13#issuecomment-6422857797), 2026-10-26; in effect on `main` from the scope #12 finalization pull request under [scope #12](https://github.com/Motor-Learning-Lab/HILD/issues/12)).
 
 ## Context
 
 The early HILD implementation grew around GitHub issues, draft pull requests, a separate wiki, Git-based state and agent-discovered skills. These tools serve HILD well, but describing them as **HILD itself** can cause agents to treat an unavailable mechanism as a failed process—or improvise by dropping an essential human safeguard. The Windows/VS Code pilot showed why agents and researchers need to collaborate on platform-dependent solutions.
 
-## Proposed decision
+## Decision
 
 **HILD is a human-supervised development process.** Its essential requirements concern:
 
@@ -41,7 +41,7 @@ The [authoritative process](../process.md) defines this distinction and a
 forward-linked decision-supersession convention: a later decision may modify,
 overrule or replace an earlier one, explaining what remains effective, while
 the older record retains its historical reasoning with a visible notice at
-the beginning. [Proposed decision 0008](0008-independent-work-and-human-acceptance.md)
+the beginning. [Decision 0008](0008-independent-work-and-human-acceptance.md)
 would qualify [decision 0006](0006-scope-issue-approval-gate.md) regarding
 explicitly authorized independent work, without treating delegation as
 human acceptance.

@@ -1,6 +1,6 @@
 # 0004 — One HILD core with selectable agent integrations
 
-> **Proposed modification (not yet operative):** [Decision 0009](0009-claude-skills-via-agents-md.md) proposes to change one provision below. Where this record says platform-specific files "refer to the shared skill directory", Claude Code would instead find the shared skills through a skills index in `AGENTS.md` that `CLAUDE.md` imports, with no `.claude/skills` link. Everything else here, including one shared set of skills and the researcher's selection of agents, is unchanged. Decision 0009 takes effect only if the researcher accepts it by approving its pull request.
+> **Modified by [decision 0009](0009-claude-skills-via-agents-md.md):** one provision below has changed. Where this record says platform-specific files "refer to the shared skill directory", Claude Code instead finds the shared skills through a skills index in `AGENTS.md` that `CLAUDE.md` imports, with no `.claude/skills` link. Everything else here, including one shared set of skills and the researcher's selection of agents, is unchanged.
 
 **Date:** 2026-10-16 · **Status:** Proposed (substance approved in [scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4); awaiting review of [PR #7](https://github.com/Motor-Learning-Lab/HILD/pull/7))
 
