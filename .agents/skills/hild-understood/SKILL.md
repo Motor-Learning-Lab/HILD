@@ -5,7 +5,7 @@ description: Draft and maintain the reviewer's understanding-map pages, includin
 
 # Understood
 
-Rules: [HILD process](../../../HILD/process.md), *Understanding map*.
+Rules: [HILD process](../../../HILD/process.md), *Understanding map*, and [the understanding-map topic](../../../HILD/process/understanding-map.md).
 Templates: [wiki code page](../../../HILD/templates/wiki-code-page.md) and
 [general wiki page](../../../HILD/templates/wiki-page.md).
 

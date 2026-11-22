@@ -76,7 +76,6 @@ specific problems and demonstrated workarounds upstream for later review.
   installation-time mandates. Every procedure must resolve the host's recorded
   authoritative paths before acting. Choice of configuration format is deferred.
 
-
 ## The life of a piece of work — GitHub reference workflow
 
 **Process:** An ordinary piece of work proceeds from a bounded agreement,
@@ -147,22 +146,7 @@ agent recorded them.
 and out of scope, which standing stopping points are lifted, and how we will know the
 work is done.
 
-**Ordinary GitHub scoping uses two distinct agreements.** First, the researcher agrees to
-**record a proposed scope issue**. The agent creates it (if access allows),
-shares its GitHub link, briefly explains what it authorizes and excludes,
-and **stops**. The researcher then examines the **actual issue** and explicitly
-approves it or requests changes. A conversational agreement to a summary,
-including a brief "OK" to proceed with scoping, is not approval of an unseen
-issue. If an issue cannot be created, present a draft and resolve the blocker;
-do not begin implementation on the strength of that draft.
-
-**Record scope approval in the issue before work starts.** The researcher may
-comment there directly, or the agent may faithfully record approval given in
-chat, clearly attributed to the researcher rather than written as the agent's
-own approval. In either case the record identifies the agreed issue. A later
-material amendment requires renewed review and approval of the revised scope.
-Creating an issue, reviewing an installer preview, and approving a PR are
-**different** decisions; none substitutes for scope approval.
+The mechanics of proposing a scope issue, recording its approval and amending it are in [the scope topic](process/scope.md).
 
 Work inside an approved scope is authorized for execution, not thereby
 accepted as a result. In ordinary supervised work, the agent stops and asks
@@ -213,28 +197,8 @@ Explain unfamiliar terms when first used, give concrete examples when a procedur
 abstract, and distinguish working capabilities from proposals and untested behavior.
 A procedure that is clear only to the agent still needs improvement.
 
-1. **Purpose first.** Which goal this serves and why now. If it cannot be connected to a
-   goal, say so: that is a warning sign.
-2. **What you should understand.** Two or three things the reviewer should be able to
-   explain by the end.
-3. **Explain in layers,** using the [PR explanation template](templates/pr-explanation.md).
-   Start with a plain-language summary, then discuss the important parts, evidence
-   and consequences. Include mathematical background when relevant, and describe
-   surprises when there were any. **Omit sections that have nothing to say.**
-   The template is a default: the researcher may agree to adjust the format for
-   the project's work without losing the purpose of each review.
-4. **Interconnected explanations and evidence.** Link important claims,
-   decisions, results, code and explanations to the material they rely on,
-   so a future researcher or agent can follow and evaluate the reasoning.
-   **GitHub implementation:** Every claim about code links to the exact
-   lines with a GitHub permalink (`https://github.com/<owner>/<repo>/blob/<commit>/<path>#L10-L20`). Every
-   other reference, to an issue, pull request, commit, file, decision record, wiki page
-   or notebook cell, is a link too, in anything posted on GitHub and in every file in the
-   repo. Do not rely on GitHub to make the link: a bare `#12` or commit hash links only
-   in issue and PR text and never inside backticks, and nothing links by itself in a
-   repository file or the wiki.
-5. **Load-bearing vs boilerplate.** The walkthrough labels code as *load-bearing — read
-   this* or *boilerplate — skim*.
+Rules 1–5 and 8–10 are in [the review topic](process/review.md).
+
 6. **One sitting, one method.** As our current *process* limit, if a change
    cannot be explained in about fifteen minutes, it is too big and gets split.
    The researcher may explicitly adjust this limit as the process evolves. A change introduces one method at a time. A
@@ -243,27 +207,6 @@ A procedure that is clear only to the agent still needs improvement.
    such as a published result or existing code, before anything is built on it.
 7. **"I don't get it" is always a good answer.** It means the explanation or the code
    needs work, never that the reviewer failed.
-8. **Math that survives GitHub's markdown.** Display math goes in fenced ` ```math `
-   blocks, whose content markdown leaves alone. In `$...$` and `$$...$$`, markdown eats
-   a backslash before punctuation (`\,` `\;` `\!` `\{` become `,` `;` `!` `{`) and
-   mangles `<`; avoid them there (write `y_{1:t-1}`, not `y_{<t}`, and `\lbrace`,
-   `\rbrace` for braces). Check that with `gh api markdown` when in doubt. GitHub also
-   refuses some macros, `\operatorname` among them (write `\mathrm{...}`); that error
-   appears only in the browser, so `gh api markdown` cannot show it.
-9. **An explanation always describes the change as it now stands.** After review, the
-   explanation is rewritten in place, not patched: a reader should never have to combine
-   an old description with a list of amendments. What changed in response to review is
-   recorded at the very end, in a dated *Changes after review* section; each later round
-   appends another.
-
-10. **Wiki pages are part of an explanation.** Every explanation has a *Wiki pages*
-    section with two lists. *Relevant pages:* each existing wiki page the change relies on
-    or affects, with how it is relevant and its status, so the reviewer can see which
-    background they have confirmed and which they have not. *Proposed pages:* each page
-    the change calls for, new or to be updated, with what it would cover. A concept page
-    the reviewer needs in order to follow the change is written before review (rule 6)
-    and listed as relevant. The other proposed pages are written once the reviewer
-    agrees to them; code pages after the merge, because they record a `main` commit.
 
 | Presentation | When | Where |
 |---|---|---|
@@ -279,7 +222,6 @@ handled. A session-start hook achieves this where the agent supports one;
 otherwise a standing instruction in the host's agent instructions does. The
 hook is a convenience, not a precondition (see *How the tooling works*).
 
-
 ## Approval
 
 **Process:** Producing work is not accepting it. The researcher decides
@@ -289,29 +231,7 @@ acceptance. Independent work beyond approved authority is provisional until
 the researcher reviews the deferred choices and the consequences built on
 them. Acceptance of a downstream result cannot silently erase that debt.
 
-**GitHub implementation:** The agent provides the actual PR link and current
-explanation and requests review. The researcher chooses a track; the PR
-description proposes one. PR comments can document the track and discussion,
-and the agent may faithfully attribute an approval received in chat, but a
-specific comment phrase is **not** mandatory for PR acceptance. The researcher
-alone approves the final merge and performs it. A draft PR or merely sending
-a status link does not constitute human review.
-
-| Track | Appropriate for | Review expected | Acceptance |
-|---|---|---|---|
-| **Trivial** | Typos, straightforward wording changes, pinned dependency bumps | Brief inspection; no formal explain-back | Researcher accepts and merges |
-| **Read** | Documentation, process text, decision records | Read the change and raise questions | Researcher accepts and merges |
-| **Full** | Code and changes whose behavior is not evident from text | Explain back what changed and why; agent checks against actual behavior | Researcher accepts and merges |
-| **Fast** | Code when immediate detailed review is not worthwhile | Confirm purpose, inputs/outputs and affected areas | Researcher accepts and merges, with visible understanding debt |
-
-On the full track, compare the researcher's explain-back with the
-implementation. A mismatch means the explanation or change needs work.
-On the fast track, label the PR `understanding-debt`, create a follow-up
-issue and mark related wiki pages `needs-review`. On every track, accepting
-a PR does not by itself mean that any related page is understood (see
-*Understanding map*). The conservative trivial
-category may be recalibrated by the researcher. Review depth, explicit
-execution permission, PR acceptance and merging are separate decisions.
+How review is requested, and the review tracks, are in [the review topic](process/review.md).
 
 ## Understanding map
 
@@ -328,61 +248,7 @@ the reviewer's terms, to make the repo easier to approach; the repo is the sourc
 the two drift apart, that is a signal to slow down and check that the reviewer is still
 on top of the work, and that it is making real progress rather than only producing code.
 
-**Page kinds.** A page's name starts with its kind (`Code-environment`,
-`Concept-kalman-filter`), and `Home` and the sidebar group pages by kind.
-
-| Kind | What it holds |
-|---|---|
-| `code` | One load-bearing module or finalized notebook: *What it does*, *How and why*, *How it fits the larger project*, *Invariants and pitfalls* (what must stay true if the code changes, and the mistakes that are easy to make). Records the files it covers and the `main` commit it describes. |
-| `concept` | An idea the code relies on, linking code pages to the math. |
-| `process` | How we work and how the tooling works: explanation of the process, as opposed to the project's content. |
-| `guide` | A reading path: which pages to read, in what order, to understand an area. |
-| `resource` | A background source: what it is, a link, and why it matters here. |
-
-New kinds are added here when a real page needs one. The [code-page template](templates/wiki-code-page.md) and [general-page template](templates/wiki-page.md) are available in this repository; creating and validating a **fresh** wiki is still planned work under [scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4).
-
-**Statuses.**
-
-| Status | Set by | Meaning |
-|---|---|---|
-| `not-written` | nobody | No page exists yet. Another page links to it, or a pull request proposes it. |
-| `stub` | agent | A page that exists only as a placeholder, still to be written. |
-| `draft` | agent | Written by the agent; the reviewer has not confirmed it. |
-| `understood` | reviewer only | The reviewer currently confirms it; this may be withdrawn later. |
-| `needs-revision` | either | The reviewer has read it and it did not do its job, or the agent knows it falls short. The agent owes a rewrite. |
-| `needs-review` | either | Merged on the fast track, or the reviewer is no longer sure. |
-| `stale` | script | The code changed materially since the commit the page describes. |
-
-`not-written` is the one status that is not recorded on a page, since there is no page:
-it is what an explanation's *Wiki pages* section says of a page that is linked or
-proposed and does not exist.
-
-`needs-revision` and `needs-review` point in opposite directions: the first says the
-page must change, the second that the reviewer must read it again.
-
-**Changed pages need review again.** When a merged change alters what a page
-describes, or the page itself is materially edited after the reviewer confirmed
-it, the page becomes `needs-review`, even if it was `understood`.
-
-In the reference implementation, a generated *Status board* page lists the pages that exist by status, and the
-`not-written` pages that some page links to.
-
-**Who writes.** The agent drafts pages; the reviewer edits them, in the browser or
-through the agent. When the researcher retracts an earlier `understood`
-judgment, update the page status (normally to `needs-review` or
-`needs-revision`, as appropriate) rather than treating the prior status
-as authoritative.
-
-**Staleness.** A script compares the commit each code page describes with `main`;
-pages whose code has changed materially become `stale`. Nothing yet surfaces
-stale pages automatically ([#23](https://github.com/Motor-Learning-Lab/HILD/issues/23)):
-for now the `stale` status is the signal, which agents and the reviewer search
-for and the *Status board* lists. Code pages record `main` commits (code as it stands); journals and
-explanations may link to branch commits.
-
-**When the wiki is committed and pushed.** The wiki has no pull requests; its history is
-its record. When a git-backed understanding map is configured, the agent pulls it before touching it (to pick up the reviewer's browser edits) and commits and pushes it straight after every change it makes. Nothing is left
-uncommitted in the local clone. When orientation tooling is installed, session-start data reports anything unpushed.
+Page kinds, statuses, who writes pages, staleness, and when the wiki is committed are in [the understanding-map topic](process/understanding-map.md).
 
 ## Where each thing lives, and how to change it
 
@@ -397,7 +263,7 @@ impose on established host repositories.
 | What | Default authoritative home |
 |---|---|
 | Why the project exists; layout; coding, notebook and hygiene rules | host `AGENTS.md` |
-| How reviewer and agent work together | `HILD/process.md` (this file) |
+| How reviewer and agent work together | `HILD/process.md` (this file) and its topic files in `HILD/process/` |
 | Step-by-step agent procedures | agent-discoverable `hild-*` skills (placement to be verified) |
 | Formats for scope issues, PRs, journal, decisions, understanding pages | `HILD/templates/` |
 | Machinery, including scripts | `HILD/scripts/` (when ported) |
@@ -419,6 +285,22 @@ To change something:
 4. Rule and decision changes arrive through a reviewed PR on the **read** track.
    Audits must look for rules that have crept into secondary locations.
 
+## Topic files
+
+Rules that only align one kind of action live in topic files under
+[`HILD/process/`](process/), so a session reads them when a task calls for
+them ([decision 0012](https://github.com/Motor-Learning-Lab/HILD/blob/main/HILD/decisions/0012-process-spine-and-topic-files.md)).
+Read the topic file **before** the action it names:
+
+| Topic file | Read before |
+|---|---|
+| [`scope.md`](process/scope.md) | creating a scope issue, recording its approval, or amending it |
+| [`review.md`](process/review.md) | writing a proposal or PR explanation, or asking for review |
+| [`understanding-map.md`](process/understanding-map.md) | creating or changing an understanding-map page or its status |
+| [`decision-records.md`](process/decision-records.md) | creating, changing or superseding a decision record |
+| [`git.md`](process/git.md) | opening or finishing a PR, preparing one for merge, or changing merge settings |
+| [`writing-skills.md`](process/writing-skills.md) | writing or changing a skill |
+
 ## How the tooling works
 
 The process above defines **what** the human and agent must do. Tooling makes
@@ -435,78 +317,13 @@ There are three different kinds of supporting tool:
   Claude Code session-start hook runs a script automatically. An agent without
   that hook can still perform the same work by following the skill manually.
 
-**Concrete example — starting a session.** In the original project, Claude
-Code starts a session and runs `session_context.sh`. That script collects
-the current branch, plan, latest journal, recent commits, open issues and
-pull requests, and wiki status. Claude then follows the orientation skill (`hild-orient`, originally `orient`):
-it explains what needs human attention, what changed, and what to do next.
-The script supplies facts; the skill supplies steps; this document supplies
-the governing rules.
-
-**Concrete example — checking understanding.** Code pages in the original
-project's wiki record which files they explain and the `main` commit they
-describe. The `wiki_status.py` script compares those files with current
-code and flags pages that may be outdated. The `hild-digest` and `hild-understood`
-skills (originally `digest` and `understood`) tell the agent how to report or follow up; only the reviewer can
-confirm a page as `understood`.
-
-| Procedure in the original project | Purpose |
-|---|---|
-| `hild-orient` (originally `orient`) | Present a session-start status and questions for the reviewer |
-| `hild-scope` (originally `scope`) | Prepare an agreed scope before nontrivial development |
-| `hild-explain` | Prepare a layered PR explanation for human review |
-| `hild-journal` | Record milestones and refresh the plan |
-| `hild-understood` (originally `understood`) | Draft or revise an understanding-map page |
-| `hild-digest` | Review repository hygiene and understanding debt |
-| `hild-integrate` | Inspect existing repositories and propose adoption; later install after explicit approval and support reconciliation |
-
-**Origin and verification:** HILD's initial tools were developed in
-[MotorAdpatationSBI](https://github.com/opherdonchin/MotorAdpatationSBI/tree/main/.github/skills),
-including its [Claude Code hooks](https://github.com/opherdonchin/MotorAdpatationSBI/blob/main/.claude/settings.json).
-The original project tested the orientation collector and compaction commands,
-but not live compaction. Some agents cannot expose the same startup data; a
-skill's presence does not establish that the agent discovered or followed it.
-The current state of an individual installation belongs in its
-[plan](plan.md) and installation verification report, not in this reusable
-process specification.
+Worked examples, the table of procedure names and the origin of HILD's tooling are in the understanding map ([Process-tooling-history](https://github.com/Motor-Learning-Lab/HILD/wiki/Process-tooling-history)).
 
 Until a supporting tool is installed and verified, the agent follows the
 rules manually rather than pretending automation exists. An initial
 `hild-integrate` **assessment** never runs hooks or write-capable scripts,
 and never changes local or GitHub state before human approval.
-
-### Writing skills
-
-A skill holds a **procedure**: what the agent does, in order, and where it
-stops. Rules live in this file and formats in the templates (*Where each
-thing lives*). When writing or changing a skill, check it against this list;
-`hild-digest` checks the same list. The research behind it is summarized in
-the understanding map's skill-authoring resource page, where one is kept.
-
-1. **Front matter:** only `name` and `description`, so one file works for
-   every agent; `name` equals the skill's directory name.
-2. **Description:** third person, saying what the skill does, then
-   "Use when…" with the requests that should select it. Key words first;
-   under 1,024 characters. It does not claim a request that another
-   skill's description also claims.
-3. **Procedure, not rules:** numbered steps and exact stopping points. Where a
-   step depends on a rule, link to the rule's section here instead of
-   restating it.
-4. **No rule lives only in a skill.** If a skill needs a rule that has no
-   home, add the rule to its home (on the read track) and link to it.
-5. **Only what the agent would otherwise get wrong.** Leave out background
-   the agent already knows. Explanation of why HILD works this way belongs
-   in the understanding map; keep a short reason only where a step would
-   otherwise look arbitrary.
-6. **Size:** keep `SKILL.md` well under 500 lines. Put longer material in
-   companion files linked directly from `SKILL.md` (one hop, not chains),
-   each with a stated "read this when". A companion over 100 lines starts
-   with a table of contents.
-7. **Links resolve** in an installed repository. `install_hild.py --verify`
-   checks that local links reach existing files; it does not check section
-   anchors.
-8. **Tested when the procedure changes:** a fresh agent session shows the
-   skill is found and followed. Say what was not tested.
+When writing or changing a skill, follow [the writing-skills topic](process/writing-skills.md).
 
 ## Durable state files
 
@@ -553,7 +370,6 @@ The agent cannot tell when a session will end, so the plan and journal are updat
   of work (search by topic).
 - Entries are history: do not rewrite past entries except to fix errors, and say so.
 
-
 ### Decision records — `HILD/decisions/NNNN-short-title.md` (default)
 
 - **Process:** Record consequential choices and their reasoning so future
@@ -564,28 +380,7 @@ The agent cannot tell when a session will end, so the plan and journal are updat
   precise effect and what still applies, and explain its reasoning in full.
   An earlier accepted decision remains historical evidence even when its
   current applicability changes.
-- **Reference implementation:** Decisions use numbered files
-  `HILD/decisions/NNNN-short-title.md` and
-  [the decision-record template](templates/decision-record.md). The agent
-  drafts them and the researcher accepts them by reviewing and merging a
-  PR on the *read* track. Never commit decisions directly to `main`.
-- **Forward notice:** In the same PR that introduces the successor, edit
-  the **beginning** of every affected older record to show a prominent
-  link to the proposed successor and summarize its intended effect. Keep
-  the historical content intact. Distinguish *proposed* supersession
-  (not yet operative) from *accepted* supersession. Upon acceptance, the
-  older record's opening notice identifies any partial or full supersession
-  and links to the accepted successor. Do not bury this notice at the end.
-- **Current authority:** Update the operative rule in this `process.md`
-  (or the relevant project's rules) when the successor is accepted; never
-  require agents to resolve conflicting historical decisions to know the
-  current rule. A proposed PR's changes are not accepted authority until
-  human review/merge.
-- **When:** Draft a record for decisions constraining future work—tools,
-  models, conventions and rejected alternatives worth remembering.
-  Minor choices go in the journal. Read relevant existing titles and
-  successor notices before deciding in an area.
-
+- **Mechanics:** numbering, successor notices, current authority and when to write a record are in [the decision-records topic](process/decision-records.md).
 
 ## Autonomy
 
@@ -643,27 +438,10 @@ required for human-supervised development.
   commit any pending work.
 - Branches merge into `main` only with the reviewer's approval, through a pull request,
   as a squash merge.
-- The repository's GitHub settings enforce this: only squash merges are allowed, the
-  squash commit's default title and message are the PR's title and description, and
-  merged branches are deleted
-  ([decision 0011](https://github.com/Motor-Learning-Lab/HILD/blob/main/HILD/decisions/0011-host-merge-settings.md)).
-  Changing these settings is an external change: the agent proposes it, applies it only
-  with agreement, reads the values back and records them. A new installation does this
-  before its first merge.
 - Never stop work while waiting for a merge: continue on the branch or start the next
   piece of work.
 - All work must be recoverable on another machine: push at every milestone.
-- **Superseded material** — the one rule, referred to elsewhere:
-  - on a branch, move it to `archive/` so it stays at hand while the work continues;
-  - the final commit before merge deletes `archive/`; the material stays reachable
-    through the PR's commits;
-  - on `main`, delete superseded files rather than keeping `old` copies; git history is
-    the archive. Update or remove references in the same change.
-  - Exception: decision records are kept and marked superseded.
 - Commit messages explain why, not just what.
-- A PR description links its scope issue with `Closes #N` only when the PR
-  finishes issue N; otherwise it writes `Part of #N`. GitHub closes an
-  issue automatically when a PR containing `Closes #N` merges.
 - When the agent acts through the reviewer's GitHub account, its comments start with
   **🤖 Claude:** (or the agent's name) so it is clear who wrote what.
-- Replies to review comments go in the comment's own thread, with permalinks to the fix.
+- Merge settings, superseded material, `Closes` versus `Part of`, and replies to review comments: see [the Git topic](process/git.md).

@@ -6,7 +6,8 @@ description: Develops a scope agreement with the researcher through conversation
 # Scope: agree on the work before doing it
 
 The rules are in the [HILD process, *Scope agreements*](../../../HILD/process.md#scope-agreements)
-and [*Develop scopes through dialogue*](../../../HILD/process.md#develop-scopes-through-dialogue).
+and [*Develop scopes through dialogue*](../../../HILD/process.md#develop-scopes-through-dialogue);
+steps 3–7 follow [the scope topic](../../../HILD/process/scope.md).
 The issue's format is the [scope issue template](../../../HILD/templates/scope-issue.md).
 If the host keeps its plan, decisions or process somewhere other than
 `HILD/`, use those recorded locations.

@@ -1,6 +1,6 @@
 # 0012 — The process is a spine read every session, with topic files read on demand
 
-**Date:** 2026-11-22 · **Status:** Proposed
+**Date:** 2026-11-22 · **Status:** Accepted (human-reviewed and squash-merged in [PR #36](https://github.com/Motor-Learning-Lab/HILD/pull/36) on 2026-11-22; status updated in the PR that carries out the move)
 
 **Relationship to earlier decisions:** **Modifies** [decision 0010](0010-skill-authoring-checklist.md) in one provision: the *Writing skills* checklist moves from a section of `process.md` to the topic file `HILD/process/writing-skills.md`. The rest of 0010 still applies. No other decision changes; decisions that link to sections of `process.md` keep their meaning, and only their links are updated.
 
