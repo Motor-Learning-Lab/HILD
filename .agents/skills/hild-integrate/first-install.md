@@ -104,7 +104,7 @@ Before the researcher merges the installation PR:
 1. Read the settings:
    `gh api repos/OWNER/REPO --jq '{allow_merge_commit, allow_rebase_merge, allow_squash_merge, squash_merge_commit_title, squash_merge_commit_message, delete_branch_on_merge}'`.
 2. If they differ from
-   [process, *Git and GitHub*](../../../HILD/process.md#git-and-github--reference-implementation-details),
+   [the Git topic](../../../HILD/process/git.md),
    propose the change, unless the approved scope already includes it. It is an
    external change and needs the researcher's agreement.
 3. With agreement, set `allow_merge_commit=false`, `allow_rebase_merge=false`,

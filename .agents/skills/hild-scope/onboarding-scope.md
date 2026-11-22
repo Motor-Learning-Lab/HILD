@@ -15,7 +15,7 @@ Explain HILD in terms of the researcher's project, purpose before setup:
   and journal keep the state between sessions, and an optional wiki records
   what they understand. HILD is not a service that runs on its own. Describe
   these as the way HILD currently works, not as what defines it
-  ([process, *What HILD requires*](../../../HILD/process.md#what-hild-requires-and-how-we-implement-it)).
+  ([process, *What HILD is for*](../../../HILD/process.md#1-what-hild-is-for)).
 
 Ask what they want to build only if you don't already know. For a nearly
 empty repository, installing HILD can be the first piece of work; for an

@@ -5,7 +5,7 @@ description: Present a concise start-of-session orientation about project progre
 
 # Orient
 
-Rules: [HILD process](../../../HILD/process.md), *Presentations* and *Durable state files*. Resolve any configured authoritative paths before acting.
+Rules: [HILD process](../../../HILD/process.md), §4 *Talking with the researcher* and §5 *State in files*. Resolve any configured authoritative paths before acting.
 
 **Purpose:** restore accurate shared context so the researcher can choose
 what needs attention. The session hook and shell collector are helpful

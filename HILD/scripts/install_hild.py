@@ -24,6 +24,7 @@ ADAPTERS = {
 REQUIRED = (
     "HILD/README.md",
     "HILD/process.md",
+    "HILD/process/scope.md",
     "HILD/agent-setup.md",
     "HILD/scripts/session_context.sh",
     "HILD/scripts/wiki_status.py",
@@ -124,6 +125,7 @@ def build_files(source, target, agents):
     shared = ["HILD/README.md", "HILD/process.md", "HILD/agent-setup.md"]
     shared += [
         p.relative_to(source).as_posix() for folder, pattern in (
+            ("HILD/process", "*.md"),
             ("HILD/templates", "*.md"), ("HILD/templates", "*.json"),
             ("HILD/scripts", "*.py"),
             ("HILD/scripts", "*.sh"), (".agents/skills", "**/*"),
@@ -139,6 +141,8 @@ def build_files(source, target, agents):
     plan["AGENTS.md"] = (
         "# Project agent instructions\n\n"
         "This project uses [HILD](HILD/process.md) to develop scientific software.\n"
+        "At the start of every session, read [the HILD process](HILD/process.md)\n"
+        "before anything else: it says how we work and when to read its topic files.\n"
         "Read [HILD's plan](HILD/plan.md) and [getting-started guide](HILD/README.md)\n"
         "before proposing substantive work. Project-specific scientific and coding\n"
         "rules belong here; don't duplicate the HILD process.\n\n"
@@ -156,8 +160,9 @@ def build_files(source, target, agents):
         # Claude Code loads other files only through @path imports.
         plan["CLAUDE.md"] = (
             "# Claude Code entry point\n\n"
-            "Project instructions, which link to the [HILD process](HILD/process.md):\n\n"
+            "Project instructions and the [HILD process](HILD/process.md), read every session:\n\n"
             "@AGENTS.md\n"
+            "@HILD/process.md\n"
         ).encode()
 
     for agent in agents:
@@ -307,6 +312,9 @@ def verify(target):
         if not claude.is_file() or not re.search(
                 r"^@AGENTS\.md\s*$", claude.read_text(encoding="utf-8"), re.MULTILINE):
             missing.append("CLAUDE.md: does not import @AGENTS.md, so Claude Code won't load it")
+        if not claude.is_file() or not re.search(
+                r"^@HILD/process\.md\s*$", claude.read_text(encoding="utf-8"), re.MULTILINE):
+            missing.append("CLAUDE.md: does not import @HILD/process.md, so Claude Code won't read the process")
     agents_md = target / "AGENTS.md"
     listed = (set(SKILL_PATH.findall(agents_md.read_text(encoding="utf-8")))
               if agents_md.is_file() else set())

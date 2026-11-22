@@ -5,8 +5,8 @@ description: Develops a scope agreement with the researcher through conversation
 
 # Scope: agree on the work before doing it
 
-The rules are in the [HILD process, *Scope agreements*](../../../HILD/process.md#scope-agreements)
-and [*Develop scopes through dialogue*](../../../HILD/process.md#develop-scopes-through-dialogue).
+The rules are in the [scope topic](../../../HILD/process/scope.md) and the
+[HILD process, §2 and §3](../../../HILD/process.md#2-the-life-of-a-piece-of-work).
 The issue's format is the [scope issue template](../../../HILD/templates/scope-issue.md).
 If the host keeps its plan, decisions or process somewhere other than
 `HILD/`, use those recorded locations.
@@ -46,5 +46,5 @@ creating the issue, or another GitHub step, fails for lack of access.
 
 Under an **explicit independent-work mandate**, steps 5 and 6 may be
 deferred; record the mandate and each deferral as the
-[process, *Autonomy*](../../../HILD/process.md#autonomy) requires.
+[process, *Independent work*](../../../HILD/process.md#independent-work) requires.
 A short "OK" or a technical choice is not such a mandate.

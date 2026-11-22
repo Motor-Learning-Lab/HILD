@@ -27,7 +27,7 @@ They are not competing sources of process rules.
 |---|---|
 | **[README.md](README.md)** (this page) | Public introduction: why HILD exists, whether it is ready to use, and how adoption will work |
 | **[AGENTS.md](AGENTS.md)** | Starting point for an agent **working on HILD itself**: project-specific instructions and links to the authoritative process, plan and decisions |
-| **[HILD/process.md](HILD/process.md)** | Authoritative description of how the human reviewer and the agent collaborate |
+| **[HILD/process.md](HILD/process.md)** | Authoritative description of how the researcher and the agent collaborate, read at the start of every session; it links to topic files in [HILD/process/](HILD/process/) read before particular activities |
 | **[HILD/plan.md](HILD/plan.md)** | Current development state, open questions and next steps |
 
 When HILD is adopted into an **existing** repository, its current root

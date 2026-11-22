@@ -14,7 +14,7 @@ alternative as working. Check that independent-work permission debt is not
 misreported as accepted and that altered older decisions have a prominent
 forward link at the beginning to their successor. Retain concrete
 implementation conventions rather than replacing them with vague goals. Judge them against the project's own rules.
-3. **Skills:** check each skill file against [process, *Writing skills*](../../../HILD/process.md#writing-skills). Report its size, any rule it restates or holds without another home, and descriptions that overlap another skill's.
+3. **Skills:** check each skill file against [the writing-skills topic](../../../HILD/process/writing-skills.md). Report its size, any rule it restates or holds without another home, and descriptions that overlap another skill's.
 4. **Report before making changes:** say whether the repository is getting easier or harder to understand. For each important problem, give its location, the relevant rule and a specific suggested fix. Identify things that can be simplified or removed.
 5. **Follow up by agreement:** do not repair nontrivial issues merely because they were identified. Each approved fix gets a scope issue or joins an existing agreed scope. Record the audit milestone using `hild-journal`.
 

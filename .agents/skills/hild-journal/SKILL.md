@@ -5,7 +5,7 @@ description: Record a development milestone in the durable journal and update th
 
 # Journal
 
-Rules: [HILD process](../../../HILD/process.md), *Durable state files*.
+Rules: [HILD process](../../../HILD/process.md), §5 *State in files*, and [the plan-and-journal topic](../../../HILD/process/plan-and-journal.md).
 Formats: [journal entry](../../../HILD/templates/journal-entry.md) and
 [decision record](../../../HILD/templates/decision-record.md).
 

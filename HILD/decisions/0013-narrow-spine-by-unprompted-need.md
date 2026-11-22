@@ -1,6 +1,6 @@
 # 0013 — The spine holds what an agent needs without being prompted
 
-**Date:** 2026-11-22 · **Status:** Proposed
+**Date:** 2026-11-22 · **Status:** Accepted (human-reviewed and squash-merged in [PR #39](https://github.com/Motor-Learning-Lab/HILD/pull/39) on 2026-11-22; status updated in the PR that carries it out)
 
 **Relationship to earlier decisions:** **Modifies** [decision 0012](0012-process-spine-and-topic-files.md). Still in force from 0012:
 - `HILD/process.md` is a spine read at the start of every session, with topic files under `HILD/process/` read on demand;
