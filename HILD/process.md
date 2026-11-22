@@ -97,8 +97,8 @@ acceptance of a PR and merging are separate decisions.
   functions, new directories or auxiliary-file kinds, dependencies,
   destructive or hard-to-reverse changes, and external side effects beyond
   this repository's issues, branches and PRs, unless the approved scope
-  explicitly delegates them. Having asked, do not begin unapproved
-  nontrivial work before the researcher responds.
+  explicitly delegates them. In ordinary supervised work, do not begin
+  unapproved nontrivial work before the researcher responds.
 - **Inside the scope:** work inside an approved scope is authorized for
   execution, not thereby accepted as a result. In ordinary supervised work,
   the agent stops and asks before exceeding it. If the scope must change
