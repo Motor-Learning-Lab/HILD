@@ -1,7 +1,5 @@
 # 0010 — One skill-writing checklist in the process; no skill-authoring skill
 
-> **Proposed modification (not yet operative): [decision 0012](0012-process-spine-and-topic-files.md)** would move the *Writing skills* checklist from a section of `process.md` to the topic file `HILD/process/writing-skills.md`. Everything else in this record would still apply.
-
 **Date:** 2026-11-22 · **Status:** Accepted on the researcher's merge of [PR #31](https://github.com/Motor-Learning-Lab/HILD/pull/31)
 
 **Relationship to earlier decisions:** None. It makes concrete the existing rule that skills hold procedure and point to rules ([process, *Where each thing lives*](../process.md#where-each-thing-lives-and-how-to-change-it)).
