@@ -1,6 +1,6 @@
 # 0005 — Develop scopes through purpose-led dialogue
 
-**Date:** 2026-10-17 · **Status:** Proposed (agreed in design discussion; pending human review of [PR #8](https://github.com/Motor-Learning-Lab/HILD/pull/8))
+**Date:** 2026-10-17 · **Status:** Accepted (human-reviewed and squash-merged in [PR #8](https://github.com/Motor-Learning-Lab/HILD/pull/8) on 2026-10-18; status corrected in [PR #32](https://github.com/Motor-Learning-Lab/HILD/pull/32), which also added a successor notice to [decision 0003](0003-onboarding-scope-and-validation.md), the record this one modifies)
 
 **Context:** In the first test of `hild-integrate` on [HILD-onboarding-test](https://github.com/opherdonchin/HILD-onboarding-test), the agent followed its read-only safety rules but overwhelmed the new researcher with technical inventory, a complete proposed scope, and an installation approval question. It did not first explain how HILD could benefit the researcher's work or teach scoping as a shared activity.
 
