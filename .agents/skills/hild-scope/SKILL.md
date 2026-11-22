@@ -1,100 +1,49 @@
 ---
 name: hild-scope
-description: Work with the researcher to agree on a manageable scope before nontrivial development. Use when someone wants to plan work, scope a change, or begin HILD onboarding.
+description: Develops a scope agreement with the researcher through conversation, records it as a proposed scope issue, and stops until the researcher approves the actual issue. Use when someone wants to start, plan or scope nontrivial work, change an existing scope, or begin HILD onboarding.
 ---
 
-# Scope — develop an agreement together
+# Scope: agree on the work before doing it
 
-Authority: [HILD process](../../../HILD/process.md), *Scope agreements*.
-The completed agreement uses the
-[scope issue template](../../../HILD/templates/scope-issue.md).
-Locate the host project's real plan, decisions and process; `HILD/` is
-the default, not a reason to duplicate files kept elsewhere.
+The rules are in the [HILD process, *Scope agreements*](../../../HILD/process.md#scope-agreements)
+and [*Develop scopes through dialogue*](../../../HILD/process.md#develop-scopes-through-dialogue).
+The issue's format is the [scope issue template](../../../HILD/templates/scope-issue.md).
+If the host keeps its plan, decisions or process somewhere other than
+`HILD/`, use those recorded locations.
 
-**Purpose:** establish a durable, inspectable agreement about what the agent
-is authorized to do. An authorization to run independently allows work to
-advance provisionally beyond ordinary permission gates, but is not approval
-of the later choices or their dependent work. The GitHub issue procedure below is HILD's reference
-way of recording and approving that agreement, not the purpose itself.
-Keep its actual issue-review and approval stopping point when using GitHub;
-if an alternative is proposed, agree on an equally inspectable record.
+**Read the [onboarding companion](onboarding-scope.md) when** the
+researcher is new to HILD, asks for guidance getting started, or wants an
+onboarding scope. Do not read it for ordinary scoping.
 
-## Begin with the researcher's goal, not a form
+**Read the [GitHub-access companion](../hild-integrate/github-access.md) when**
+creating the issue, or another GitHub step, fails for lack of access.
 
-Read the project's current plan and relevant decisions, then discuss what
-the researcher is trying to accomplish and why. Use goals they already
-gave you rather than asking them to repeat themselves. Offer useful
-expertise and explain recommendations in terms of their project.
+## Steps
 
-The **newcomer-specific introduction**, including what to say after
-the researcher agrees to begin their first scope, belongs in the
-[onboarding companion](onboarding-scope.md), not here. **Read that file
-when the researcher is new to HILD, requests guidance, or explicitly
-wants an onboarding scope**. Do not load it for ordinary scoping by an
-experienced researcher.
+1. **Read the context.** Read the plan and any decision records in the area
+   of the work. Use what the researcher has already said; don't ask them to
+   repeat it.
+2. **Develop the agreement in conversation.** Work toward goal, boundaries,
+   evidence and autonomy without asking them as a form. Recommend a default
+   and say why it serves the researcher; compare alternatives only where the
+   tradeoff matters. Summarize the emerging agreement now and then.
+3. **Ask to record it.** When the researcher agrees with the completed
+   scope, ask permission to create the proposed issue. A "yes" to
+   discussing a scope is not that permission.
+4. **Create the issue,** labelled `scope`, following the template. If you
+   cannot create it, show the draft, explain what blocks creation, and work
+   on the blocker with the researcher. Do not start work from the draft.
+5. **Stop and ask for review.** Give the issue's link, say in two or three
+   sentences what it authorizes and what it excludes, and ask the
+   researcher to approve it or ask for changes. Until they approve this
+   issue, do not create a branch, run an installer or change files.
+6. **Record the approval on the issue.** If the researcher approved in
+   chat, post a comment quoting their words and attributing them to the
+   researcher. Link that comment when starting work.
+7. **Amendments:** if the scope must change materially, edit or comment on
+   the issue, show the change, and repeat steps 5 and 6.
 
-## Build shared understanding of the work
-
-The agreement needs four things:
-
-- **Goal:** what the researcher wants to accomplish, and why.
-- **Boundaries:** what belongs in this work and what waits.
-- **Evidence:** how the researcher and agent will recognize success.
-- **Autonomy:** what the agent can decide or change within the scope,
-  and what still needs explicit human agreement.
-
-These describe **the finished scope**, not four questions to ask
-in a fixed order. Develop them naturally, following the researcher's
-responses. Summarize decisions periodically so the agreement becomes
-visible. Don't rush to file an issue or proceed with development simply
-because the researcher said "yes" to discussing a scope.
-
-Contribute expertise: suggest a reasonable default and explain **why
-it will serve the researcher**. Mention available alternatives briefly;
-compare a few choices if the tradeoffs matter. Avoid a broad menu or
-configuration questionnaire unless options materially affect the outcome.
-When a blocker becomes relevant to the agreed work, help diagnose it
-and propose a feasible next step instead of merely stopping.
-
-## Record, show, and obtain approval of the actual scope
-
-Once you have developed a coherent scope together, prepare a proposal using
-the [canonical template](../../../HILD/templates/scope-issue.md).
-Obtain agreement to **create the proposed issue**, then, if GitHub access
-permits, create it labelled `scope`. Otherwise show the draft, explain the
-access blocker and remain stopped.
-
-**Immediately after creating the issue:** give the researcher its clickable
-GitHub link; briefly explain what the **actual issue** allows and excludes,
-and ask them to **review and approve that issue or suggest corrections**.
-This is a genuine stopping point **in the ordinary supervised workflow**.
-Do not start a branch, run an installer, apply changes, or treat an earlier
-conversational `OK` as approval of a GitHub document the researcher has
-not reviewed. With a **separately explicit independent-work mandate**, the
-agent may continue provisionally past ordinary approval points, recording
-the proposed issue, missing approval, deferred decisions, and dependent
-work in the journal and draft PR; no part becomes accepted as a result.
-
-When the researcher explicitly approves the completed issue, record that
-approval **in the issue** before beginning implementation. They can approve
-in an issue comment, or you can add an accurate, attributed summary of their
-approval in chat. Link back to that record when starting work. If the issue
-changes materially, show the updated issue and obtain fresh approval.
-
-Approval to **discuss a scope**, permission to **create its issue**,
-approval of the **issue's contents**, permission to **apply an installer
-preview**, and **PR review/merge** are separate decisions. Keep the
-conversation concise, but never silently combine these gates.
-
-Do not merge a pull request or mark the researcher's understanding
-confirmed on their behalf.
-
-## Independently authorized work
-
-The default above is supervised scoping. If the researcher *explicitly*
-authorizes independent execution, record the mandate and each point at
-which ordinary approval was deferred. Link dependent commits/results and
-mark them **provisional** until the human reviews the actual scope and
-its consequences. Do not infer independent authority from a short `OK`,
-a technical choice, or permission to create a scope issue. Do not merge
-the resulting PR or certify a researcher's understanding.
+Under an **explicit independent-work mandate**, steps 5 and 6 may be
+deferred; record the mandate and each deferral as the
+[process, *Autonomy*](../../../HILD/process.md#autonomy) requires.
+A short "OK" or a technical choice is not such a mandate.
