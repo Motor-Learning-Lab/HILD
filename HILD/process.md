@@ -642,6 +642,13 @@ required for human-supervised development.
   commit any pending work.
 - Branches merge into `main` only with the reviewer's approval, through a pull request,
   as a squash merge.
+- The repository's GitHub settings enforce this: only squash merges are allowed, the
+  squash commit's default title and message are the PR's title and description, and
+  merged branches are deleted
+  ([decision 0011](https://github.com/Motor-Learning-Lab/HILD/blob/main/HILD/decisions/0011-host-merge-settings.md)).
+  Changing these settings is an external change: the agent proposes it, applies it only
+  with agreement, reads the values back and records them. A new installation does this
+  before its first merge.
 - Never stop work while waiting for a merge: continue on the branch or start the next
   piece of work.
 - All work must be recoverable on another machine: push at every milestone.

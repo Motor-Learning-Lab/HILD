@@ -144,7 +144,11 @@ def build_files(source, target, agents):
         "rules belong here; don't duplicate the HILD process.\n\n"
         "## HILD skills\n\n"
         "HILD's procedures are skills. Read the listed file when its description\n"
-        "fits the request. Agents that discover skills natively may use them directly.\n\n"
+        "fits the request. Agents that discover skills natively may use them directly.\n"
+        "Claude Code finds the skills only through this index. That is intended\n"
+        "([decision 0009](https://github.com/Motor-Learning-Lab/HILD/blob/main/HILD/decisions/0009-claude-skills-via-agents-md.md)):\n"
+        "they are not native Claude Code skills, so there are no `/hild-*` commands;\n"
+        "ask for a skill by name.\n\n"
         + "\n".join(index) + "\n"
     ).encode()
 

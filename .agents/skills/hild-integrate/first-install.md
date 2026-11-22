@@ -91,9 +91,31 @@ python3 HILD/scripts/install_hild.py --target /path/to/new-repo --verify
 ```
 
 This checks the recorded baseline for the installed files. Separately verify
-the repository's GitHub squash settings, the selected agent's **actual**
+the selected agent's **actual**
 skill discovery and startup behavior, and the **new** wiki when created.
 Mechanically correct files are **not** proof of runtime agent behavior.
+
+## Merge settings, before the first merge
+
+GitHub's defaults allow merge commits and fill a squash commit's message with
+the branch's commit messages, so the PR explanation never reaches `main`.
+Before the researcher merges the installation PR:
+
+1. Read the settings:
+   `gh api repos/OWNER/REPO --jq '{allow_merge_commit, allow_rebase_merge, allow_squash_merge, squash_merge_commit_title, squash_merge_commit_message, delete_branch_on_merge}'`.
+2. If they differ from
+   [process, *Git and GitHub*](../../../HILD/process.md#git-and-github--reference-implementation-details),
+   propose the change, unless the approved scope already includes it. It is an
+   external change and needs the researcher's agreement.
+3. With agreement, set `allow_merge_commit=false`, `allow_rebase_merge=false`,
+   `allow_squash_merge=true`, `squash_merge_commit_title=PR_TITLE`,
+   `squash_merge_commit_message=PR_BODY` and `delete_branch_on_merge=true` with
+   `gh api -X PATCH repos/OWNER/REPO -F <name>=<value> ...`. Read them back and
+   record the before and after values on the scope issue.
+4. Without admin access, say so, and tell the researcher to choose
+   **Squash and merge** and paste the PR description as the commit message.
+
+## Starting work
 
 The installed `HILD/README.md` contains a copyable starter prompt. Ask the
 agent to invoke `hild-scope`; onboarding is the suggested first scope but

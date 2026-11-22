@@ -1,5 +1,7 @@
 # 0002 — Squash merges only
 
+> **Extended by [decision 0011](0011-host-merge-settings.md):** the repository settings below apply to every repository HILD is installed in, and installation proposes them before the first merge. HILD's own repository now has these settings (read from GitHub on 2026-11-22), so the "not yet configured" note under *Consequences* is history.
+
 **Date:** 2026-10-14 · **Status:** Accepted (human-reviewed in [PR #2](https://github.com/Motor-Learning-Lab/HILD/pull/2), merged 2026-10-14)
 
 **Context:** We need rapid, small commits during development, permanent links to reviewed intermediate work, and a `main` history where each feature has one meaningful explanation.
