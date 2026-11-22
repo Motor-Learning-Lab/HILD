@@ -1,6 +1,8 @@
 # 0012 — The process is a spine read every session, with topic files read on demand
 
-**Date:** 2026-11-22 · **Status:** Proposed
+> **Proposed modification (not yet operative): [decision 0013](0013-narrow-spine-by-unprompted-need.md)** would replace this record's rule for what goes in the spine ("when unclear, it stays") with the test of whether an agent could go wrong without being prompted to look. It would set new spine contents and topic files (*Decision* 1, 2 and 4 here) and replace the two-step move and rewrite (*Decision* 7) with one PR. The spine-and-topics structure, loading the spine in every session, and "no rule changes meaning" would still apply.
+
+**Date:** 2026-11-22 · **Status:** Accepted (human-reviewed and squash-merged in [PR #36](https://github.com/Motor-Learning-Lab/HILD/pull/36) on 2026-11-22; status updated in the PR proposing decision 0013)
 
 **Relationship to earlier decisions:** **Modifies** [decision 0010](0010-skill-authoring-checklist.md) in one provision: the *Writing skills* checklist moves from a section of `process.md` to the topic file `HILD/process/writing-skills.md`. The rest of 0010 still applies. No other decision changes; decisions that link to sections of `process.md` keep their meaning, and only their links are updated.
 
