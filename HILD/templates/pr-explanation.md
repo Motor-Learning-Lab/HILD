@@ -1,4 +1,4 @@
-<!-- Change "Part of" to "Closes" only in the PR that completes this issue. -->
+<!-- "Closes" or "Part of": see HILD/process.md, Git and GitHub. -->
 Part of #<scope issue>
 
 ## Purpose

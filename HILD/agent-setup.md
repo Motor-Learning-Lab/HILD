@@ -18,7 +18,7 @@ has discovered or used the skills.
 |---|---|---|---|
 | Codex | `.agents/skills/hild-*/SKILL.md` | `.codex/hooks.json` from [template](templates/codex-hooks.json) | Supported locations documented; not tested in a live Codex session |
 | GitHub Copilot CLI/cloud | `.agents/skills/hild-*/SKILL.md` | `.github/hooks/hild.json` from [template](templates/copilot-hooks.json) | Supported locations documented; not tested in a live Copilot session |
-| Claude Code | `.agents/skills/hild-*/SKILL.md`, found through the skills index in `AGENTS.md`, which `CLAUDE.md` imports with `@AGENTS.md` | `.claude/settings.json` from [template](templates/claude-settings.json) | Tested in [scope #19](https://github.com/Motor-Learning-Lab/HILD/issues/19#issuecomment-6748912826): with the import and index, Claude chose and followed the right skill and stopped before acting; headless runs, not yet a full onboarding |
+| Claude Code | `.agents/skills/hild-*/SKILL.md`, found through the skills index in `AGENTS.md`, which `CLAUDE.md` imports with `@AGENTS.md` | `.claude/settings.json` from [template](templates/claude-settings.json) | Tested in [scope #19](https://github.com/Motor-Learning-Lab/HILD/issues/19#issuecomment-6748912826): with the import and index, Claude chose and followed the right skill and stopped before acting; headless runs. A live onboarding on Windows on 2026-11-22 found the skills through the index ([results](https://github.com/Motor-Learning-Lab/HILD/issues/12#issuecomment-7071278845)) |
 
 Claude Code does not read `.agents/skills/`, and `CLAUDE.md` loads other files
 only through `@path` imports, so the installer writes `CLAUDE.md` containing
@@ -27,8 +27,7 @@ and description, built from the skill's frontmatter. The installer creates no
 `.claude/skills` link, so nothing depends on the user's OS or Git symlink
 settings. The consequence is that Claude Code treats the skills as
 instructions it is pointed to rather than as native slash-command skills; see
-[decision 0009](https://github.com/Motor-Learning-Lab/HILD/blob/main/HILD/decisions/0009-claude-skills-via-agents-md.md), which is
-proposed and not yet accepted.
+[decision 0009](https://github.com/Motor-Learning-Lab/HILD/blob/main/HILD/decisions/0009-claude-skills-via-agents-md.md).
 
 ## What the startup scripts do
 

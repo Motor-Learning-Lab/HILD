@@ -21,7 +21,7 @@ Develop HILD **using HILD**. Keep changes small, reviewable, reversible, and on 
 
 ## HILD skills
 
-HILD's procedures are skills in [`.agents/skills/`](.agents/skills/). Read the listed file when its purpose fits the request; agents that discover skills natively may use them directly.
+HILD's procedures are skills in [`.agents/skills/`](.agents/skills/). Read the listed file when its purpose fits the request; agents that discover skills natively may use them directly. Claude Code finds the skills only through this index. That is intended ([decision 0009](HILD/decisions/0009-claude-skills-via-agents-md.md)): they are not native Claude Code skills, so there are no `/hild-*` commands; ask for a skill by name.
 
 - `hild-orient` ([SKILL.md](.agents/skills/hild-orient/SKILL.md)): start-of-session orientation, or "where does the project stand?".
 - `hild-scope` ([SKILL.md](.agents/skills/hild-scope/SKILL.md)): agree a scope before nontrivial work, or begin onboarding.

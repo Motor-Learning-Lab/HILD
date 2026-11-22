@@ -136,6 +136,7 @@ def test_claude_md_imports_agents_md_and_index_lists_every_skill(repositories):
     assert install(source, target, "--agents", "claude", "--apply").returncode == 0
     assert "@AGENTS.md" in (target / "CLAUDE.md").read_text().splitlines()
     agents_md = (target / "AGENTS.md").read_text()
+    assert "Claude Code finds the skills only through this index" in agents_md
     for name, description in (("hild-scope", "Agree a scope. Use before work."),
                               ("hild-orient", "Orient. Use at start.")):
         path = f".agents/skills/{name}/SKILL.md"

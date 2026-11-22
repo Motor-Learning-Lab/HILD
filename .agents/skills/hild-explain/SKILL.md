@@ -27,7 +27,7 @@ do not assume a stacked PR targets `main`). Explain what **currently exists**, n
 ## Check and publish
 
 - Render math in GitHub markdown or report that rendering was not checked. Verify links and line references.
-- Beware GitHub's closing keywords: write `Closes #N` only when this PR *finishes* issue N; otherwise write `Part of #N`.
+- Link the scope issue with `Closes` or `Part of` as [process, *Git and GitHub*](../../../HILD/process.md#git-and-github--reference-implementation-details) says.
 - Update the PR description to describe the whole change as it stands. Mark ready for review when the explanation is accurate.
 
 ## Acceptance and review depth
