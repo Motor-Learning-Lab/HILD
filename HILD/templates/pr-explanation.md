@@ -1,4 +1,4 @@
-<!-- "Closes" or "Part of": see HILD/process.md, Git and GitHub. -->
+<!-- "Closes" or "Part of": see HILD/process/git.md. -->
 Part of #<scope issue>
 
 ## Purpose
