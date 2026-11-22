@@ -22,13 +22,12 @@ The living plan records goals, current state and next steps. History is in Git a
   - Every human stopping point held: scope issues, the installer preview, review and merge. Installation, a small development task, merge settings and a fresh wiki worked.
   - The researcher accepted the candidate as working and waived the final recovery session. See the [results and evidence](https://github.com/Motor-Learning-Lab/HILD/issues/12#issuecomment-7071278845).
   - Codex and Copilot remain **untested**. So does a full explain-back, which the researcher waived.
-- **Follow-ups from the test:** [#28](https://github.com/Motor-Learning-Lab/HILD/issues/28) (installation does not raise GitHub's merge settings) and [#29](https://github.com/Motor-Learning-Lab/HILD/issues/29) (the generated `AGENTS.md` does not say the index is Claude Code's intended route).
-- **Scope [#18](https://github.com/Motor-Learning-Lab/HILD/issues/18) (tighten the skills):** step 1 is reviewed and its three choices are decided; PR A and the rewrites wait for `main`. **Scope [#20](https://github.com/Motor-Learning-Lab/HILD/issues/20) (understanding map):** the concept pages and guide are written; code and skill pages wait for `main` and #18.
+- **Scope [#18](https://github.com/Motor-Learning-Lab/HILD/issues/18) (tighten the skills):** PR A is [PR #31](https://github.com/Motor-Learning-Lab/HILD/pull/31), awaiting review. It also fixes [#28](https://github.com/Motor-Learning-Lab/HILD/issues/28) and [#29](https://github.com/Motor-Learning-Lab/HILD/issues/29) and adds decisions 0010 and 0011, at the researcher's request. **Scope [#20](https://github.com/Motor-Learning-Lab/HILD/issues/20) (understanding map):** the concept pages and guide are written; code and skill pages wait for `main` and #18.
 - **Not yet approved:** proposals [#15](https://github.com/Motor-Learning-Lab/HILD/issues/15) and [#17](https://github.com/Motor-Learning-Lab/HILD/issues/17), and proposed scope [#16](https://github.com/Motor-Learning-Lab/HILD/issues/16) on branch agreements. Decisions [0004](decisions/0004-selectable-agent-integrations.md) and [0005](decisions/0005-conversational-scope-building.md) still say `Proposed`.
 
 ## Next steps
 
-1. **Scope [#18](https://github.com/Motor-Learning-Lab/HILD/issues/18) PR A** (checklist, `hild-digest` audit step, moving three skill-only rules to their homes), then the skill rewrites. Fold in #28 and #29 where they fit.
+1. **The researcher reviews [PR #31](https://github.com/Motor-Learning-Lab/HILD/pull/31)** (read track). After merge: update the wiki pages on skill discovery and installation, then rewrite the skills under scope #18 in the agreed order: `hild-scope`, `hild-integrate`, `hild-explain`, then the four short skills.
 2. **Scope [#20](https://github.com/Motor-Learning-Lab/HILD/issues/20)'s code and skill pages**, now that the code is on `main`.
 3. **Later:** review the stale `Proposed` status of decisions 0004 and 0005, and settle CI for integration branches under scope #16.
 
