@@ -1,5 +1,7 @@
 # 0003 — Onboarding is an optional first HILD scope, not a separate skill
 
+> **Modified by [decision 0005](0005-conversational-scope-building.md):** the onboarding companion is read not only for an onboarding request but also when the researcher is new to HILD or asks for guidance getting started, and `hild-integrate` reads it in the same cases. The rest of this record still applies. (Notice added in [PR #32](https://github.com/Motor-Learning-Lab/HILD/pull/32), 2026-11-22.)
+
 **Date:** 2026-10-15 · **Status:** Accepted (reviewed and squash-merged in [PR #5](https://github.com/Motor-Learning-Lab/HILD/pull/5) on 2026-10-16; original agreement in [scope #4](https://github.com/Motor-Learning-Lab/HILD/issues/4))
 
 **Context:** A copied HILD directory is not evidence that agents discover or follow its rules. New adopters also need a useful first experience. A separate onboarding skill or mandatory onboarding on every update would introduce unnecessary machinery and repetition.
