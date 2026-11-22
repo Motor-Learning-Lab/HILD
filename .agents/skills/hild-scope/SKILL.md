@@ -11,6 +11,14 @@ The completed agreement uses the
 Locate the host project's real plan, decisions and process; `HILD/` is
 the default, not a reason to duplicate files kept elsewhere.
 
+**Purpose:** establish a durable, inspectable agreement about what the agent
+is authorized to do. An authorization to run independently allows work to
+advance provisionally beyond ordinary permission gates, but is not approval
+of the later choices or their dependent work. The GitHub issue procedure below is HILD's reference
+way of recording and approving that agreement, not the purpose itself.
+Keep its actual issue-review and approval stopping point when using GitHub;
+if an alternative is proposed, agree on an equally inspectable record.
+
 ## Begin with the researcher's goal, not a form
 
 Read the project's current plan and relevant decisions, then discuss what
@@ -59,9 +67,13 @@ access blocker and remain stopped.
 **Immediately after creating the issue:** give the researcher its clickable
 GitHub link; briefly explain what the **actual issue** allows and excludes,
 and ask them to **review and approve that issue or suggest corrections**.
-This is a genuine stopping point. Do not start a branch, run an installer,
-apply changes, or treat an earlier conversational `OK` as approval of a
-GitHub document the researcher has not reviewed.
+This is a genuine stopping point **in the ordinary supervised workflow**.
+Do not start a branch, run an installer, apply changes, or treat an earlier
+conversational `OK` as approval of a GitHub document the researcher has
+not reviewed. With a **separately explicit independent-work mandate**, the
+agent may continue provisionally past ordinary approval points, recording
+the proposed issue, missing approval, deferred decisions, and dependent
+work in the journal and draft PR; no part becomes accepted as a result.
 
 When the researcher explicitly approves the completed issue, record that
 approval **in the issue** before beginning implementation. They can approve
@@ -76,3 +88,13 @@ conversation concise, but never silently combine these gates.
 
 Do not merge a pull request or mark the researcher's understanding
 confirmed on their behalf.
+
+## Independently authorized work
+
+The default above is supervised scoping. If the researcher *explicitly*
+authorizes independent execution, record the mandate and each point at
+which ordinary approval was deferred. Link dependent commits/results and
+mark them **provisional** until the human reviews the actual scope and
+its consequences. Do not infer independent authority from a short `OK`,
+a technical choice, or permission to create a scope issue. Do not merge
+the resulting PR or certify a researcher's understanding.

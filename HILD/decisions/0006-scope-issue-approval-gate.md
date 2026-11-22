@@ -1,6 +1,8 @@
 # 0006 — Review the actual scope issue before implementation
 
-**Date:** 2026-10-18 · **Status:** Proposed; pending review in [PR #9](https://github.com/Motor-Learning-Lab/HILD/pull/9).
+> **Partially modified by [decision 0008](0008-independent-work-and-human-acceptance.md):** when the researcher explicitly authorizes independent work, the agent may continue past ordinary scope checkpoints; unapproved choices and dependent work stay provisional until the researcher reviews them. This record's supervised scope-approval gate remains the default. The researcher accepted the modification ([researcher's approval on PR #13](https://github.com/Motor-Learning-Lab/HILD/pull/13#issuecomment-6422857797)).
+
+**Date:** 2026-10-18 · **Status:** Accepted (human-reviewed and merged in [PR #9](https://github.com/Motor-Learning-Lab/HILD/pull/9)); partially modified by decision 0008, as the opening notice says.
 
 ## Context
 

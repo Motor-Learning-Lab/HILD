@@ -3,7 +3,8 @@ Part of #<scope issue>
 
 ## Purpose
 
-What are we trying to accomplish, and why now?
+What human/research objective does this change serve, and why now? State the
+purpose independently of the particular file, tool or GitHub operation.
 
 ## What you should understand after reading this
 
@@ -11,7 +12,9 @@ Name two or three things the human reviewer should be able to explain afterward.
 
 ## Summary
 
-Explain the change in plain language. Mention any departure from the scope.
+Explain **how the chosen implementation achieves the stated purpose** in
+plain language. Mention relevant concrete mechanisms, departures from the scope and any
+work still provisional because upstream decisions await human review.
 
 <!-- Include mathematical background only when it is relevant to the change.
 Do not add an empty "Math" section to documentation-only PRs. -->
@@ -50,9 +53,18 @@ current status and why they matter.
 it belongs before review or after merge. Do not claim a page exists if it is
 only proposed.
 
-## Approval track
+<!-- Optional section when independent work created provisional material:
+## Deferred human decisions
+Link each missing permission or scope decision, what was done provisionally,
+and dependent changes that cannot yet be accepted. Successful tests do not
+accept unapproved choices.
+-->
 
-Proposed: trivial | read | full | fast. Explain why; the human decides.
+## Review track and acceptance
+
+Proposed depth: trivial | read | full | fast. Explain why. Every track
+requires human acceptance; a particular PR approval comment is optional,
+and only the researcher merges.
 
 <!-- After a review round, rewrite everything above to match the latest code,
 then append this section, newest review round last: -->

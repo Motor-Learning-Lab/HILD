@@ -34,6 +34,10 @@ STATUSES = ["stale", "needs-revision", "needs-review", "stub", "draft", "underst
 HEADER_ROW = re.compile(r"^\|\s*\*\*(?P<key>[^*|]+)\*\*\s*\|\s*(?P<value>.*?)\s*\|\s*$")
 # A wiki link, [[Page-name]] or [[shown text|Page-name]]; the group is the page name.
 WIKI_LINK = re.compile(r"\[\[(?:[^\]|]*\|)?([^\]|]+)\]\]")
+# Fenced code blocks and inline code spans: text a page shows, not links it makes.
+CODE_FENCE = re.compile(r"^(```|~~~).*?^\1[ \t]*$", re.MULTILINE | re.DOTALL)
+# An inline span stays on one line, so a stray backtick cannot hide later links.
+CODE_SPAN = re.compile(r"(`+).+?\1")
 BOARD_NAME = "Status-board.md"
 # Pages that are not part of the map itself.
 SKIPPED_PAGES = {"Home.md", "_Sidebar.md", "_Footer.md", BOARD_NAME}
@@ -142,11 +146,18 @@ def read_pages(repo, wiki, threshold, ref="HEAD"):
     return pages
 
 
+def strip_code(text):
+    """Remove fenced code blocks and inline code spans, so a page that merely shows
+    the link syntax (for example ``[[Name]]`` in backticks) makes no link."""
+    return CODE_SPAN.sub("", CODE_FENCE.sub("", text))
+
+
 def not_written(wiki):
     """Find the pages that are linked from the wiki but do not exist.
 
     Every page is searched for wiki links, ``Home`` and the sidebar included; only the
-    generated status board is left out. Returns a dict from the name of each missing
+    generated status board is left out. Text in code spans and code blocks is ignored.
+    Returns a dict from the name of each missing
     page to the sorted names of the pages that link to it.
     """
     existing = {path.stem for path in wiki.glob("*.md")}
@@ -154,7 +165,7 @@ def not_written(wiki):
     for path in sorted(wiki.glob("*.md")):
         if path.name == BOARD_NAME:
             continue
-        for target in WIKI_LINK.findall(path.read_text(encoding="utf-8")):
+        for target in WIKI_LINK.findall(strip_code(path.read_text(encoding="utf-8"))):
             name = target.strip().replace(" ", "-")
             if name not in existing:
                 missing.setdefault(name, set()).add(path.stem)
@@ -168,7 +179,7 @@ def set_status(path, status):
         match = HEADER_ROW.match(line.rstrip("\n"))
         if match and match["key"].strip().lower() == "status":
             lines[index] = f"| **Status** | {status} |\n"
-            path.write_text("".join(lines), encoding="utf-8")
+            path.write_text("".join(lines), encoding="utf-8", newline="\n")
             return
     raise ValueError(f"{path.name}: no Status row to update")
 
@@ -275,13 +286,16 @@ def main(argv=None):
     pages = read_pages(repo, wiki, args.threshold, args.ref)
     missing = not_written(wiki)
     if args.write:
+        # The first write creates the generated board; don't report that
+        # imminent output as a missing wiki page.
+        missing.pop(Path(BOARD_NAME).stem, None)
         for page in pages:
             if page["stale"] and page["status"] != "stale":
                 set_status(page["path"], "stale")
                 page["status"] = "stale"
         commit = git(repo, "rev-parse", "--short", args.ref).strip()
         board = render_board(pages, args.ref, commit, missing)
-        (wiki / BOARD_NAME).write_text(board, encoding="utf-8")
+        (wiki / BOARD_NAME).write_text(board, encoding="utf-8", newline="\n")
 
     print(render_report(pages, missing))
     return 1 if any(p["problem"] for p in pages) else 0

@@ -8,8 +8,11 @@ If you cannot establish this, return to the
 [hild-scope conversation](../hild-scope/SKILL.md) before starting work;
 an earlier "OK" to discussing a proposal is not enough.
 
-This procedure supports a new, clean repository. Reconciling an existing
-HILD installation or wiki requires a separate scope.
+This procedure installs **the current GitHub-and-skills reference
+implementation** into a new, clean repository. HILD itself is a development
+process, not the installer; reconciling an existing installation or wiki
+requires a separate scope and unsupported workarounds must not be presented
+as already tested.
 
 ## Before execution
 
@@ -28,6 +31,14 @@ HILD installation or wiki requires a separate scope.
 4. Make sure the source checkout contains the **whole** HILD package:
    README, process, scripts, templates, shared skills and selected hook
    templates. Using an incomplete upstream checkout is not a valid install.
+
+## Claude Code: no symlink or Git setting is needed
+
+Claude Code finds the skills through the generated `CLAUDE.md`, which imports
+`@AGENTS.md`, and the skills index in `AGENTS.md`. The installer creates no
+`.claude/skills` link, so it checks no Git symlink setting
+([decision 0009](https://github.com/Motor-Learning-Lab/HILD/blob/main/HILD/decisions/0009-claude-skills-via-agents-md.md)).
+`--verify` checks the import and that every indexed skill exists.
 
 ## Preview (read-only) then install (approved write)
 
@@ -53,13 +64,21 @@ The command must print a read-only installation proposal, including all
 target paths and the selected agents. Discuss any unexpected additions.
 Do not treat the preview as approval.
 
-Only once the researcher agrees to that exact proposal:
+Only once the researcher agrees to that exact proposal **and authorizes applying it**:
+
+If you asked about an implementation choice *and* separately requested permission to
+run `--apply`, an answer naming only the choice is not authorization to execute.
+Briefly confirm the action before proceeding; do not reconfirm approval that was
+already unambiguous.
 
 ```bash
 python3 HILD/scripts/install_hild.py --target /path/to/new-repo --agents all --apply
 ```
 
-The script refuses dirty repositories and collisions. It records a source
+The script refuses dirty repositories and collisions. If file creation fails,
+new files are rolled back; **verification failure after creation leaves the
+new files in place** for inspection. Explain this distinction rather than
+claiming every failure is automatically reversed. The script records a source
 commit and per-file hashes in `HILD/installation.json`, creates a starter
 plan/journal and only the selected agent adapters. The first implementation
 does **not** modify existing files; installation into a partially configured

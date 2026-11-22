@@ -20,7 +20,7 @@ jobs:
       - name: Install test dependency
         run: python -m pip install pytest
       - name: Wiki status regression tests
-        run: python -m pytest -q tests/test_wiki_status.py
+        run: python -m pytest -q tests/test_wiki_status.py tests/test_session_context.py
       - name: Compile scripts
         run: python -m py_compile HILD/scripts/wiki_status.py
       - name: Check shell syntax

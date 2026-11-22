@@ -9,6 +9,12 @@ Authoritative rules: [HILD process](../../../HILD/process.md). If reading
 this skill from an upstream URL before installing HILD, also read the upstream
 process; links relative to this skill may not resolve in the target repository.
 
+This skill implements adoption of **the HILD process**, currently using a
+GitHub-oriented package, skills and installer. A platform problem is a reason
+to collaborate on a workable mechanism, not to abandon authorization or
+review; however, do not claim that the current installer supports an
+unverified alternative.
+
 ## Non-negotiable read-only first pass
 
 **Assess first; do not install.** During the initial assessment, do **not**

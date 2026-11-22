@@ -2,7 +2,7 @@
 
 ## Purpose and authority
 
-This repository develops HILD, a reusable approach to AI-assisted scientific software development that keeps the researcher able to understand, direct, review and maintain the result.
+This repository develops HILD, a reusable **human-supervised development process** for AI-assisted scientific software. Its essential requirements concern researcher authority, inspectable agreements and changes, evidence-based review and durable understanding; GitHub/skills/hooks provide the current reference implementation.
 
 This root `AGENTS.md` governs work **on HILD itself**. It is not a file that `hild-integrate` copies into host repositories: an existing project's agent instructions remain authoritative, with a proposed pointer to its locally installed HILD process.
 
@@ -19,6 +19,18 @@ The original working process is in [MotorAdpatationSBI](https://github.com/opher
 
 Develop HILD **using HILD**. Keep changes small, reviewable, reversible, and on branches with draft PRs. No unapproved scope expansion and no merge without the human reviewer.
 
+## HILD skills
+
+HILD's procedures are skills in [`.agents/skills/`](.agents/skills/). Read the listed file when its purpose fits the request; agents that discover skills natively may use them directly.
+
+- `hild-orient` ([SKILL.md](.agents/skills/hild-orient/SKILL.md)): start-of-session orientation, or "where does the project stand?".
+- `hild-scope` ([SKILL.md](.agents/skills/hild-scope/SKILL.md)): agree a scope before nontrivial work, or begin onboarding.
+- `hild-explain` ([SKILL.md](.agents/skills/hild-explain/SKILL.md)): prepare a PR explanation for review.
+- `hild-journal` ([SKILL.md](.agents/skills/hild-journal/SKILL.md)): record a milestone and refresh the plan.
+- `hild-understood` ([SKILL.md](.agents/skills/hild-understood/SKILL.md)): draft or maintain understanding-map pages.
+- `hild-digest` ([SKILL.md](.agents/skills/hild-digest/SKILL.md)): audit repository hygiene and understanding debt.
+- `hild-integrate` ([SKILL.md](.agents/skills/hild-integrate/SKILL.md)): assess an existing repository and propose HILD adoption.
+
 ## Project-specific guidance
 
 - Favor minimal, explicit procedures over abstractions or complex automation.
@@ -27,3 +39,4 @@ Develop HILD **using HILD**. Keep changes small, reviewable, reversible, and on 
 - Distinguish agreed design, proposals, implemented behavior, tests and outstanding questions.
 - No claims that unported skills, integrations or hooks work; verify them when they exist.
 - Skills and agent configurations live where agents discover them; keep authoritative policy and project knowledge at their recorded homes.
+- Test repositories used to validate HILD are disposable. Before deleting one, copy its evidence into a comment on the HILD scope issue the test served: the scope issue and PR text with their comments, the list of changed files, generated files, wiki pages, and any exported conversation. HILD's documents link to that comment, never into the test repository. A PR that completes the scope summarizes the evidence and links to the comment.

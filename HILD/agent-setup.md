@@ -1,25 +1,34 @@
 # Agent startup integrations
 
-HILD has **one copy of its rules and skills**. The researcher's choice of agent
-controls which platform-specific discovery files and startup hooks the installer
-will offer. The default choice is all supported agents.
+**This page describes the agent-specific mechanics of HILD's reference
+implementation, not the requirements that define HILD.** Agent instructions
+and hooks help agents follow the human-supervised process; they are not
+required to define or understand it. The installer keeps one copy of HILD's
+rules and skills and offers platform-specific adapters according to the
+researcher's agent selection (default: all supported agents).
 
-This page explains **what the adapter templates can do**. The installer that
-will select and install these adapters is **not implemented yet**. Nothing
-described here proves that a real agent has used the skills.
+This page explains **what the adapter templates can do**. The
+[preview-first installer](scripts/install_hild.py) supports new, minimally
+initialized Git repositories and selects agent-specific adapters; reconciling
+an existing HILD installation or established repository is not yet supported.
+Neither installed files nor a valid configuration proves that a real agent
+has discovered or used the skills.
 
 | Agent | Shared skills | Optional startup file | Current evidence |
 |---|---|---|---|
 | Codex | `.agents/skills/hild-*/SKILL.md` | `.codex/hooks.json` from [template](templates/codex-hooks.json) | Supported locations documented; not tested in a live Codex session |
 | GitHub Copilot CLI/cloud | `.agents/skills/hild-*/SKILL.md` | `.github/hooks/hild.json` from [template](templates/copilot-hooks.json) | Supported locations documented; not tested in a live Copilot session |
-| Claude Code | `.claude/skills/` pointing to the **same** shared skills | `.claude/settings.json` from [template](templates/claude-settings.json) | The original project used a relative symlink; its behavior has not been tested here |
+| Claude Code | `.agents/skills/hild-*/SKILL.md`, found through the skills index in `AGENTS.md`, which `CLAUDE.md` imports with `@AGENTS.md` | `.claude/settings.json` from [template](templates/claude-settings.json) | Tested in [scope #19](https://github.com/Motor-Learning-Lab/HILD/issues/19#issuecomment-6748912826): with the import and index, Claude chose and followed the right skill and stopped before acting; headless runs, not yet a full onboarding |
 
-The Claude skill path should refer to the shared directory rather than
-copying files into a second source of truth. In a fresh checkout the
-installer can **propose** the relative symlink `.claude/skills ->
-../.agents/skills`, but must check that the path is unoccupied and that
-the user's OS and Git checkout actually preserve symlinks. If not, offer
-explicit skill-file access instead of claiming automatic discovery.
+Claude Code does not read `.agents/skills/`, and `CLAUDE.md` loads other files
+only through `@path` imports, so the installer writes `CLAUDE.md` containing
+`@AGENTS.md` and puts a skills index in `AGENTS.md`: each skill's name, path
+and description, built from the skill's frontmatter. The installer creates no
+`.claude/skills` link, so nothing depends on the user's OS or Git symlink
+settings. The consequence is that Claude Code treats the skills as
+instructions it is pointed to rather than as native slash-command skills; see
+[decision 0009](https://github.com/Motor-Learning-Lab/HILD/blob/main/HILD/decisions/0009-claude-skills-via-agents-md.md), which is
+proposed and not yet accepted.
 
 ## What the startup scripts do
 

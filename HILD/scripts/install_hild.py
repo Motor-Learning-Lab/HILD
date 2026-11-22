@@ -98,15 +98,32 @@ def ensure_source_checkout(source):
         raise InstallationError("HILD source has uncommitted changes; cannot record a reproducible source commit")
 
 
+SKILL_PATH = re.compile(r"\.agents/skills/[A-Za-z0-9_-]+/SKILL\.md")
+
+
+def skills_index(source):
+    """One line per skill, built from each skill's frontmatter description."""
+    lines = []
+    for skill in sorted((source / ".agents/skills").glob("*/SKILL.md")):
+        text = skill.read_text(encoding="utf-8")
+        match = re.search(r"^description:\s*(.+?)\s*$", text, re.MULTILINE)
+        if not text.startswith("---") or not match:
+            raise InstallationError(f"{skill.relative_to(source).as_posix()} has no frontmatter description")
+        lines.append(f"- `{skill.parent.name}` "
+                     f"([{skill.relative_to(source).as_posix()}]({skill.relative_to(source).as_posix()})): "
+                     f"{match.group(1)}")
+    return lines
+
+
 def build_files(source, target, agents):
-    """Prepare every output as bytes; a None value represents the Claude symlink."""
+    """Prepare every output as bytes."""
     for rel in REQUIRED:
         if not (source / rel).is_file():
             raise InstallationError(f"HILD source is incomplete: missing {rel}")
     plan = {}
     shared = ["HILD/README.md", "HILD/process.md", "HILD/agent-setup.md"]
     shared += [
-        str(p.relative_to(source)) for folder, pattern in (
+        p.relative_to(source).as_posix() for folder, pattern in (
             ("HILD/templates", "*.md"), ("HILD/templates", "*.json"),
             ("HILD/scripts", "*.py"),
             ("HILD/scripts", "*.sh"), (".agents/skills", "**/*"),
@@ -116,21 +133,28 @@ def build_files(source, target, agents):
     for rel in sorted(set(shared)):
         plan[rel] = (source / rel).read_bytes()
 
+    index = skills_index(source)
+    if not index:
+        raise InstallationError("HILD source has no skills with a frontmatter description")
     plan["AGENTS.md"] = (
         "# Project agent instructions\n\n"
         "This project uses [HILD](HILD/process.md) to develop scientific software.\n"
         "Read [HILD's plan](HILD/plan.md) and [getting-started guide](HILD/README.md)\n"
         "before proposing substantive work. Project-specific scientific and coding\n"
-        "rules belong here; don't duplicate the HILD process.\n"
+        "rules belong here; don't duplicate the HILD process.\n\n"
+        "## HILD skills\n\n"
+        "HILD's procedures are skills. Read the listed file when its description\n"
+        "fits the request. Agents that discover skills natively may use them directly.\n\n"
+        + "\n".join(index) + "\n"
     ).encode()
 
     if "claude" in agents:
+        # Claude Code loads other files only through @path imports.
         plan["CLAUDE.md"] = (
             "# Claude Code entry point\n\n"
-            "Follow [project instructions](AGENTS.md), which link to the\n"
-            "[authoritative HILD process](HILD/process.md).\n"
+            "Project instructions, which link to the [HILD process](HILD/process.md):\n\n"
+            "@AGENTS.md\n"
         ).encode()
-        plan[".claude/skills"] = None
 
     for agent in agents:
         template, destination = ADAPTERS[agent]
@@ -188,8 +212,7 @@ def build_files(source, target, agents):
             "understanding_map": "wiki/",
         },
         "files": {
-            name: {"sha256": digest(data)} if data is not None
-            else {"symlink": "../.agents/skills"}
+            name: {"sha256": digest(data)}
             for name, data in sorted(plan.items())
         },
     }
@@ -224,10 +247,7 @@ def apply_plan(target, plan):
             for folder in reversed(missing):
                 folder.mkdir()
                 created_dirs.append(folder)
-            if data is None:
-                path.symlink_to("../.agents/skills", target_is_directory=True)
-            else:
-                path.write_bytes(data)
+            path.write_bytes(data)
             created_files.append(path)
     except (OSError, ValueError) as error:
         for path in reversed(created_files):
@@ -269,10 +289,7 @@ def verify(target):
     missing, local_edits = [], []
     for rel, expected in info["files"].items():
         path = target / rel
-        if "symlink" in expected:
-            if not path.is_symlink() or str(path.readlink()) != expected["symlink"]:
-                missing.append(f"{rel}: missing or incorrect skill-directory link")
-        elif not path.is_file():
+        if not path.is_file():
             missing.append(f"{rel}: missing expected file")
         elif digest(path.read_bytes()) != expected["sha256"]:
             local_edits.append(rel)
@@ -280,6 +297,19 @@ def verify(target):
             missing.extend(local_link_problems(
                 target, rel, path.read_text(encoding="utf-8")
             ))
+
+    if "claude" in info["agents"]:
+        claude = target / "CLAUDE.md"
+        if not claude.is_file() or not re.search(
+                r"^@AGENTS\.md\s*$", claude.read_text(encoding="utf-8"), re.MULTILINE):
+            missing.append("CLAUDE.md: does not import @AGENTS.md, so Claude Code won't load it")
+    agents_md = target / "AGENTS.md"
+    listed = (set(SKILL_PATH.findall(agents_md.read_text(encoding="utf-8")))
+              if agents_md.is_file() else set())
+    if not listed:
+        missing.append("AGENTS.md: no HILD skills index")
+    missing.extend(f"AGENTS.md: indexed skill missing: {rel}"
+                   for rel in sorted(listed) if not (target / rel).is_file())
 
     for item in missing:
         print("FAIL", item)
@@ -332,7 +362,15 @@ def main(argv=None):
             return 0
         apply_plan(target, plan)
         print(f"Installed HILD for {', '.join(agents)} into {target}")
-        return verify(target)
+        result = verify(target)
+        if result:
+            print(
+                "INSTALLATION NEEDS ATTENTION: verification failed after file creation. "
+                "New files remain in place for inspection; no automatic rollback "
+                "or second --apply was performed.",
+                file=sys.stderr,
+            )
+        return result
     except (InstallationError, json.JSONDecodeError) as error:
         print("HILD:", error, file=sys.stderr)
         return 2
