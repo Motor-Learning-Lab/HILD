@@ -91,12 +91,10 @@ Neither an installed file nor a configured hook proves live agent behavior.
 
 ## Before agreement is complete
 
-The eventual scope must capture the target and upstream revision, what
-existing authority will be preserved, intended changes, conflicts and
-deferrals, stopping points, and checks for success. It must also distinguish
-what has been observed from what remains to be tested. Record the result in
-the [scope-issue format](../../../HILD/templates/scope-issue.md) **after
-developing the agreement**, not as an upfront form for the researcher.
+Record the agreed scope in the
+[scope-issue format](../../../HILD/templates/scope-issue.md), including its
+note on what an installation scope states, **after developing the
+agreement**, not as an upfront form for the researcher.
 
 **Stop before making changes.** A read-only assessment or agreement to
 *discuss* scoping does not authorize an issue or installation. Use

@@ -437,7 +437,7 @@ There are three different kinds of supporting tool:
 **Concrete example — starting a session.** In the original project, Claude
 Code starts a session and runs `session_context.sh`. That script collects
 the current branch, plan, latest journal, recent commits, open issues and
-pull requests, and wiki status. Claude then follows the `orient` skill:
+pull requests, and wiki status. Claude then follows the orientation skill (`hild-orient`, originally `orient`):
 it explains what needs human attention, what changed, and what to do next.
 The script supplies facts; the skill supplies steps; this document supplies
 the governing rules.
@@ -445,8 +445,8 @@ the governing rules.
 **Concrete example — checking understanding.** Code pages in the original
 project's wiki record which files they explain and the `main` commit they
 describe. The `wiki_status.py` script compares those files with current
-code and flags pages that may be outdated. The `digest` and `understood`
-skills tell the agent how to report or follow up; only the reviewer can
+code and flags pages that may be outdated. The `hild-digest` and `hild-understood`
+skills (originally `digest` and `understood`) tell the agent how to report or follow up; only the reviewer can
 confirm a page as `understood`.
 
 | Procedure in the original project | Purpose |
@@ -455,7 +455,7 @@ confirm a page as `understood`.
 | `hild-scope` (originally `scope`) | Prepare an agreed scope before nontrivial development |
 | `hild-explain` | Prepare a layered PR explanation for human review |
 | `hild-journal` | Record milestones and refresh the plan |
-| `understood` | Draft or revise an understanding-map page |
+| `hild-understood` (originally `understood`) | Draft or revise an understanding-map page |
 | `hild-digest` | Review repository hygiene and understanding debt |
 | `hild-integrate` | Inspect existing repositories and propose adoption; later install after explicit approval and support reconciliation |
 
@@ -473,6 +473,39 @@ Until a supporting tool is installed and verified, the agent follows the
 rules manually rather than pretending automation exists. An initial
 `hild-integrate` **assessment** never runs hooks or write-capable scripts,
 and never changes local or GitHub state before human approval.
+
+### Writing skills
+
+A skill holds a **procedure**: what the agent does, in order, and where it
+stops. Rules live in this file and formats in the templates (*Where each
+thing lives*). When writing or changing a skill, check it against this list;
+`hild-digest` checks the same list. The research behind it is summarized in
+the understanding map's skill-authoring resource page, where one is kept.
+
+1. **Front matter:** only `name` and `description`, so one file works for
+   every agent; `name` equals the skill's directory name.
+2. **Description:** third person, saying what the skill does, then
+   "Use when…" with the requests that should select it. Key words first;
+   under 1,024 characters. It does not claim a request that another
+   skill's description also claims.
+3. **Procedure, not rules:** numbered steps and exact stopping points. Where a
+   step depends on a rule, link to the rule's section here instead of
+   restating it.
+4. **No rule lives only in a skill.** If a skill needs a rule that has no
+   home, add the rule to its home (on the read track) and link to it.
+5. **Only what the agent would otherwise get wrong.** Leave out background
+   the agent already knows. Explanation of why HILD works this way belongs
+   in the understanding map; keep a short reason only where a step would
+   otherwise look arbitrary.
+6. **Size:** keep `SKILL.md` well under 500 lines. Put longer material in
+   companion files linked directly from `SKILL.md` (one hop, not chains),
+   each with a stated "read this when". A companion over 100 lines starts
+   with a table of contents.
+7. **Links resolve** in an installed repository. `install_hild.py --verify`
+   checks that local links reach existing files; it does not check section
+   anchors.
+8. **Tested when the procedure changes:** a fresh agent session shows the
+   skill is found and followed. Say what was not tested.
 
 ## Durable state files
 
@@ -585,6 +618,12 @@ reject. Later work cannot bootstrap approval for its own prerequisites.
   with recoverable Git history. Irreversible effects on external systems
   are not made reversible by labeling them provisional; seek explicit
   authority for these separately.
+- **Credentials:** never ask for or publish credentials, private keys,
+  device codes or raw `gh auth token` output in chat, terminal logs,
+  issues or PRs, and never put credentials in Git remote URLs or commits.
+  Logging in, storing credentials, changing Git configuration or
+  permissions, and making new clones are consequential actions: explain
+  them and get agreement first.
 - **Decision style:** when a tradeoff is not obvious, explain briefly and
   prefer the simpler, less stateful option, while recording provisional
   choices where approval is deferred.
@@ -614,6 +653,9 @@ required for human-supervised development.
     the archive. Update or remove references in the same change.
   - Exception: decision records are kept and marked superseded.
 - Commit messages explain why, not just what.
+- A PR description links its scope issue with `Closes #N` only when the PR
+  finishes issue N; otherwise it writes `Part of #N`. GitHub closes an
+  issue automatically when a PR containing `Closes #N` merges.
 - When the agent acts through the reviewer's GitHub account, its comments start with
   **🤖 Claude:** (or the agent's name) so it is clear who wrote what.
 - Replies to review comments go in the comment's own thread, with permalinks to the fix.

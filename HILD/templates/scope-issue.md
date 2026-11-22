@@ -26,6 +26,11 @@ mandate, the ordinary approval points deferred and how provisional
 dependent work will be surfaced for later human review. Delegated execution
 never constitutes acceptance of unreviewed choices or a PR.
 
+<!-- Installation or upgrade scopes also state: the target repository and the
+upstream HILD revision; which existing authority is preserved; the intended
+changes, conflicts and deferrals; and which checks show success, separating
+what has been observed from what remains to be tested. -->
+
 ## Done when
 
 Checkable conditions. For scientific work, the correctness checks agreed with the

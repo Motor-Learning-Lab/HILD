@@ -164,11 +164,8 @@ version. Consult maintained platform documentation for actual behavior.
 Keep any explanation concrete and brief. Recommend **one next action**,
 with alternatives when their tradeoffs matter.
 
-- Never request or publish credentials, private keys, device codes or
-  raw `gh auth token` output in chat, terminal logs, issues or PRs.
-- Avoid embedding credentials in Git remote URLs or commits.
-- Explain and seek agreement for login, credential storage, Git config
-  changes, new clones, permissions, or any other consequential action.
+- Handle credentials and consequential actions as
+  [process, *Autonomy*](../../../HILD/process.md#autonomy) says.
 - After recovery, verify the **specific blocked capability**, and say
   what is still unverified. Resume at the original HILD review gate:
   repairing GitHub access never grants approval to create or implement
