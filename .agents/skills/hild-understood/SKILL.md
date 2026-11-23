@@ -1,31 +1,41 @@
 ---
 name: hild-understood
-description: Draft and maintain the reviewer's understanding-map pages, including post-merge code pages, explanations of concepts, guides, resources, and HILD process pages. Use after a merge, when understanding changes, or when a page is stale.
+description: Drafts and updates the researcher's understanding-map pages and their statuses, and records the researcher's own judgment of what they understand. Use after a merge that calls for wiki pages, when a page no longer matches the repository, when the researcher confirms or withdraws their understanding of a page, or when creating a new wiki has been approved.
 ---
 
-# Understood
+# Understood: maintain the understanding map
 
-Rules: [HILD process](../../../HILD/process.md), §6 *Understanding*, and [the understanding-map topic](../../../HILD/process/understanding-map.md).
-Templates: [wiki code page](../../../HILD/templates/wiki-code-page.md) and
-[general wiki page](../../../HILD/templates/wiki-page.md).
+Who judges understanding is in the [HILD process, §6](../../../HILD/process.md#6-understanding).
+Page kinds, statuses, who sets them and when the map is pushed are in
+[the understanding-map topic](../../../HILD/process/understanding-map.md).
+The formats are the [code-page](../../../HILD/templates/wiki-code-page.md)
+and [general-page](../../../HILD/templates/wiki-page.md) templates.
 
-**Purpose:** preserve a visible map of what the researcher understands,
-needs to review, or finds uncertain. A GitHub wiki is the reference
-implementation; its status labels and staleness checker help, but the
-researcher's **current** confirmation is what makes a page `understood`.
-The researcher may later withdraw that confirmation; a stored status
-does not override their current judgment.
+**Read [new-wiki.md](new-wiki.md) when** the project has no wiki and the
+researcher has approved creating one. If you find an existing wiki you were
+not told about, stop and propose a separate scope for integrating it; do
+not create or overwrite a wiki implicitly.
 
-In the original project, the wiki is a separate Git repository copied into a local `wiki/` folder that the main repository ignores. The installed project's configuration should identify its actual wiki location. **Do not create or overwrite a wiki implicitly.** In particular, existing-wiki integration is outside the first-install scope.
+## Steps
 
-**Creating a new wiki:** If there is no wiki and the researcher has approved creating one, read [new-wiki.md](new-wiki.md). This companion is for a *fresh* wiki only. If an existing wiki is found, stop and propose a separate integration scope; do not replace it.
+1. **Get the latest pages.** Find the map's recorded location. If there is
+   no local clone, ask before making one
+   ([§7](../../../HILD/process.md#7-rules-at-every-step)). Pull with
+   `--ff-only`; if that fails, stop and explain rather than overwrite
+   anyone's edits.
+2. **Write from the repository as it is.** A code page describes code
+   already on `main` and records that commit. When a page may be out of
+   date, compare what it describes with the current source. Link every
+   claim to the lines it relies on.
+3. **Set statuses as the topic says.** Never mark a page `understood`
+   yourself. When the researcher confirms or withdraws their understanding,
+   record it, quoting them.
+4. **Keep navigation current.** Update `Home` and the sidebar. If
+   `HILD/scripts/wiki_status.py` is installed, run it with `--write` on the
+   wiki and read what it changed; it does not commit or push.
+5. **Publish straight away.** Commit and push the wiki after each change,
+   then give the researcher the page links and say which pages await their
+   reading.
 
-1. **Find the wiki and get the latest pages.** Read its configured location and remote address. If it uses Git, pull only when Git can add the new changes without rewriting existing work (`--ff-only`). If that fails, stop and explain rather than overwrite anyone's edits.
-2. **Draft from the actual code.** A code page should describe what is already on `main`, with the commit it describes. If a page might be out of date, compare that commit with the current code. Use a process, concept, guide or resource page for other subjects.
-3. **Keep human confirmation meaningful.** The agent can mark a page as a draft, placeholder, needing revision or needing another review. **Only the researcher** can confirm it as `understood`; if they later
-retract that assessment, record `needs-review` or `needs-revision`
-as appropriate. Link related pages; create placeholders only when the agreed work needs them.
-4. **Keep navigation and status current.** Update Home and the sidebar. If the staleness checker exists, run `HILD/scripts/wiki_status.py --write` on the configured wiki and inspect what it changed. This script does not commit or publish anything.
-5. **Publish promptly.** Commit and push the wiki after each approved update; report page links and those awaiting human review.
-
-For onboarding, the scope/PR may propose a `Process-HILD` wiki page, but write the agreed draft **after** the onboarding PR has merged.
+In onboarding, the first PR may propose a `Process-HILD` page; write it
+only after that PR merges.

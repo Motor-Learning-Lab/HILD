@@ -1,26 +1,34 @@
 ---
 name: hild-journal
-description: Record a development milestone in the durable journal and update the living plan. Use after pushes, PR state changes, results, decisions, or compaction, or on a request to log progress.
+description: Records a milestone in the journal and updates the plan, so that the work survives the end of a chat. Use at each milestone the process lists (work finished and pushed; a PR opened, marked ready or merged; a result, finding or decision; provisional work under independent work; context compaction), at session start when the journal is behind Git, or when asked to log progress.
 ---
 
-# Journal
+# Journal: record a milestone
 
-Rules: [HILD process](../../../HILD/process.md), §5 *State in files*, and [the plan-and-journal topic](../../../HILD/process/plan-and-journal.md).
-Formats: [journal entry](../../../HILD/templates/journal-entry.md) and
-[decision record](../../../HILD/templates/decision-record.md).
+What the plan, journal and decision records are, and which events are
+milestones, is in the [HILD process, §5](../../../HILD/process.md#5-state-in-files).
+How to write each is in [the plan-and-journal topic](../../../HILD/process/plan-and-journal.md)
+and [the decision-records topic](../../../HILD/process/decision-records.md).
+The format is the [journal-entry template](../../../HILD/templates/journal-entry.md).
+Use the host's recorded locations if they are not HILD's defaults.
 
-**Purpose:** keep goals, actual progress, evidence and decisions recoverable
-between sessions. The daily Markdown journal and living plan below are
-our reference files for that continuity; record milestones while work is
-in progress, not only after a GitHub PR merges.
+## Steps
 
-1. **Check what's missing.** Compare the latest journal, Git history, open PRs and work completed since the last update. Find the project's actual plan, journal and decisions; by default they live in `HILD/`.
-2. **Record facts plainly** in `YYYY-MM-DD.md` at the configured journal location. Append within the current session; a second session on the same date gets another session heading. Keep the goal, completed work, and next steps clear; include results and findings when relevant. Under independent work, enumerate
-   **each deferred ordinary permission point**, the choice the agent made,
-   where it appears in commits/PRs, and the later work depending on it.
-   Mark those results provisional until the researcher reviews them. Link material results to the command, source, notebook or commit that produced them.
-3. **Record important decisions separately** in the project's decision directory, through a reviewed PR. A draft is not an accepted decision. Mention smaller choices directly in the journal.
-4. **Update the plan** in place with current goals, actual state and ordered next steps; git history preserves older versions.
-5. **Commit and push** the milestone within the agreed branch/scope, or on `main` after merge where allowed by the process.
+1. **Find what is missing.** Compare the latest journal entry with Git
+   history, open PRs and the work done since. Include work from an earlier
+   session that was never recorded.
+2. **Write the journal entry** in today's file, adding to the current
+   session's section. Record facts and link each to its evidence: the
+   commit, PR, issue, command or notebook. Under independent work, list
+   each deferred approval in *Permission points*, as the process's
+   [*Independent work*](../../../HILD/process.md#independent-work) requires.
+3. **Point to decisions.** A consequential choice gets a decision record
+   through a reviewed PR; link it, or say it is still a draft. Note smaller
+   choices in the journal itself.
+4. **Update the plan** so its goals, state and next steps are current.
+5. **Commit and push** the milestone, on the branch you are working on or
+   on `main` where the process allows it
+   ([§2](../../../HILD/process.md#2-the-life-of-a-piece-of-work)).
 
-Do not invent outcomes, backdate unverified events, or create separate report files that duplicate the plan and journal.
+Do not invent outcomes, backdate events you have not verified, or write
+separate report files that duplicate the plan and journal.

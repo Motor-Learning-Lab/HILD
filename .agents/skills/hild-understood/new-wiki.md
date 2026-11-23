@@ -4,17 +4,8 @@ This procedure is used by [hild-understood](SKILL.md) **only when the project
 has no existing wiki** and the researcher has agreed to create a new one.
 It is not a procedure for integrating or replacing an established wiki.
 
-This is the **fresh GitHub-wiki setup for HILD's reference implementation**.
-It does not mean that HILD as a process requires a GitHub wiki; an
-alternative understanding map must still allow the researcher to confirm
-understanding and future sessions to find the relevant explanations.
-
-## Why a separate wiki?
-
-The wiki is a map of what the human reviewer understands. It links to the
-authoritative code, decisions, and process, but is **not** another source of
-rules. The agent can draft or correct pages; only the human reviewer can
-confirm that a page is `understood`.
+It sets up a GitHub wiki, HILD's reference implementation of the
+understanding map ([understanding-map topic](../../../HILD/process/understanding-map.md)).
 
 ## Before making any changes
 
@@ -23,7 +14,7 @@ confirm that a page is `understood`.
    is outside the first-install scope. Do not overwrite its Home page.
 2. Explain that a wiki is a **separate Git repository** with a visible
    GitHub website. Creating or editing it has external effects. Obtain the
-   human's specific agreement to create it.
+   researcher's specific agreement to create it.
 3. Confirm the repository is reachable through GitHub and Git credentials
    will permit pushing wiki edits. If either cannot be established, report
    the blocker; don't claim that the wiki is installed.
@@ -50,7 +41,7 @@ confirm that a page is `understood`.
 ## When onboarding reaches its first PR
 
 Its explanation may **propose** a `Process-HILD` page explaining how this
-particular repository uses HILD. If the reviewer agrees, draft that page
+particular repository uses HILD. If the researcher agrees, draft that page
 **after the PR merges**, so it describes the actual result. The page stays
 `draft` until the researcher reviews and confirms their understanding.
 
