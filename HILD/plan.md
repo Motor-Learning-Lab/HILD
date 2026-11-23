@@ -29,7 +29,7 @@ The living plan records goals, current state and next steps. History is in Git a
 
 ## Next steps
 
-1. **Scope [#18](https://github.com/Motor-Learning-Lab/HILD/issues/18) rewrites against the split:** `hild-integrate`, `hild-explain`, then the four short skills. They also remove rules that skills and templates restate, tighten the moved topic text, and resolve `hild-journal`'s contradiction about where milestone commits go.
+1. **Scope [#18](https://github.com/Motor-Learning-Lab/HILD/issues/18) rewrites against the split.** The researcher reviews [PR #41](https://github.com/Motor-Learning-Lab/HILD/pull/41) (`hild-integrate`, read track). Then `hild-explain`, then the four short skills. They also remove rules that skills and templates restate, tighten the moved topic text, and resolve `hild-journal`'s contradiction about where milestone commits go.
 2. **Scope [#20](https://github.com/Motor-Learning-Lab/HILD/issues/20):** revise the concept pages that cite the old `process.md` (`Concept-hild-in-brief`, `-review-and-acceptance`, `-scope-agreements`, `-session-orientation`, `-durable-state`, `-understanding-map`) against the spine and topic files; code pages; skill pages after each skill's rewrite merges.
 3. **Issue [#38](https://github.com/Motor-Learning-Lab/HILD/issues/38)** (install guidance inactive until restart; `hild-explain` trigger misses draft PRs): not yet scoped.
 4. **Later:** review the stale `Proposed` status of decision 0004, and settle CI for integration branches under scope #16.
