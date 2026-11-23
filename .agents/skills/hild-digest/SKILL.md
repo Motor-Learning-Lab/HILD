@@ -1,21 +1,43 @@
 ---
 name: hild-digest
-description: Audit repo understandability, stale material, duplicated rules, neglected decisions and understanding-map freshness, and propose a bounded cleanup. Use for periodic repo reviews and requests to inspect hygiene.
+description: Audits how easy the repository is to understand and proposes a bounded cleanup, covering obsolete files, rules stated in more than one place, skills that break the skill-writing checklist, conflicting claims, untested or unreviewed work, and stale understanding-map pages. Use for a periodic repository review, or when the researcher asks for a hygiene check or audit.
 ---
 
-# Digest
+# Digest: audit the repository
 
-The aim is a project the human researcher can readily understand. Authoritative criteria come from the host's established `AGENTS.md` and [HILD process](../../../HILD/process.md). **Do not duplicate a separate hygiene rulebook in this skill.**
+The criteria are the host's `AGENTS.md` and the [HILD process](../../../HILD/process.md)
+with its topic files. This skill says how to look, not what is right: judge
+each finding against the rule it links to.
 
-1. **Understanding map:** when configured, pull fast-forward and check code pages for staleness using `HILD/scripts/wiki_status.py` if installed; record missing pages and open understanding-debt issues. Create/update issues and wiki status only as authorized by the project's agreed scope. Report missing tooling rather than pretending this check ran.
-2. **Review the repository:** examine tracked files (`git ls-files`), plan, decisions, code, relevant wiki pages, PRs and tests. Look for obsolete or unused files, the same rule written in multiple places, confusing names, missing test evidence, conflicting claims and changes awaiting review. Also flag language that confuses a **process outcome or human safeguard**
-with a particular GitHub, skill or hook mechanism, or treats an untested
-alternative as working. Check that independent-work permission debt is not
-misreported as accepted and that altered older decisions have a prominent
-forward link at the beginning to their successor. Retain concrete
-implementation conventions rather than replacing them with vague goals. Judge them against the project's own rules.
-3. **Skills:** check each skill file against [the writing-skills topic](../../../HILD/process/writing-skills.md). Report its size, any rule it restates or holds without another home, and descriptions that overlap another skill's.
-4. **Report before making changes:** say whether the repository is getting easier or harder to understand. For each important problem, give its location, the relevant rule and a specific suggested fix. Identify things that can be simplified or removed.
-5. **Follow up by agreement:** do not repair nontrivial issues merely because they were identified. Each approved fix gets a scope issue or joins an existing agreed scope. Record the audit milestone using `hild-journal`.
+## Steps
 
-The original [digest procedure](https://github.com/opherdonchin/MotorAdpatationSBI/blob/main/.github/skills/digest/SKILL.md) and this HILD adaptation describe the same review process; the process file, not this skill, remains the rule authority.
+1. **Check the understanding map.** If one is configured, pull it with
+   `--ff-only` and run `HILD/scripts/wiki_status.py` if it is installed.
+   Note stale pages, pages linked but not written, and open
+   understanding-debt issues. If the tooling is missing, say the check did
+   not run.
+2. **Review the repository.** Read the tracked files (`git ls-files`), the
+   plan, decisions, code, tests, relevant wiki pages and open PRs. Look for:
+   - obsolete, unused or confusingly named files, and missing test evidence;
+   - a rule stated in more than one place, or outside its home
+     ([§8](../../../HILD/process.md#8-the-map));
+   - text that treats a GitHub, skill or hook mechanism as the process
+     itself, or an untested alternative as working
+     ([§1](../../../HILD/process.md#1-what-hild-is-for));
+   - provisional work from independent work reported as accepted
+     ([*Independent work*](../../../HILD/process.md#independent-work));
+   - an older decision changed by a later one without a notice at its top
+     ([decision-records topic](../../../HILD/process/decision-records.md));
+   - claims that conflict, and changes still awaiting review.
+
+   Keep concrete conventions; do not propose replacing them with vague goals.
+3. **Check the skills** against [the writing-skills topic](../../../HILD/process/writing-skills.md):
+   each skill's size, any rule it restates or holds without another home,
+   and descriptions that claim the same requests.
+4. **Report, before changing anything.** Say whether the repository is
+   getting easier or harder to understand. For each important problem give
+   its location, the rule it breaks and a specific fix, and name what could
+   be simplified or removed.
+5. **Fix only by agreement.** Each fix the researcher approves gets a scope
+   issue or joins an agreed scope. Record the audit as a milestone with
+   [`hild-journal`](../hild-journal/SKILL.md).
