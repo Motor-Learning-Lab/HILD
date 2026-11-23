@@ -29,7 +29,7 @@ HILD's procedures are skills in [`.agents/skills/`](.agents/skills/). Read the l
 - `hild-journal` ([SKILL.md](.agents/skills/hild-journal/SKILL.md)): record a milestone and refresh the plan.
 - `hild-understood` ([SKILL.md](.agents/skills/hild-understood/SKILL.md)): draft or maintain understanding-map pages.
 - `hild-digest` ([SKILL.md](.agents/skills/hild-digest/SKILL.md)): audit repository hygiene and understanding debt.
-- `hild-integrate` ([SKILL.md](.agents/skills/hild-integrate/SKILL.md)): assess an existing repository and propose HILD adoption.
+- `hild-integrate` ([SKILL.md](.agents/skills/hild-integrate/SKILL.md)): add HILD to a repository, install or upgrade it, or compare an installation with upstream.
 
 ## Project-specific guidance
 
