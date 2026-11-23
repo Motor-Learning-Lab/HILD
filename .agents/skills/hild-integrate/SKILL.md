@@ -41,7 +41,10 @@ action.
    upstream provenance, one of uncertain provenance, or partial adoption. For
    an existing installation, compare the recorded upstream baseline (B), the
    current local files (L) and the proposed upstream (N) where possible; if
-   the baseline is missing, say so. Then work out safe additions, collisions,
+   the baseline is missing, say so. The installer accepts only a **new**
+   repository: clean, with no tracked files beyond `README.md`, `LICENSE`,
+   `LICENSE.md` and `.gitignore`. Any other repository needs a separate
+   integration scope. Then work out safe additions, collisions,
    prerequisites and feasible ways forward, without changing anything.
 
    Steps 2–4 are tasks, not an order for the conversation. Keep paths,
