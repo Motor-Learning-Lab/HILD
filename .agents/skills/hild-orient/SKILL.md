@@ -1,30 +1,41 @@
 ---
 name: hild-orient
-description: Present a concise start-of-session orientation about project progress, pending human reviews, understanding debt, and next work. Use on session start or when asked where the project stands.
+description: Presents a short start-of-session orientation: what needs the researcher, where the project stands, what changed and what comes next. Use at the start of a session, or when the researcher asks where the project stands or what to do next.
 ---
 
-# Orient
+# Orient: where the project stands
 
-Rules: [HILD process](../../../HILD/process.md), §4 *Talking with the researcher* and §5 *State in files*. Resolve any configured authoritative paths before acting.
+What orientation is, and when it happens, is in the
+[HILD process, §5](../../../HILD/process.md#5-state-in-files); how to talk to
+the researcher is in [§4](../../../HILD/process.md#4-talking-with-the-researcher).
+Use the host's recorded locations if its plan, journal or wiki are not at
+HILD's defaults.
 
-**Purpose:** restore accurate shared context so the researcher can choose
-what needs attention. The session hook and shell collector are helpful
-reference mechanisms, not prerequisites for doing this orientation.
+## Steps
 
-1. **Find out what happened.** If a session-start hook has provided information, use it. Otherwise read the plan, latest journal, recent Git changes, open issues and PRs, and available wiki status. The reference `HILD/scripts/session_context.sh` (once installed) can supply these facts; do not assume it has run or exists.
-2. **Check what is missing.** Note completed work that the journal doesn't mention and wiki edits that haven't been published. Explain any gaps, then use `hild-journal` or `hild-understood` when authorized to repair them.
-3. **Present** in about fifteen lines, leading with what needs the human:
-   - **Needs you:** PRs awaiting review and proposed approval tracks, scope
-     issues awaiting agreement, **deferred approval points and dependent
-     provisional work** from independent development, questions, wiki pages
-     to read.
-   - **Where we are:** current goal and state.
+1. **Gather the facts.** If a session-start hook supplied them, use them.
+   Otherwise read the plan, the latest journal entry, recent Git history,
+   open issues and PRs, and the understanding map's status yourself. Do not
+   assume a hook or `HILD/scripts/session_context.sh` ran or exists.
+2. **Check what is missing.** Note finished work the journal does not
+   mention and wiki edits that are not pushed. Repair a journal gap with
+   [`hild-journal`](../hild-journal/SKILL.md) before anything else, as §5
+   says; report wiki gaps.
+3. **Present, in about fifteen lines,** leading with what needs the
+   researcher:
+   - **Needs you:** PRs awaiting review, with their proposed tracks; scope
+     issues awaiting approval; deferred approvals and the provisional work
+     that depends on them; questions; wiki pages to read.
+   - **Where we are:** the current goal and state.
    - **Since last time:** material changes, with links.
-   - **Understanding debt:** code the human has not yet reviewed fully and wiki pages that may no longer match the code.
-   - **Next:** the next plan step and what is proposed now.
-4. **Wait in ordinary supervised work.** Do not begin unapproved nontrivial
-   work before the reviewer responds. When an explicit independent-work
-   mandate covers continuing development, the agent may proceed, but
-   preserve all unreviewed choices and dependent work as provisional.
+   - **Understanding debt:** work the researcher has not fully reviewed, and
+     wiki pages that may no longer match the code.
+   - **Next:** the plan's next step and what you propose now.
 
-A hook firing is not evidence that orientation was delivered or understood. If an information source is unavailable, say so rather than filling it in from memory.
+   If the researcher's first message asks for something else, keep this
+   brief and then handle the request.
+4. **Stop.** Wait for the researcher before starting unapproved nontrivial
+   work ([§3](../../../HILD/process.md#3-the-researchers-authority)).
+
+If a source of facts is unavailable, say so rather than filling it in from
+memory.
