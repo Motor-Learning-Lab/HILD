@@ -25,7 +25,7 @@ HILD's procedures are skills in [`.agents/skills/`](.agents/skills/). Read the l
 
 - `hild-orient` ([SKILL.md](.agents/skills/hild-orient/SKILL.md)): start-of-session orientation, or "where does the project stand?".
 - `hild-scope` ([SKILL.md](.agents/skills/hild-scope/SKILL.md)): agree a scope before nontrivial work, or begin onboarding.
-- `hild-explain` ([SKILL.md](.agents/skills/hild-explain/SKILL.md)): prepare a PR explanation for review.
+- `hild-explain` ([SKILL.md](.agents/skills/hild-explain/SKILL.md)): write and update a PR's explanation, from opening a draft PR through review.
 - `hild-journal` ([SKILL.md](.agents/skills/hild-journal/SKILL.md)): record a milestone and refresh the plan.
 - `hild-understood` ([SKILL.md](.agents/skills/hild-understood/SKILL.md)): draft or maintain understanding-map pages.
 - `hild-digest` ([SKILL.md](.agents/skills/hild-digest/SKILL.md)): audit repository hygiene and understanding debt.
